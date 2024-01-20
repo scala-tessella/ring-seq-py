@@ -1,4 +1,4 @@
-from typing import TypeAlias, TypeVar
+from typing import Iterator, TypeAlias, TypeVar
 from numpy import ceil, fmod
 
 # For improved readability, the index of a collection
@@ -65,3 +65,11 @@ def slice_o(frm: IndexO, to: IndexO, ring: Seq) -> Seq:
         gap: int = to - frm
         times: int = int(ceil(gap / length) + 1)
         return (start_at(frm, ring) * times)[:gap]
+
+
+def reflections(ring: Seq) -> Iterator[Seq]:
+    return iter((ring, reflect_at(0, ring)))
+
+
+def reversions(ring: Seq) -> Iterator[Seq]:
+    return iter((ring, __typed_reverse(ring)))
