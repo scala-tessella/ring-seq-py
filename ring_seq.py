@@ -65,9 +65,3 @@ def slice_o(frm: IndexO, to: IndexO, ring: Seq) -> Seq:
         gap: int = to - frm
         times: int = int(ceil(gap / length) + 1)
         return (start_at(frm, ring) * times)[:gap]
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print(index_from(-1, "ABCDE"))
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
