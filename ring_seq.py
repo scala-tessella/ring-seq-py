@@ -95,7 +95,6 @@ def reversions(ring: Seq) -> Iterator[Seq]:
 
 
 def rotations_and_reflections(ring: Seq) -> Iterator[Seq]:
-
     def flat_map(f: Callable[[Seq], Iterator[Seq]], xs: Iterator[Seq]) -> list[Seq]:
         ys: list[Seq] = []
         for x in xs:
@@ -103,3 +102,23 @@ def rotations_and_reflections(ring: Seq) -> Iterator[Seq]:
         return ys
 
     return __transformations(ring, lambda r: flat_map(rotations, reflections(r)))
+
+
+def __is_transformation_of(ring: Seq, that: Seq, f: Callable[[Seq], Iterator[Seq]]) -> bool:
+    return len(ring) == len(that) and that in f(ring)
+
+
+def is_rotation_of(ring: Seq, that: Seq) -> bool:
+    return __is_transformation_of(ring, that, lambda r: rotations(r))
+
+
+def is_reflection_of(ring: Seq, that: Seq) -> bool:
+    return __is_transformation_of(ring, that, lambda r: reflections(r))
+
+
+def is_reversion_of(ring: Seq, that: Seq) -> bool:
+    return __is_transformation_of(ring, that, lambda r: reversions(r))
+
+
+def is_rotation_or_reflection_of(ring: Seq, that: Seq) -> bool:
+    return __is_transformation_of(ring, that, lambda r: rotations_and_reflections(r))
