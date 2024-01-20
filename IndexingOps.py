@@ -1,6 +1,8 @@
 import unittest
 import ring
 
+from typing import Any
+
 
 class TransformingOps(unittest.TestCase):
 
@@ -17,13 +19,13 @@ class TransformingOps(unittest.TestCase):
         self.assertEqual(ring.apply_o(5, "ABCDE"), "A")
         self.assertEqual("ABCDE"[-1], "E")
         with self.assertRaises(IndexError):
-            "ABCDE"[-6]
+            var: str = "ABCDE"[-6]
         with self.assertRaises(IndexError):
-            "ABCDE"[5]
+            var: str = "ABCDE"[5]
         with self.assertRaises(ArithmeticError):
             ring.apply_o(0, [])
         with self.assertRaises(IndexError):
-            [][0]
+            var: Any = [][0]
 
 
 if __name__ == '__main__':
