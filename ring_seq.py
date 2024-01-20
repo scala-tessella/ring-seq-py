@@ -1,6 +1,5 @@
 from typing import TypeAlias, TypeVar
 from numpy import ceil, fmod
-from functional import fold_left
 
 # For improved readability, the index of a collection
 Index: TypeAlias = int
@@ -55,6 +54,17 @@ def __typed_reverse(ring: Seq) -> Seq:
 def reflect_at(i: IndexO, ring: Seq) -> Seq:
     return __typed_reverse(start_at(i + 1, ring))
 
+
+def slice_o(frm: IndexO, to: IndexO, ring: Seq) -> Seq:
+    length: int = len(ring)
+    if length == 0:
+        return ring
+    elif frm >= to:
+        return ring[:0]
+    else:
+        gap: int = to - frm
+        times: int = int(ceil(gap / length) + 1)
+        return (start_at(frm, ring) * times)[:gap]
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
