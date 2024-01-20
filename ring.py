@@ -36,7 +36,7 @@ def start_at(i: IndexO, collection: Sequence) -> Sequence:
     return rotate_left(i, collection)
 
 
-def typed_reverse(collection: Sequence) -> Sequence:
+def __typed_reverse(collection: Sequence) -> Sequence:
     rev: reversed = reversed(collection)
     if type(collection) is str:
         return "".join(rev)
@@ -49,7 +49,7 @@ def typed_reverse(collection: Sequence) -> Sequence:
 
 
 def reflect_at(i: IndexO, collection: Sequence) -> Sequence:
-    return typed_reverse(start_at(i + 1, collection))
+    return __typed_reverse(start_at(i + 1, collection))
 
 
 # Press the green button in the gutter to run the script.

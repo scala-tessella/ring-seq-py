@@ -25,6 +25,10 @@ class IndexingMethods(unittest.TestCase):
         self.assertEqual(ring.start_at(1, "ABCDE"), "BCDEA")
         self.assertEqual(ring.start_at(6, "ABCDE"), "BCDEA")
 
+    def test_typed_reverse(self):
+        with self.assertRaises(AttributeError):
+            ring.__typed_reverse("ABCDE")
+
     def test_reflect_at(self):
         self.assertEqual(ring.reflect_at(0, "ABCDE"), "AEDCB")
         self.assertEqual(ring.reflect_at(0, ["A", 1, 'B', 2]), ["A", 2, 'B', 1])
