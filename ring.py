@@ -1,4 +1,4 @@
-from typing import TypeAlias, Sequence
+from typing import TypeAlias, TypeVar
 from numpy import fmod
 
 # For improved readability, the index of a collection
@@ -7,8 +7,11 @@ Index: TypeAlias = int
 # For improved readability, the circular index of a collection
 IndexO: TypeAlias = int
 
+# There are Sequence types, for example range, that is difficult to consider circular
+Seq = TypeVar("Seq", list, str, tuple)
 
-def index_from(i: IndexO, collection: Sequence) -> Index:
+
+def index_from(i: IndexO, collection: Seq) -> Index:
     length: int = len(collection)
     if length == 0:
         raise (ArithmeticError("An empty collection has no normalized index"))
@@ -19,24 +22,24 @@ def index_from(i: IndexO, collection: Sequence) -> Index:
         return n
 
 
-def apply_o(i: IndexO, collection: Sequence) -> Sequence:
+def apply_o(i: IndexO, collection: Seq) -> Seq:
     return collection[index_from(i, collection)]
 
 
-def rotate_right(step: IndexO, collection: Sequence) -> Sequence:
+def rotate_right(step: IndexO, collection: Seq) -> Seq:
     j: Index = len(collection) - index_from(step, collection)
     return collection[j:] + collection[:j]
 
 
-def rotate_left(step: IndexO, collection: Sequence) -> Sequence:
+def rotate_left(step: IndexO, collection: Seq) -> Seq:
     return rotate_right(-step, collection)
 
 
-def start_at(i: IndexO, collection: Sequence) -> Sequence:
+def start_at(i: IndexO, collection: Seq) -> Seq:
     return rotate_left(i, collection)
 
 
-def __typed_reverse(collection: Sequence) -> Sequence:
+def __typed_reverse(collection: Seq) -> Seq:
     rev: reversed = reversed(collection)
     if type(collection) is str:
         return "".join(rev)
@@ -48,7 +51,7 @@ def __typed_reverse(collection: Sequence) -> Sequence:
         raise (TypeError("Unexpected type, currently str, list and tuple checked"))
 
 
-def reflect_at(i: IndexO, collection: Sequence) -> Sequence:
+def reflect_at(i: IndexO, collection: Seq) -> Seq:
     return __typed_reverse(start_at(i + 1, collection))
 
 
