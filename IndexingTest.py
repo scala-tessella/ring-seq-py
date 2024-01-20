@@ -4,7 +4,7 @@ import ring
 from typing import Any
 
 
-class TransformingOps(unittest.TestCase):
+class IndexingOps(unittest.TestCase):
 
     def test_index_from(self):
         self.assertEqual(ring.index_from(-1, "ABCDE"), 4)

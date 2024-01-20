@@ -2,7 +2,7 @@ import unittest
 import ring
 
 
-class IndexingMethods(unittest.TestCase):
+class TransformingOps(unittest.TestCase):
 
     def test_rotate_right(self):
         self.assertEqual(ring.rotate_right(0, "ABCDE"), "ABCDE")
