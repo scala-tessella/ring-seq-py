@@ -122,3 +122,18 @@ def is_reversion_of(ring: Seq, that: Seq) -> bool:
 
 def is_rotation_or_reflection_of(ring: Seq, that: Seq) -> bool:
     return __is_transformation_of(ring, that, lambda r: rotations_and_reflections(r))
+
+
+def are_folds_symmetrical(ring: Seq, n: int) -> bool:
+    return rotate_right(int(len(ring) / n), ring) == ring
+
+
+def rotational_symmetry(ring: Seq) -> int:
+    size = len(ring)
+    if size < 2:
+        return 1
+    else:
+        elements = range(int(size / 2), 2, -1)
+        filtered = list(filter(lambda x: size % x == 0, elements))
+        exact_folds_desc: list[int] = [size] + filtered
+        return next((n for n in exact_folds_desc if are_folds_symmetrical(ring, n)), 1)
