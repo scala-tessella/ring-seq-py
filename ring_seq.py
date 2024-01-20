@@ -67,6 +67,13 @@ def slice_o(frm: IndexO, to: IndexO, ring: Seq) -> Seq:
         return (start_at(frm, ring) * times)[:gap]
 
 
+def rotations(ring: Seq) -> Iterator[Seq]:
+    rs: list = []
+    step: IndexO
+    for step in range(len(ring)):
+        rs.append(rotate_left(step, ring))
+    return iter(rs)
+
 def reflections(ring: Seq) -> Iterator[Seq]:
     return iter((ring, reflect_at(0, ring)))
 
