@@ -1,4 +1,4 @@
-from typing import Iterator, TypeAlias, TypeVar
+from typing import Callable, Iterator, TypeAlias, TypeVar
 from numpy import ceil, fmod
 
 # For improved readability, the index of a collection
@@ -67,16 +67,24 @@ def slice_o(frm: IndexO, to: IndexO, ring: Seq) -> Seq:
         return (start_at(frm, ring) * times)[:gap]
 
 
+def __transformations(ring: Seq, func: Callable[[Seq], Seq]) -> Iterator[Seq]:
+    return iter(func(ring))
+
+
 def rotations(ring: Seq) -> Iterator[Seq]:
-    rs: list = []
-    step: IndexO
-    for step in range(len(ring)):
-        rs.append(rotate_left(step, ring))
-    return iter(rs)
+    def func(x: Seq) -> list:
+        rs: list = []
+        step: IndexO
+        for step in range(len(x)):
+            rs.append(rotate_left(step, x))
+        return rs
+
+    return __transformations(ring, func)
+
 
 def reflections(ring: Seq) -> Iterator[Seq]:
-    return iter((ring, reflect_at(0, ring)))
+    return __transformations(ring, lambda r: (r, reflect_at(0, r)))
 
 
 def reversions(ring: Seq) -> Iterator[Seq]:
-    return iter((ring, __typed_reverse(ring)))
+    return __transformations(ring, lambda r: (r, __typed_reverse(r)))
