@@ -1,6 +1,6 @@
 import unittest
 
-from ring_seq import reflections, reversions, rotations
+from ring_seq import reflections, reversions, rotations, rotations_and_reflections
 
 
 class IteratingOps(unittest.TestCase):
@@ -13,6 +13,16 @@ class IteratingOps(unittest.TestCase):
 
     def test_reversions(self):
         self.assertEqual(list(reversions("ABCDE")), ["ABCDE", "EDCBA"])
+
+    def test_rotations_and_reflections(self):
+        self.assertEqual(
+            list(rotations_and_reflections("ABCDE")),
+            [
+                "ABCDE", "BCDEA", "CDEAB", "DEABC", "EABCD",
+                "AEDCB", "EDCBA", "DCBAE", "CBAED", "BAEDC"
+            ]
+        )
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -67,16 +67,20 @@ def slice_o(frm: IndexO, to: IndexO, ring: Seq) -> Seq:
         return (start_at(frm, ring) * times)[:gap]
 
 
-def __transformations(ring: Seq, func: Callable[[Seq], Seq]) -> Iterator[Seq]:
-    return iter(func(ring))
+def __transformations(ring: Seq, f: Callable[[Seq], Seq]) -> Iterator[Seq]:
+    """
+
+    :rtype: object
+    """
+    return iter(f(ring))
 
 
 def rotations(ring: Seq) -> Iterator[Seq]:
-    def func(x: Seq) -> list:
-        rs: list = []
+    def func(r: Seq) -> list:
+        rs: list[Seq] = []
         step: IndexO
-        for step in range(len(x)):
-            rs.append(rotate_left(step, x))
+        for step in range(len(r)):
+            rs.append(rotate_left(step, r))
         return rs
 
     return __transformations(ring, func)
@@ -88,3 +92,14 @@ def reflections(ring: Seq) -> Iterator[Seq]:
 
 def reversions(ring: Seq) -> Iterator[Seq]:
     return __transformations(ring, lambda r: (r, __typed_reverse(r)))
+
+
+def rotations_and_reflections(ring: Seq) -> Iterator[Seq]:
+
+    def flat_map(f: Callable[[Seq], Iterator[Seq]], xs: Iterator[Seq]) -> list[Seq]:
+        ys: list[Seq] = []
+        for x in xs:
+            ys.extend(f(x))
+        return ys
+
+    return __transformations(ring, lambda r: flat_map(rotations, reflections(r)))
