@@ -6,10 +6,10 @@ from TransformingTest import TransformingOps
 from IteratingTest import IteratingOps
 from ComparingTest import ComparingOps
 from SymmetryTest import SymmetryOps
-
+from examples.RingTest import RingOps
 class RingTestSuite(unittest.TestSuite):
     def test_all(self):
-        self.addTests(iter((IndexingOps, SlicingOps, TransformingOps, IteratingOps, ComparingOps, SymmetryOps)))
+        self.addTests(iter((IndexingOps, SlicingOps, TransformingOps, IteratingOps, ComparingOps, SymmetryOps, RingOps)))
 
 
 if __name__ == '__main__':
