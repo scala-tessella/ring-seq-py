@@ -11,7 +11,7 @@ IndexO: TypeAlias = int
 Seq = TypeVar("Seq", list, str, tuple)
 
 
-def index_from(i: IndexO, ring: Seq) -> Index:
+def index_from(ring: Seq, i: IndexO) -> Index:
     length: int = len(ring)
     if length == 0:
         raise (ArithmeticError("An empty collection has no normalized index"))
@@ -22,21 +22,21 @@ def index_from(i: IndexO, ring: Seq) -> Index:
         return n
 
 
-def apply_o(i: IndexO, ring: Seq) -> Seq:
-    return ring[index_from(i, ring)]
+def apply_o(ring: Seq, i: IndexO) -> Seq:
+    return ring[index_from(ring, i)]
 
 
-def rotate_right(step: IndexO, ring: Seq) -> Seq:
-    j: Index = len(ring) - index_from(step, ring)
+def rotate_right(ring: Seq, step: IndexO) -> Seq:
+    j: Index = len(ring) - index_from(ring, step)
     return ring[j:] + ring[:j]
 
 
-def rotate_left(step: IndexO, ring: Seq) -> Seq:
-    return rotate_right(-step, ring)
+def rotate_left(ring: Seq, step: IndexO) -> Seq:
+    return rotate_right(ring, -step)
 
 
-def start_at(i: IndexO, ring: Seq) -> Seq:
-    return rotate_left(i, ring)
+def start_at(ring: Seq, i: IndexO) -> Seq:
+    return rotate_left(ring, i)
 
 
 def __typed_reverse(ring: Seq) -> Seq:
@@ -51,11 +51,11 @@ def __typed_reverse(ring: Seq) -> Seq:
         raise (TypeError("Unexpected type, currently str, list and tuple checked"))
 
 
-def reflect_at(i: IndexO, ring: Seq) -> Seq:
-    return __typed_reverse(start_at(i + 1, ring))
+def reflect_at(ring: Seq, i: IndexO) -> Seq:
+    return __typed_reverse(start_at(ring, i + 1))
 
 
-def slice_o(frm: IndexO, to: IndexO, ring: Seq) -> Seq:
+def slice_o(ring: Seq, frm: IndexO, to: IndexO) -> Seq:
     length: int = len(ring)
     if length == 0:
         return ring
@@ -64,7 +64,7 @@ def slice_o(frm: IndexO, to: IndexO, ring: Seq) -> Seq:
     else:
         gap: int = to - frm
         times: int = int(ceil(gap / length) + 1)
-        return (start_at(frm, ring) * times)[:gap]
+        return (start_at(ring, frm) * times)[:gap]
 
 
 def __transformations(ring: Seq, f: Callable[[Seq], Seq]) -> Iterator[Seq]:
@@ -80,14 +80,14 @@ def rotations(ring: Seq) -> Iterator[Seq]:
         rs: list[Seq] = []
         step: IndexO
         for step in range(len(r)):
-            rs.append(rotate_left(step, r))
+            rs.append(rotate_left(r, step))
         return rs
 
     return __transformations(ring, func)
 
 
 def reflections(ring: Seq) -> Iterator[Seq]:
-    return __transformations(ring, lambda r: (r, reflect_at(0, r)))
+    return __transformations(ring, lambda r: (r, reflect_at(r, 0)))
 
 
 def reversions(ring: Seq) -> Iterator[Seq]:
@@ -125,7 +125,7 @@ def is_rotation_or_reflection_of(ring: Seq, that: Seq) -> bool:
 
 
 def __are_folds_symmetrical(ring: Seq, n: int) -> bool:
-    return rotate_right(int(len(ring) / n), ring) == ring
+    return rotate_right(ring, int(len(ring) / n)) == ring
 
 
 def rotational_symmetry(ring: Seq) -> int:
@@ -144,7 +144,7 @@ def __greater_half_range(ring: Seq) -> range:
 
 
 def __check_reflection_axis(ring: Seq, gap: int) -> bool:
-    check: Callable[[int], bool] = lambda j: apply_o(j + 1, ring) == apply_o(-(j + gap), ring)
+    check: Callable[[int], bool] = lambda j: apply_o(ring, j + 1) == apply_o(ring, -(j + gap))
     return all(check(folds) for folds in __greater_half_range(ring))
 
 
@@ -161,7 +161,7 @@ def __has_axis(ring: Seq) -> bool:
 
 
 def __find_reflection_symmetry(ring: Seq) -> Optional[Index]:
-    return next((j for j in __greater_half_range(ring) if __has_axis(start_at(j, ring))), None)
+    return next((j for j in __greater_half_range(ring) if __has_axis(start_at(ring, j))), None)
 
 
 def symmetry_indices(ring: Seq) -> list[Index]:
