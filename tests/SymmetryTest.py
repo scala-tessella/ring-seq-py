@@ -14,9 +14,9 @@ class SymmetryOps(unittest.TestCase):
         self.axisOnOffElement: tuple = (1, 2, 3, 4, 4, 3, 2)
 
     def test_rotational_symmetry(self):
-        # self.assertEqual(rotational_symmetry("ABCDE"), 1)
-        # self.assertEqual(rotational_symmetry([]), 1)
-        # self.assertEqual(rotational_symmetry(self.spin3), 3)
+        self.assertEqual(rotational_symmetry("ABCDE"), 1)
+        self.assertEqual(rotational_symmetry([]), 1)
+        self.assertEqual(rotational_symmetry(self.spin3), 3)
         self.assertEqual(rotational_symmetry(self.eptagon), 7)
         self.assertEqual(rotational_symmetry(self.squaroid), 4)
         self.assertEqual(rotational_symmetry(self.axisOnElement), 1)
