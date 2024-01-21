@@ -1,4 +1,4 @@
-from typing import Callable, Iterator, TypeAlias, TypeVar
+from typing import Callable, Optional, Iterator, TypeAlias, TypeVar
 from numpy import ceil, fmod
 
 # For improved readability, the index of a collection
@@ -124,7 +124,7 @@ def is_rotation_or_reflection_of(ring: Seq, that: Seq) -> bool:
     return __is_transformation_of(ring, that, lambda r: rotations_and_reflections(r))
 
 
-def are_folds_symmetrical(ring: Seq, n: int) -> bool:
+def __are_folds_symmetrical(ring: Seq, n: int) -> bool:
     return rotate_right(int(len(ring) / n), ring) == ring
 
 
@@ -133,7 +133,50 @@ def rotational_symmetry(ring: Seq) -> int:
     if size < 2:
         return 1
     else:
-        elements = range(int(size / 2), 2, -1)
-        filtered = list(filter(lambda x: size % x == 0, elements))
-        exact_folds_desc: list[int] = [size] + filtered
-        return next((n for n in exact_folds_desc if are_folds_symmetrical(ring, n)), 1)
+        divisors_in_decreasing_size: range = range(int(size / 2), 2, -1)
+        exact_divisors: list = list(filter(lambda x: size % x == 0, divisors_in_decreasing_size))
+        all_folds_in_decreasing_size: list[int] = [size] + exact_divisors
+        return next((folds for folds in all_folds_in_decreasing_size if __are_folds_symmetrical(ring, folds)), 1)
+
+
+def __greater_half_range(ring: Seq) -> range:
+    return range(0, int(ceil(len(ring) / 2)))
+
+
+def __check_reflection_axis(ring: Seq, gap: int) -> bool:
+    check: Callable[[int], bool] = lambda j: apply_o(j + 1, ring) == apply_o(-(j + gap), ring)
+    return all(check(folds) for folds in __greater_half_range(ring))
+
+
+def __has_head_on_axis(ring: Seq) -> bool:
+    return __check_reflection_axis(ring, 1)
+
+
+def __has_axis_between_head_and_next(ring: Seq) -> bool:
+    return __check_reflection_axis(ring, 0)
+
+
+def __has_axis(ring: Seq) -> bool:
+    return __has_head_on_axis(ring) or __has_axis_between_head_and_next(ring)
+
+
+def __find_reflection_symmetry(ring: Seq) -> Optional[Index]:
+    return next((j for j in __greater_half_range(ring) if __has_axis(start_at(j, ring))), None)
+
+
+def symmetry_indices(ring: Seq) -> list[Index]:
+    length: int = len(ring)
+    if length == 0:
+        return []
+    else:
+        folds: int = rotational_symmetry(ring)
+        fold_size: int = int(length / folds)
+        maybe_symmetry: Optional[Index] = __find_reflection_symmetry(ring[:fold_size])
+        if maybe_symmetry is None:
+            return []
+        else:
+            return list(j * fold_size + maybe_symmetry for j in range(folds))
+
+
+def symmetry(ring: Seq) -> int:
+    return len(symmetry_indices(ring))
