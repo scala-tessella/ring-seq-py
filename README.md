@@ -6,10 +6,15 @@ its elements forming a ring.
 
 Working for Python `3.10` and above.
 
-## Setup
+### Installation
+```
+pip install ring-seq-py
+```
+
+### Get started
 
 ```python
-from ring_seq.RingSeq import RingSeq
+from ring_seq import RingSeq
 
 RingSeq("RING").rotate_right(1)  # "GRIN"
 RingSeq([0, 1, 2, 3]).start_at(2)  # [2, 3, 0, 1]
