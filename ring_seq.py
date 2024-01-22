@@ -1,4 +1,4 @@
-from typing import Callable, Optional, Iterator, TypeAlias, TypeVar
+from typing import Any, Callable, Optional, Iterator, TypeAlias, TypeVar
 from numpy import ceil, fmod
 
 # For improved readability, the index of a collection
@@ -22,7 +22,7 @@ def index_from(ring: Seq, i: IndexO) -> Index:
         return n
 
 
-def apply_o(ring: Seq, i: IndexO) -> Seq:
+def apply_o(ring: Seq, i: IndexO) -> Any:
     return ring[index_from(ring, i)]
 
 
