@@ -16,7 +16,7 @@ with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
 setup(
     name="ring-seq-py",
     version="0.0.9",
-    description="Extends Python list, tuple and str with ring (circular) methods",
+    description="Extends list, tuple and str with ring (circular) methods",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://scala-tessella.github.io/ring-seq-py/",
