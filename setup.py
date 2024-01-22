@@ -31,7 +31,11 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Operating System :: OS Independent"
     ],
-    packages=["ring_seq_py"],
+    # packages=["ring_seq"],
+    package_dir={
+        '': 'src',
+    },
+    packages=find_packages(where='src'),
     include_package_data=True,
     install_requires=[]
 )
