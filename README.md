@@ -30,11 +30,3 @@ rotate_right("RING", 1)  # "GRIN"
 start_at([0, 1, 2, 3], 2)  # [2, 3, 0, 1]
 reflect_at((1, 3, 5, 7, 9), 3)  # (7, 5, 3, 1, 9)
 ```
-
-## Testing
-
-Testing made with [`unittest`](https://docs.python.org/3/library/unittest.html)
-
-## Type hints
-
-Supported with [`typing`](https://docs.python.org/3/library/typing.html)
