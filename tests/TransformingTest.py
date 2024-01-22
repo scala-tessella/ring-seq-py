@@ -27,6 +27,7 @@ class TransformingOps(unittest.TestCase):
         self.assertEqual(start_at("ABCDE", 6), "BCDEA")
 
     def test_reflect_at(self):
+        self.assertEqual(reflect_at("ABCDE"), "AEDCB")
         self.assertEqual(reflect_at("ABCDE", 0), "AEDCB")
         self.assertEqual(reflect_at(["A", 1, 'B', 2], 0), ["A", 2, 'B', 1])
         self.assertEqual(reflect_at(("A", 1, 'B', 2), 0), ("A", 2, 'B', 1))

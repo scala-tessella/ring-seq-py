@@ -23,16 +23,6 @@ class SymmetryOps(unittest.TestCase):
         self.assertEqual(rotational_symmetry(self.axisOffElement), 1)
         self.assertEqual(rotational_symmetry(self.axisOnOffElement), 1)
 
-    def test_symmetry(self):
-        self.assertEqual(symmetry("ABCDE"), 0)
-        self.assertEqual(symmetry([]), 0)
-        self.assertEqual(symmetry(self.spin3), 0)
-        self.assertEqual(symmetry(self.eptagon), 7)
-        self.assertEqual(symmetry(self.squaroid), 4)
-        self.assertEqual(symmetry(self.axisOnElement), 1)
-        self.assertEqual(symmetry(self.axisOffElement), 1)
-        self.assertEqual(symmetry(self.axisOnOffElement), 1)
-
     def test_symmetry_indices(self):
         self.assertEqual(symmetry_indices("ABCDE"), [])
         self.assertEqual(symmetry_indices([]), [])
@@ -42,6 +32,16 @@ class SymmetryOps(unittest.TestCase):
         self.assertEqual(symmetry_indices(self.axisOnElement), [0])
         self.assertEqual(symmetry_indices(self.axisOffElement), [3])
         self.assertEqual(symmetry_indices(self.axisOnOffElement), [0])
+
+    def test_symmetry(self):
+        self.assertEqual(symmetry("ABCDE"), 0)
+        self.assertEqual(symmetry([]), 0)
+        self.assertEqual(symmetry(self.spin3), 0)
+        self.assertEqual(symmetry(self.eptagon), 7)
+        self.assertEqual(symmetry(self.squaroid), 4)
+        self.assertEqual(symmetry(self.axisOnElement), 1)
+        self.assertEqual(symmetry(self.axisOffElement), 1)
+        self.assertEqual(symmetry(self.axisOnOffElement), 1)
 
 
 if __name__ == '__main__':
