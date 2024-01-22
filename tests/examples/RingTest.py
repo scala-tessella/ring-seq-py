@@ -1,6 +1,6 @@
 import unittest
 
-from examples.Ring import Ring
+from ring_seq.examples.Ring import Ring
 
 
 class RingOps(unittest.TestCase):

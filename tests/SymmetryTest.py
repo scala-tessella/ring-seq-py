@@ -1,6 +1,6 @@
 import unittest
 
-from ring_seq import rotational_symmetry, symmetry, symmetry_indices
+from ring_seq.methods import rotational_symmetry, symmetry, symmetry_indices
 
 
 class SymmetryOps(unittest.TestCase):

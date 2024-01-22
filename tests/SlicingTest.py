@@ -1,6 +1,6 @@
 import unittest
 
-from ring_seq import slice_o
+from ring_seq.methods import slice_o
 
 
 class SlicingOps(unittest.TestCase):

@@ -1,6 +1,6 @@
 import unittest
 
-from ring_seq import reflections, reversions, rotations, rotations_and_reflections
+from ring_seq.methods import reflections, reversions, rotations, rotations_and_reflections
 
 
 class IteratingOps(unittest.TestCase):

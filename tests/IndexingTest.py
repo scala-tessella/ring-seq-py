@@ -1,6 +1,6 @@
 import unittest
 
-from ring_seq import index_from, apply_o
+from ring_seq.methods import index_from, apply_o
 from typing import Any
 
 

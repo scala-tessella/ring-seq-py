@@ -1,6 +1,6 @@
 import unittest
 
-from ring_seq import rotate_left, rotate_right, start_at, reflect_at
+from ring_seq.methods import rotate_left, rotate_right, start_at, reflect_at
 
 
 class TransformingOps(unittest.TestCase):

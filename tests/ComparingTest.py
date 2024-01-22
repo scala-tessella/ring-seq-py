@@ -1,6 +1,6 @@
 import unittest
 
-from ring_seq import is_reflection_of, is_reversion_of, is_rotation_of, is_rotation_or_reflection_of
+from ring_seq.methods import is_reflection_of, is_reversion_of, is_rotation_of, is_rotation_or_reflection_of
 
 
 class ComparingOps(unittest.TestCase):
