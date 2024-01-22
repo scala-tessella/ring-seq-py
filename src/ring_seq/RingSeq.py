@@ -12,6 +12,7 @@ class RingSeq:
 
     def index_from(self, i: IndexO) -> Index:
         """
+        Normalize a given index of a circular Seq
 
         :param i: circular index
         :type i: Index
@@ -22,6 +23,7 @@ class RingSeq:
 
     def apply_o(self, i: IndexO) -> Any:
         """
+        Gets the element at some circular index.
 
         :param i: circular index
         :type i: IndexO
@@ -32,6 +34,7 @@ class RingSeq:
 
     def rotate_right(self, step: IndexO) -> Seq:
         """
+        Rotate the sequence to the right by some steps.
 
         :param step: number of rotation steps to the right
         :type step: IndexO
@@ -42,6 +45,7 @@ class RingSeq:
 
     def rotate_left(self, step: IndexO) -> Seq:
         """
+        Rotate the sequence to the left by some steps.
 
         :param step: number of rotation steps to the left
         :type step: IndexO
@@ -52,6 +56,7 @@ class RingSeq:
 
     def start_at(self, i: IndexO) -> Seq:
         """
+        Rotates the sequence to start at some circular index.
 
         :param i: circular index where the sequence starts
         :type i: IndexO
@@ -62,6 +67,7 @@ class RingSeq:
 
     def reflect_at(self, i: IndexO = 0) -> Seq:
         """
+        Reflects the sequence to start at some circular index.
 
         :param i: circular index where the reflected sequence starts
         :type i: IndexO, default = 0
@@ -72,6 +78,7 @@ class RingSeq:
 
     def slice_o(self, frm: IndexO, to: IndexO) -> Seq:
         """
+        Selects an interval of elements.
 
         :param frm: circular index where the slice starts
         :type frm: IndexO
@@ -84,6 +91,7 @@ class RingSeq:
 
     def rotations(self) -> Iterator[Seq]:
         """
+        Computes all the rotations of this circular sequence
 
         :return: sequence and its rotations, 1 step at a time to the right
         :rtype: Iterator[Seq]
@@ -92,6 +100,7 @@ class RingSeq:
 
     def reflections(self) -> Iterator[Seq]:
         """
+        Computes all the reflections of this circular sequence
 
         :return: sequence and its reflection
         :rtype: Iterator[Seq]
@@ -100,6 +109,7 @@ class RingSeq:
 
     def reversions(self) -> Iterator[Seq]:
         """
+        Computes all the reversions of this circular sequence
 
         :return: sequence and its reversion
         :rtype: Iterator[Seq]
@@ -108,6 +118,7 @@ class RingSeq:
 
     def rotations_and_reflections(self) -> Iterator[Seq]:
         """
+        Computes all the rotations and reflections of this circular sequence
 
         :return: sequence and its rotations, and their reflections
         :rtype: Iterator[Seq]
@@ -116,6 +127,7 @@ class RingSeq:
 
     def is_rotation_of(self, that: Seq) -> bool:
         """
+        Tests whether this circular sequence is a rotation of a given sequence.
 
         :param that: sequence to be compared
         :type that: Seq
@@ -126,6 +138,7 @@ class RingSeq:
 
     def is_reflection_of(self, that: Seq) -> bool:
         """
+        Tests whether this circular sequence is a reflection of a given sequence.
 
         :param that: sequence to be compared
         :type that: Seq
@@ -136,6 +149,7 @@ class RingSeq:
 
     def is_reversion_of(self, that: Seq) -> bool:
         """
+        Tests whether this circular sequence is a reversion of a given sequence.
 
         :param that: sequence to be compared
         :type that: Seq
@@ -146,24 +160,27 @@ class RingSeq:
 
     def is_rotation_or_reflection_of(self, that: Seq) -> bool:
         """
+        Tests whether this circular sequence is a rotation and/or reflection of a given sequence.
 
         :param that: sequence to be compared
         :type that: Seq
-        :return: true if equal to any combination of rotation and reversion of that
+        :return: true if equal to any combination of rotation and reflection of that
         :rtype: bool
         """
         return is_rotation_or_reflection_of(self.underlying, that)
 
     def rotational_symmetry(self) -> int:
         """
+        Computes the order of rotational symmetry possessed by this circular sequence.
 
-        :return: rotational symmetry value
+        :return: rotational symmetry order
         :rtype: int
         """
         return rotational_symmetry(self.underlying)
 
     def symmetry_indices(self) -> list[Index]:
         """
+        Finds the indices of each element of this circular sequence close to an axis of reflectional symmetry.
 
         :return: indices of the elements by which the reflectional symmetry axis are near
         :rtype: list[Index]
@@ -172,8 +189,9 @@ class RingSeq:
 
     def symmetry(self) -> int:
         """
+        Computes the order of reflectional (mirror) symmetry possessed by this circular sequence.
 
-        :return: reflectional symmetry value
+        :return: reflectional symmetry order
         :rtype: int
         """
         return symmetry(self.underlying)
