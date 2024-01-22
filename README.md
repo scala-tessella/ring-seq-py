@@ -16,7 +16,7 @@ RingSeq([0, 1, 2, 3]).start_at(2)  # [2, 3, 0, 1]
 RingSeq((1, 3, 5, 7, 9)).reflect_at(3)  # (7, 5, 3, 1, 9)
 ```
 
-or alternatively, without `class RingSeq` wrapper:
+or alternatively, without the `class RingSeq` wrapper:
 
 ```python
 from ring_seq.methods import rotate_right, start_at, reflect_at
