@@ -1,5 +1,5 @@
 from typing import Any, Callable, Optional, Iterator, TypeAlias, TypeVar
-from numpy import ceil, fmod
+from math import ceil, fmod
 
 # For improved readability, the index of a collection
 Index: TypeAlias = int
@@ -15,7 +15,7 @@ def index_from(ring: Seq, i: IndexO) -> Index:
     length: int = len(ring)
     if length == 0:
         raise (ArithmeticError("An empty collection has no normalized index"))
-    n: IndexO = fmod(i, length)
+    n: IndexO = int(fmod(i, length))
     if n < 0:
         return n + length
     else:
