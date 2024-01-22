@@ -90,7 +90,7 @@ class RingSeqOps(unittest.TestCase):
         result: list[Index] = self.squaroid.symmetry_indices()
         self.assertEqual(result, [1, 4, 7, 10])
 
-        # (2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2) has axis of symmetry at indices 1, 4, 7 and 10
+        # (2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2) has 4 reflectional symmetries
         result: int = self.squaroid.symmetry()
         self.assertEqual(result, 4)
 
