@@ -51,7 +51,7 @@ def __typed_reverse(ring: Seq) -> Seq:
         raise (TypeError("Unexpected type, currently str, list and tuple checked"))
 
 
-def reflect_at(ring: Seq, i: IndexO) -> Seq:
+def reflect_at(ring: Seq, i: IndexO = 0) -> Seq:
     return __typed_reverse(start_at(ring, i + 1))
 
 
