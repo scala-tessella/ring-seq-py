@@ -1,13 +1,13 @@
 import unittest
 
-from IndexingTest import IndexingOps
-from SlicingTest import SlicingOps
-from TransformingTest import TransformingOps
-from IteratingTest import IteratingOps
-from ComparingTest import ComparingOps
-from SymmetryTest import SymmetryOps
-from RingSeqTest import RingSeqOps
-from examples.RingTest import RingOps
+from tests.IndexingTest import IndexingOps
+from tests.SlicingTest import SlicingOps
+from tests.TransformingTest import TransformingOps
+from tests.IteratingTest import IteratingOps
+from tests.ComparingTest import ComparingOps
+from tests.SymmetryTest import SymmetryOps
+from tests.RingSeqTest import RingSeqOps
+from tests.examples.RingTest import RingOps
 
 
 class RingTestSuite(unittest.TestSuite):
