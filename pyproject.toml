@@ -6,7 +6,7 @@ authors = [
 ]
 description = "Extends list, tuple and str with ring (circular) methods"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 classifiers = [
     "Intended Audience :: Developers",
     "License :: OSI Approved :: Apache Software License",
