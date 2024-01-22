@@ -8,6 +8,8 @@ from ComparingTest import ComparingOps
 from SymmetryTest import SymmetryOps
 from RingSeqTest import RingSeqOps
 from examples.RingTest import RingOps
+
+
 class RingTestSuite(unittest.TestSuite):
     def test_all(self):
         self.addTests(iter(
