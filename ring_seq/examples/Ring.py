@@ -1,5 +1,4 @@
-from typing import Any
-from ring_seq.methods import IndexO, Seq, apply_o, reflect_at, start_at
+from ring_seq.methods import *
 
 
 class Ring:

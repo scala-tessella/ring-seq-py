@@ -1,7 +1,4 @@
-from typing import Any, Iterator
-
-import ring_seq.methods
-from ring_seq.methods import Index, IndexO, Seq
+from ring_seq.methods import *
 
 
 class RingSeq:
@@ -17,42 +14,42 @@ class RingSeq:
 
         :type i: IndexO
         """
-        return ring_seq.methods.index_from(self.underlying, i)
+        return index_from(self.underlying, i)
 
     def apply_o(self, i: IndexO) -> Any:
         """
 
         :type i: IndexO
         """
-        return ring_seq.methods.apply_o(self.underlying, i)
+        return apply_o(self.underlying, i)
 
     def rotate_right(self, step: IndexO) -> Seq:
         """
 
         :type step: IndexO
         """
-        return ring_seq.methods.rotate_right(self.underlying, step)
+        return rotate_right(self.underlying, step)
 
     def rotate_left(self, step: IndexO) -> Seq:
         """
 
         :type step: IndexO
         """
-        return ring_seq.methods.rotate_left(self.underlying, step)
+        return rotate_left(self.underlying, step)
 
     def start_at(self, i: IndexO) -> Seq:
         """
 
         :type i: IndexO
         """
-        return ring_seq.methods.start_at(self.underlying, i)
+        return start_at(self.underlying, i)
 
     def reflect_at(self, i: IndexO = 0) -> Seq:
         """
 
         :type i: IndexO, default = 0
         """
-        return ring_seq.methods.reflect_at(self.underlying, i)
+        return reflect_at(self.underlying, i)
 
     def slice_o(self, frm: IndexO, to: IndexO) -> Seq:
         """
@@ -60,53 +57,53 @@ class RingSeq:
         :type frm: IndexO
         :type to: IndexO
         """
-        return ring_seq.methods.slice_o(self.underlying, frm, to)
+        return slice_o(self.underlying, frm, to)
 
     def rotations(self) -> Iterator[Seq]:
-        return ring_seq.methods.rotations(self.underlying)
+        return rotations(self.underlying)
 
     def reflections(self) -> Iterator[Seq]:
-        return ring_seq.methods.reflections(self.underlying)
+        return reflections(self.underlying)
 
     def reversions(self) -> Iterator[Seq]:
-        return ring_seq.methods.reversions(self.underlying)
+        return reversions(self.underlying)
 
     def rotations_and_reflections(self) -> Iterator[Seq]:
-        return ring_seq.methods.rotations_and_reflections(self.underlying)
+        return rotations_and_reflections(self.underlying)
 
     def is_rotation_of(self, that: Seq) -> bool:
         """
 
         :type that: Seq
         """
-        return ring_seq.methods.is_rotation_of(self.underlying, that)
+        return is_rotation_of(self.underlying, that)
 
     def is_reflection_of(self, that: Seq) -> bool:
         """
 
         :type that: Seq
         """
-        return ring_seq.methods.is_reflection_of(self.underlying, that)
+        return is_reflection_of(self.underlying, that)
 
     def is_reversion_of(self, that: Seq) -> bool:
         """
 
         :type that: Seq
         """
-        return ring_seq.methods.is_reversion_of(self.underlying, that)
+        return is_reversion_of(self.underlying, that)
 
     def is_rotation_or_reflection_of(self, that: Seq) -> bool:
         """
 
         :type that: Seq
         """
-        return ring_seq.methods.is_rotation_or_reflection_of(self.underlying, that)
+        return is_rotation_or_reflection_of(self.underlying, that)
 
     def rotational_symmetry(self) -> int:
-        return ring_seq.methods.rotational_symmetry(self.underlying)
+        return rotational_symmetry(self.underlying)
 
     def symmetry_indices(self) -> list[Index]:
-        return ring_seq.methods.symmetry_indices(self.underlying)
+        return symmetry_indices(self.underlying)
 
     def symmetry(self) -> int:
-        return ring_seq.methods.symmetry(self.underlying)
+        return symmetry(self.underlying)

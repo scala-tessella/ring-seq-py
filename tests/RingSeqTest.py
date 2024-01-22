@@ -1,7 +1,7 @@
 import unittest
 
-from ring_seq.RingSeq import RingSeq
-from ring_seq.methods import Index
+from ring_seq.RingSeq import *
+
 
 class RingSeqOps(unittest.TestCase):
 
