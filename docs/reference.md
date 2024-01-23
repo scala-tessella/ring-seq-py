@@ -28,7 +28,7 @@ They fall into the following categories:
 * [`rotations`](categories/iterators.md#rotations)
 * [`reversions`](categories/iterators.md#reversions)
 * [`reflections`](categories/iterators.md#reflections)
-* [`rotations_and_reflections`](iterators.md#rotations_and_reflections)
+* [`rotations_and_reflections`](categories/iterators.md#rotations_and_reflections)
 
 ### [Comparisons](categories/comparisons.md)
 * [`is_reflection`](categories/comparisons.md#is_reflection)

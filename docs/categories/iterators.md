@@ -1,6 +1,6 @@
 # Iterators
 
-##`rotations`
+## `rotations`
 
 All possible rotations.
 
@@ -24,7 +24,7 @@ Just itself on empty `Seq`.
 Seq.empty.rotations // Iterator(Seq())
 ```
 
-##`reversions`
+## `reversions`
 
 2 sequences, the sequence itself and reversed.
 
@@ -42,7 +42,7 @@ Just itself on empty `Seq`.
 Seq.empty.reversions // Iterator(Seq())
 ```
 
-##`reflections`
+## `reflections`
 
 2 sequences, the sequence itself and reflected at the start.
 
@@ -60,7 +60,7 @@ Just itself on empty `Seq`.
 Seq.empty.reflections // Iterator(Seq())
 ```
 
-##`rotations_and_reflections`
+## `rotations_and_reflections`
 
 All possible rotations and reflections.
 
