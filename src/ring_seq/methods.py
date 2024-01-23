@@ -199,7 +199,10 @@ def slice_o(ring: Seq, frm: IndexO, to: IndexO) -> Seq:
 
 
 def __transformations(ring: Seq, f: Callable[[Seq], Seq]) -> Iterator[Seq]:
-    return iter(f(ring))
+    if len(ring) == 0:
+        return iter(ring)
+    else:
+        return iter(f(ring))
 
 
 def rotations(ring: Seq) -> Iterator[Seq]:
@@ -208,6 +211,8 @@ def rotations(ring: Seq) -> Iterator[Seq]:
     Examples:
       >>> list(rotations('ABC'))
       ['ABC', 'BCA', 'CAB']
+      >>> list(rotations(''))
+      []
 
     Args:
       ring: a sequence
@@ -232,6 +237,8 @@ def reflections(ring: Seq) -> Iterator[Seq]:
     Examples:
       >>> list(reflections('ABC'))
       ['ABC', 'ACB']
+      >>> list(reflections(''))
+      []
 
     Args:
       ring: a sequence
@@ -248,6 +255,8 @@ def reversions(ring: Seq) -> Iterator[Seq]:
     Examples:
       >>> list(reversions('ABC'))
       ['ABC', 'CBA']
+      >>> list(reversions(''))
+      []
 
     Args:
       ring: a sequence
@@ -264,6 +273,8 @@ def rotations_and_reflections(ring: Seq) -> Iterator[Seq]:
     Examples:
       >>> list(rotations_and_reflections('ABC'))
       ['ABC', 'BCA', 'CAB', 'ACB', 'CBA', 'BAC']
+      >>> list(rotations_and_reflections(''))
+      []
 
     Args:
       ring: a sequence

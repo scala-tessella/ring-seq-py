@@ -168,6 +168,8 @@ class RingSeq:
         Examples:
           >>> list(RingSeq('ABC').rotations())
           ['ABC', 'BCA', 'CAB']
+          >>> list(RingSeq('').rotations())
+          []
 
         Returns:
           The sequence and its rotations, 1 step at a time to the left
@@ -180,6 +182,8 @@ class RingSeq:
         Examples:
           >>> list(RingSeq('ABC').reflections())
           ['ABC', 'ACB']
+          >>> list(RingSeq('').reflections())
+          []
 
         Returns:
           The sequence and its reflection
@@ -192,6 +196,8 @@ class RingSeq:
         Examples:
           >>> list(RingSeq('ABC').reversions())
           ['ABC', 'CBA']
+          >>> list(RingSeq('').reversions())
+          []
 
         Returns:
           The sequence and its reversion
@@ -204,6 +210,8 @@ class RingSeq:
         Examples:
           >>> list(RingSeq('ABC').rotations_and_reflections())
           ['ABC', 'BCA', 'CAB', 'ACB', 'CBA', 'BAC']
+          >>> list(RingSeq('').rotations_and_reflections())
+          []
 
         Returns:
           The sequence and its rotations, and their reflections
