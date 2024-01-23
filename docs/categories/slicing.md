@@ -6,7 +6,7 @@ The circular equivalent of `slice`.
 
 @@@ note
 
-Given the [definition of circular sequence](../what-is), a slice can contain more elements than the sequence itself.
+Given the [definition of circular sequence](../what-is.md), a slice can contain more elements than the sequence itself.
 
 @@@
 

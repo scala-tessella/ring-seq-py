@@ -37,6 +37,9 @@ def index_from(ring: Seq, i: IndexO) -> Index:
 
     Returns:
       A standard index
+
+    Raises:
+      ArithmeticError: An error occurs if the sequence is empty.
     """
     length: int = len(ring)
     if length == 0:
@@ -56,6 +59,12 @@ def apply_o(ring: Seq, i: IndexO) -> Any:
       'C'
       >>> apply_o('ABC', 3)
       'A'
+      >>> 'ABC'[-1]
+      'C'
+      >>> 'ABC'[3] # doctest: +SKIP
+      IndexError: string index out of range
+
+    Notes: as shown in the examples, behaves differently from standard method `[]`
 
     Args:
       ring: a sequence

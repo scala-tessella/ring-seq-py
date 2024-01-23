@@ -1,7 +1,7 @@
 # **RingSeqPy**
 
 A library that adds new operations to Python `list`, `tuple` and `str`
-for when such a sequence needs to be considered [**circular**](what-is),
+for when such a sequence needs to be considered [**circular**](what-is.md),
 its elements forming a ring.
 
 Working for Python `3.10` and above.

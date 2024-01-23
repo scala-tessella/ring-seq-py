@@ -42,6 +42,9 @@ class RingSeq:
 
         Returns:
           A standard index
+
+        Raises:
+          ArithmeticError: An error occurs if the sequence is empty.
         """
         return index_from(self.underlying, i)
 
@@ -53,6 +56,12 @@ class RingSeq:
           'C'
           >>> RingSeq('ABC').apply_o(3)
           'A'
+          >>> 'ABC'[-1]
+          'C'
+          >>> 'ABC'[3] # doctest: +SKIP
+          IndexError: string index out of range
+
+        Notes: as shown in the examples, behaves differently from standard method `[]`
 
         Args:
           i: circular index

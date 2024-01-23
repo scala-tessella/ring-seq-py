@@ -20,15 +20,14 @@ Returns a sequence rotated to the left.
 Seq(0, 1, 2).rotate_left(1) // Seq(1, 2, 0)
 ```
 
-## `start_at`
+#### `start_at2`
 
-Returns a sequence rotated to start at circular index.
+pippo
 
-@@@ note
+::: ring_seq.RingSeq.RingSeq
 
-Is equivalent to [`rotate_left`](rotation-reflection.md#rotate_left).
-
-@@@
+!!! note
+    Is equivalent to [`rotate_left`](rotation-reflection.md#rotate_left).
 
 ### Example
 
