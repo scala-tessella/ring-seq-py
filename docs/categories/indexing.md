@@ -1,19 +1,19 @@
 # Indexing
 
-## `applyO`
+## `apply_o`
 
 The circular equivalent of `apply`.
 
 @@@ note
 
-Given the [definition of circular sequence](../what-is.html), it returns an element for any possible integer.
+Given the [definition of circular sequence](../what-is), it returns an element for any possible integer.
 
 @@@
 
 ### Example
 
 ```scala
-Seq(0, 1, 2).applyO(3) // 0
+Seq(0, 1, 2).apply_o(3) // 0
 ```
 
 ### Compared to standard
@@ -30,15 +30,15 @@ Seq(0, 1, 2).apply(3) // IndexOutOfBoundsException
 It does not return a value for an empty sequence.
 
 ```scala
-Seq.empty.applyO(0) // ArithmeticException
+Seq.empty.apply_o(0) // ArithmeticException
 ```
 
-## `indexFrom`
+## `index_from`
 
 Converts a circular index into a standard index.
 
 ### Example
 
 ```scala
-Seq(0, 1, 2).indexFrom(30001) // 1
+Seq(0, 1, 2).index_from(30001) // 1
 ```

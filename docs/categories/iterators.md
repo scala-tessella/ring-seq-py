@@ -1,24 +1,5 @@
 # Iterators
 
-## `slidingO`
-
-The circular equivalent of `sliding`.
-
-### Example
-
-```scala
-Seq(0, 1, 2).slidingO(2) // Iterator(Seq(0, 1), Seq(1, 2), Seq(2, 0))```
-```
-
-### Compared to standard
-
-In the same example the standard version behaves differently,
-does not pass the "sliding window" on the last and first elements.
-
-```scala
-Seq(0, 1, 2).sliding(2) // Iterator(Seq(0, 1), Seq(1, 2))```
-```
-
 ##`rotations`
 
 All possible rotations.
@@ -79,7 +60,7 @@ Just itself on empty `Seq`.
 Seq.empty.reflections // Iterator(Seq())
 ```
 
-##`rotationsAndReflections`
+##`rotations_and_reflections`
 
 All possible rotations and reflections.
 
@@ -92,7 +73,7 @@ Starting from itself and moving one rotation step to the right, then reversing a
 ### Example
 
 ```scala
-Seq(0, 1, 2).rotationsAndReflections // Iterator(Seq(0, 1, 2), Seq(1, 2, 0), Seq(2, 0, 1), Seq(0, 2, 1), Seq(2, 1, 0), Seq(1, 0, 2))
+Seq(0, 1, 2).rotations_and_reflections // Iterator(Seq(0, 1, 2), Seq(1, 2, 0), Seq(2, 0, 1), Seq(0, 2, 1), Seq(2, 1, 0), Seq(1, 0, 2))
 ```
 
 ### On empty seq
@@ -100,5 +81,5 @@ Seq(0, 1, 2).rotationsAndReflections // Iterator(Seq(0, 1, 2), Seq(1, 2, 0), Seq
 Just itself on empty `Seq`.
 
 ```scala
-Seq.empty.rotationsAndReflections // Iterator(Seq())
+Seq.empty.rotations_and_reflections // Iterator(Seq())
 ```

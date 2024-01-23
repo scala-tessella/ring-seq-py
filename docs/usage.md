@@ -2,38 +2,44 @@
 
 This page shows examples of how the library can be used.
 
-##  `Ring[A]` class
+##  `Ring` class
 
 An example class wrapping a sequence and keeping a mutable state of rotation and reflection.
 
 Thanks to the primitives available, it can be built in few lines of code:
 
-```scala
-// using type IndexO to signal a circular index
-class Ring[A](underlying: Seq[A], var headIndex: IndexO = 0, var isReflected: Boolean = false ) {
+```python
+from ring_seq.methods import *
 
-  private def directionMultiplier: Int =
-    if (isReflected) 1 else -1
 
-  def rotateR(step: Int = 1): Unit =
-    headIndex += step * directionMultiplier
+class Ring:
+    def __init__(self, underlying: Seq, head_index: IndexO = 0, is_reflected: bool = False):
+        self.underlying = underlying
+        self.head_index = head_index #using type alias IndexO to signal a circular index 
+        self.is_reflected = is_reflected
 
-  def rotateL(step: Int = 1): Unit =
-    rotateR(-step)
+    def __direction_multiplier(self) -> int:
+        if self.is_reflected:
+            return 1
+        else:
+            return -1
 
-  def reflect(): Unit =
-    isReflected = !isReflected
+    def rotate_r(self, step: int = 1):
+        self.head_index += step * self.__direction_multiplier()
 
-  // using applyO
-  def currentHead: A =
-    underlying.applyO(headIndex)
+    def rotate_l(self, step: int = 1):
+        self.rotate_r(-step)
 
-   // using startAt and reflectAt
-  def current: Seq[A] =
-    if (isReflected) underlying.reflectAt(headIndex) else underlying.startAt(headIndex)
+    def reflect(self):
+        self.is_reflected = not self.is_reflected
 
-}
+    def current_head(self) -> Any:
+        return apply_o(self.underlying, self.head_index)
 
+    def current(self) -> Seq:
+        if self.is_reflected:
+            return reflect_at(self.underlying, self.head_index)
+        else:
+            return start_at(self.underlying, self.head_index)
 ```
 
-Check the @scaladoc[API documentation for Ring class](io.github.scala_tessella.ring_seq.examples.Ring) for detailed information.

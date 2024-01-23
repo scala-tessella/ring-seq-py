@@ -6,18 +6,24 @@ For our purposes, a circular sequence is a sequence composed by a finite number 
 
 Being circular, the first element of the sequence can be considered as also placed just after the last element.
 
-```scala
-Seq(0, 1, 2).applyO(3) // 0
+```python
+from ring_seq import RingSeq
+
+RingSeq([0, 1, 2]).apply_o(3) // 0
 ```
 
 And the last just before the first.
 
-```scala
-Seq(0, 1, 2).applyO(-1) // 2
+```python
+from ring_seq import RingSeq
+
+RingSeq([0, 1, 2]).apply_o(-1) // 2
 ```
 
 So the "unrolling" of a circular sequence, both forth and backwards, can be assumed as theoretically infinite.
 
-```scala
-Seq(0, 1, 2).applyO(30001) // 1
+```python
+from ring_seq import RingSeq
+
+RingSeq([0, 1, 2]).apply_o(30001) // 1
 ```

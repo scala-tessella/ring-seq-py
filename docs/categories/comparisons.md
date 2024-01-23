@@ -1,6 +1,6 @@
 # Comparisons
 
-## `isReflection`
+## `is_reflection`
 
 Tests if a sequence is a reflection of another one.
 
@@ -13,10 +13,10 @@ A sequence is always a reflection of itself.
 ### Example
 
 ```scala
-Seq(0, 1, 2).isReflectionOf(Seq(0, 2, 1)) // true
+Seq(0, 1, 2).is_reflectionOf(Seq(0, 2, 1)) // true
 ```
 
-## `isReversion`
+## `is_reversion`
 
 Tests if a sequence is a reversion of another one.
 
@@ -29,10 +29,10 @@ A sequence is always a reversion of itself.
 ### Example
 
 ```scala
-Seq(0, 1, 2).isReversionOf(Seq(2, 1, 0)) // true
+Seq(0, 1, 2).is_reversionOf(Seq(2, 1, 0)) // true
 ```
 
-## `isRotation`
+## `is_rotation`
 
 Tests if a sequence is a rotation of another one.
 
@@ -45,10 +45,10 @@ A sequence is always a rotation of itself.
 ### Example
 
 ```scala
-Seq(0, 1, 2).isRotationOf(Seq(1, 2, 0)) // true
+Seq(0, 1, 2).is_rotationOf(Seq(1, 2, 0)) // true
 ```
 
-## `isRotationOrReflection`
+## `is_rotation_or_reflection`
 
 Tests if a sequence is a rotation or a reflection of another one.
 
@@ -61,5 +61,5 @@ A sequence is always a rotation and a reflection of itself.
 ### Example
 
 ```scala
-Seq(0, 1, 2).isRotationOrReflection(Seq(2, 0, 1)) // true
+Seq(0, 1, 2).is_rotation_or_reflection(Seq(2, 0, 1)) // true
 ```
