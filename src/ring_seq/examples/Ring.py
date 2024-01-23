@@ -11,7 +11,7 @@ from ring_seq.methods import *
 
 
 class Ring:
-    """Wraps a sequence and keeps mutable states of rotation and reflection.
+    """An example class wrapping a sequence and keeping mutable states of rotation and reflection.
 
     Attributes:
         underlying: The wrapped sequence.

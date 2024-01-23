@@ -15,7 +15,7 @@ For dealing with a circular sequence, **RingSeqPy** adds:
     and in the form `RingSeq(Seq).method(...)` via the wrapper class `RingSeq`,
     in order to use [Dot notation](https://en.wikipedia.org/wiki/Property_(programming)#Dot_notation).
 
-They fall into the following categories:
+Methods fall into the following categories:
 
 ### Indexing
 * [`apply_o`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.apply_o)

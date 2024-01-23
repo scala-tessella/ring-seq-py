@@ -466,7 +466,7 @@ def symmetry(ring: Seq) -> int:
       0
 
     Notes:
-      Rotational symmetry is always higher or equal than reflectional symmetry.
+      Reflectional symmetry is always lower or equal than rotational symmetry.
 
     Args:
       ring: a sequence

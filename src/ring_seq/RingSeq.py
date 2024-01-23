@@ -326,7 +326,7 @@ class RingSeq:
           0
 
         Notes:
-          Rotational symmetry is always higher or equal than reflectional symmetry.
+          Reflectional symmetry is always lower or equal than rotational symmetry.
 
         Returns:
           The reflectional (mirror) symmetry order, that is the number >= 0 of reflections
