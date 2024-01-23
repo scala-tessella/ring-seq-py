@@ -4,11 +4,13 @@ Use RingSeq to enable dot notation.
 
 Typical usage example:
 
-  RingSeg("ABC").rotate_left(1)
+  >>> RingSeq([0, 1, 2]).rotate_left(1)
+  [1, 2, 0]
 
   instead of
 
-  rotate_left("ABC", 1)
+  >>> rotate_left([0, 1, 2], 1)
+  [1, 2, 0]
 """
 from ring_seq.methods import *
 
@@ -33,6 +35,12 @@ class RingSeq:
     def index_from(self, i: IndexO) -> Index:
         """Normalizes a given circular index of a Seq.
 
+        Examples:
+          >>> RingSeq("ABC").index_from(-1)
+          2
+          >>> RingSeq("ABC").index_from(3)
+          0
+
         Args:
           i: circular index
 
@@ -43,6 +51,12 @@ class RingSeq:
 
     def apply_o(self, i: IndexO) -> Any:
         """Gets the element at some circular index.
+
+        Examples:
+          >>> RingSeq("ABC").apply_o(-1)
+          'C'
+          >>> RingSeq("ABC").apply_o(3)
+          'A'
 
         Args:
           i: circular index
@@ -55,6 +69,10 @@ class RingSeq:
     def rotate_right(self, step: IndexO) -> Seq:
         """Rotates the sequence to the right by some steps.
 
+        Examples:
+          >>> RingSeq([3, 4, 5]).rotate_right(1)
+          [5, 3, 4]
+
         Args:
           step: number of rotation steps to the right
 
@@ -65,6 +83,10 @@ class RingSeq:
 
     def rotate_left(self, step: IndexO) -> Seq:
         """Rotates the sequence to the left by some steps.
+
+        Examples:
+          >>> RingSeq([3, 4, 5]).rotate_left(1)
+          [4, 5, 3]
 
         Args:
           step: number of rotation steps to the left
@@ -77,6 +99,10 @@ class RingSeq:
     def start_at(self, i: IndexO) -> Seq:
         """Rotates the sequence to start at some circular index.
 
+        Examples:
+          >>> RingSeq([3, 4, 5]).start_at(1)
+          [4, 5, 3]
+
         Args:
           i: circular index where the sequence starts
 
@@ -87,6 +113,12 @@ class RingSeq:
 
     def reflect_at(self, i: IndexO = 0) -> Seq:
         """Reflects the sequence to start at some circular index.
+
+        Examples:
+          >>> RingSeq([3, 4, 5]).reflect_at()
+          [3, 5, 4]
+          >>> RingSeq([3, 4, 5]).reflect_at(1)
+          [4, 3, 5]
 
         Args:
           i: circular index where the reflected sequence starts
