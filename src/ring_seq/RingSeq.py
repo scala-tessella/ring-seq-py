@@ -25,11 +25,7 @@ class RingSeq:
     """
 
     def __init__(self, underlying: Seq):
-        """Initializes the instance with the sequence.
-
-        Args:
-          underlying: The wrapped sequence.
-        """
+        """Initializes the instance with the sequence."""
         self.underlying = underlying
 
     def index_from(self, i: IndexO) -> Index:
