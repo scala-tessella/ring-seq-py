@@ -64,7 +64,7 @@ def apply_o(ring: Seq, i: IndexO) -> Any:
       >>> 'ABC'[3] # doctest: +SKIP
       IndexError: string index out of range
 
-    Notes: as shown in the examples, behaves differently from standard method `[]`
+    Notes: as shown in the examples, behaves differently from standard method `[]`.
 
     Args:
       ring: a sequence
@@ -118,6 +118,8 @@ def start_at(ring: Seq, i: IndexO) -> Seq:
       >>> start_at('ABC', 1)
       'BCA'
 
+    Notes: is equivalent to `rotate_left`.
+
     Args:
       ring: a sequence
       i: circular index where the sequence starts
@@ -148,6 +150,8 @@ def reflect_at(ring: Seq, i: IndexO = 0) -> Seq:
       'ACB'
       >>> reflect_at('ABC', 1)
       'BAC'
+
+    Notes: `reflect_at(-1)` is equivalent to `reversed`.
 
     Args:
       ring: a sequence

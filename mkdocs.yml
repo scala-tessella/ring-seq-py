@@ -16,7 +16,6 @@ nav:
   - RingSeq methods: ring_seq_methods.md
   - GitHub repository: github.md
   - Methods:
-    - Rotation and reflection: categories/rotation-reflection.md
     - Slicing: categories/slicing.md
     - Iterators: categories/iterators.md
     - Comparisons: categories/comparisons.md
