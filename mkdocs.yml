@@ -15,8 +15,3 @@ nav:
   - Reference: reference.md
   - RingSeq methods: ring_seq_methods.md
   - GitHub repository: github.md
-  - Methods:
-    - Slicing: categories/slicing.md
-    - Iterators: categories/iterators.md
-    - Comparisons: categories/comparisons.md
-    - Symmetry: categories/symmetry.md

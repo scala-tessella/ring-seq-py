@@ -6,8 +6,14 @@ This page shows all the features provided by the library.
 
 For dealing with a circular sequence, **RingSeqPy** adds:
 
-1. new operations.
-2. alternative versions of some operations already existing for `Seq`.
+1. A type `Seq` representing a sequence of type `list`, `tuple` or `str`.
+2. new operations on `Seq`.
+3. alternative versions of some operations already existing for `Seq`.
+
+!!! Note
+    By design choice the same methods are available both in the original form `method(Seq, ...)`
+    and in the form `RingSeq(Seq).method(...)` via the wrapper class `RingSeq`,
+    in order to use [Dot notation](https://en.wikipedia.org/wiki/Property_(programming)#Dot_notation).
 
 They fall into the following categories:
 

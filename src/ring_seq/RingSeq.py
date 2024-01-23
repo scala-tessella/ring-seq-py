@@ -224,6 +224,8 @@ class RingSeq:
         Examples:
           >>> RingSeq('ABC').is_rotation_of('BCA')
           True
+          >>> RingSeq('ABC').is_rotation_of('ABC')
+          True
 
         Args:
           that: sequence to be compared
@@ -238,6 +240,8 @@ class RingSeq:
 
         Examples:
           >>> RingSeq('ABC').is_reflection_of('ACB')
+          True
+          >>> RingSeq('ABC').is_reflection_of('ABC')
           True
 
         Args:
@@ -254,6 +258,8 @@ class RingSeq:
         Examples:
           >>> RingSeq('ABC').is_reversion_of('CBA')
           True
+          >>> RingSeq('ABC').is_reversion_of('ABC')
+          True
 
         Args:
           that: sequence to be compared
@@ -269,6 +275,8 @@ class RingSeq:
         Examples:
           >>> RingSeq('ABC').is_rotation_or_reflection_of('BAC')
           True
+          >>> RingSeq('ABC').is_rotation_or_reflection_of('ABC')
+          True
 
         Args:
           that: sequence to be compared
@@ -282,11 +290,14 @@ class RingSeq:
         """Computes the order of rotational symmetry possessed by this circular sequence.
 
         Examples:
+          >>> RingSeq('-|--|--|--|-').rotational_symmetry()
+          4
           >>> RingSeq('-|+-|+-|+-|+').rotational_symmetry()
           4
 
         Returns:
-          The rotational symmetry order
+          The rotational symmetry order, that is the number >= 1 of rotations
+          in which a circular sequence looks exactly the same
         """
         return rotational_symmetry(self.underlying)
 
@@ -296,9 +307,12 @@ class RingSeq:
         Examples:
           >>> RingSeq('-|--|--|--|-').symmetry_indices()
           [1, 4, 7, 10]
+          >>> RingSeq('-|+-|+-|+-|+').symmetry_indices()
+          []
 
         Returns:
-          The indices of the elements by which the reflectional symmetry axis are near
+          The indices of each element close to an axis of reflectional symmetry,
+          that is a line of symmetry that splits the sequence in two identical halves
         """
         return symmetry_indices(self.underlying)
 
@@ -311,7 +325,11 @@ class RingSeq:
           >>> RingSeq('-|+-|+-|+-|+').symmetry()
           0
 
+        Notes:
+          Rotational symmetry is always higher or equal than reflectional symmetry.
+
         Returns:
-          The reflectional (mirror) symmetry order
+          The reflectional (mirror) symmetry order, that is the number >= 0 of reflections
+          in which a circular sequence looks exactly the same
         """
         return symmetry(self.underlying)

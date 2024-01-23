@@ -302,6 +302,8 @@ def is_rotation_of(ring: Seq, that: Seq) -> bool:
     Examples:
       >>> is_rotation_of('ABC', 'BCA')
       True
+      >>> is_rotation_of('ABC', 'ABC')
+      True
 
     Args:
       ring: a sequence
@@ -318,6 +320,8 @@ def is_reflection_of(ring: Seq, that: Seq) -> bool:
 
     Examples:
       >>> is_reflection_of('ABC', 'ACB')
+      True
+      >>> is_reflection_of('ABC', 'ABC')
       True
 
     Args:
@@ -336,6 +340,8 @@ def is_reversion_of(ring: Seq, that: Seq) -> bool:
     Examples:
       >>> is_reversion_of('ABC', 'CBA')
       True
+      >>> is_reversion_of('ABC', 'ABC')
+      True
 
     Args:
       ring: a sequence
@@ -352,6 +358,8 @@ def is_rotation_or_reflection_of(ring: Seq, that: Seq) -> bool:
 
     Examples:
       >>> is_rotation_or_reflection_of('ABC', 'BAC')
+      True
+      >>> is_rotation_or_reflection_of('ABC', 'ABC')
       True
 
     Args:
@@ -372,6 +380,8 @@ def rotational_symmetry(ring: Seq) -> int:
     """Computes the order of rotational symmetry possessed by this circular sequence.
 
     Examples:
+      >>> rotational_symmetry('-|--|--|--|-')
+      4
       >>> rotational_symmetry('-|+-|+-|+-|+')
       4
 
@@ -379,7 +389,8 @@ def rotational_symmetry(ring: Seq) -> int:
       ring: a sequence
 
     Returns:
-      The rotational symmetry order
+      The rotational symmetry order, that is the number >= 1 of rotations
+      in which a circular sequence looks exactly the same
     """
     size = len(ring)
     if size < 2:
@@ -422,12 +433,15 @@ def symmetry_indices(ring: Seq) -> list[Index]:
     Examples:
       >>> symmetry_indices('-|--|--|--|-')
       [1, 4, 7, 10]
+      >>> symmetry_indices('-|+-|+-|+-|+')
+      []
 
     Args:
       ring: a sequence
 
     Returns:
-      The indices of the elements by which the reflectional symmetry axis are near
+      The indices of each element close to an axis of reflectional symmetry,
+      that is a line of symmetry that splits the sequence in two identical halves
     """
     length: int = len(ring)
     if length == 0:
@@ -451,10 +465,14 @@ def symmetry(ring: Seq) -> int:
       >>> symmetry('-|+-|+-|+-|+')
       0
 
+    Notes:
+      Rotational symmetry is always higher or equal than reflectional symmetry.
+
     Args:
       ring: a sequence
 
     Returns:
-      The reflectional (mirror) symmetry order
+      The reflectional (mirror) symmetry order, that is the number >= 0 of reflections
+      in which a circular sequence looks exactly the same
     """
     return len(symmetry_indices(ring))
