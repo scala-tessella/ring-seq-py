@@ -4,13 +4,13 @@ Use RingSeq to enable dot notation.
 
 Typical usage example:
 
-  >>> RingSeq([0, 1, 2]).rotate_left(1)
-  [1, 2, 0]
+  >>> RingSeq('ABC').rotate_left(1)
+  'BCA'
 
   instead of
 
-  >>> rotate_left([0, 1, 2], 1)
-  [1, 2, 0]
+  >>> rotate_left('ABC', 1)
+  'BCA'
 """
 from ring_seq.methods import *
 
@@ -36,9 +36,9 @@ class RingSeq:
         """Normalizes a given circular index of a Seq.
 
         Examples:
-          >>> RingSeq("ABC").index_from(-1)
+          >>> RingSeq('ABC').index_from(-1)
           2
-          >>> RingSeq("ABC").index_from(3)
+          >>> RingSeq('ABC').index_from(3)
           0
 
         Args:
@@ -53,9 +53,9 @@ class RingSeq:
         """Gets the element at some circular index.
 
         Examples:
-          >>> RingSeq("ABC").apply_o(-1)
+          >>> RingSeq('ABC').apply_o(-1)
           'C'
-          >>> RingSeq("ABC").apply_o(3)
+          >>> RingSeq('ABC').apply_o(3)
           'A'
 
         Args:
@@ -70,8 +70,8 @@ class RingSeq:
         """Rotates the sequence to the right by some steps.
 
         Examples:
-          >>> RingSeq([3, 4, 5]).rotate_right(1)
-          [5, 3, 4]
+          >>> RingSeq('ABC').rotate_right(1)
+          'CAB'
 
         Args:
           step: number of rotation steps to the right
@@ -85,8 +85,8 @@ class RingSeq:
         """Rotates the sequence to the left by some steps.
 
         Examples:
-          >>> RingSeq([3, 4, 5]).rotate_left(1)
-          [4, 5, 3]
+          >>> RingSeq('ABC').rotate_left(1)
+          'BCA'
 
         Args:
           step: number of rotation steps to the left
@@ -100,8 +100,8 @@ class RingSeq:
         """Rotates the sequence to start at some circular index.
 
         Examples:
-          >>> RingSeq([3, 4, 5]).start_at(1)
-          [4, 5, 3]
+          >>> RingSeq('ABC').start_at(1)
+          'BCA'
 
         Args:
           i: circular index where the sequence starts
@@ -115,10 +115,10 @@ class RingSeq:
         """Reflects the sequence to start at some circular index.
 
         Examples:
-          >>> RingSeq([3, 4, 5]).reflect_at()
-          [3, 5, 4]
-          >>> RingSeq([3, 4, 5]).reflect_at(1)
-          [4, 3, 5]
+          >>> RingSeq('ABC').reflect_at()
+          'ACB'
+          >>> RingSeq('ABC').reflect_at(1)
+          'BAC'
 
         Args:
           i: circular index where the reflected sequence starts
@@ -130,6 +130,10 @@ class RingSeq:
 
     def slice_o(self, frm: IndexO, to: IndexO) -> Seq:
         """Selects an interval of elements.
+
+        Examples:
+          >>> RingSeq('ABC').slice_o(-1, 5)
+          'CABCAB'
 
         Args:
           frm: circular index where the slice starts
@@ -143,13 +147,21 @@ class RingSeq:
     def rotations(self) -> Iterator[Seq]:
         """Computes all the rotations of this circular sequence
 
+        Examples:
+          >>> list(RingSeq('ABC').rotations())
+          ['ABC', 'BCA', 'CAB']
+
         Returns:
-          The sequence and its rotations, 1 step at a time to the right
+          The sequence and its rotations, 1 step at a time to the left
         """
         return rotations(self.underlying)
 
     def reflections(self) -> Iterator[Seq]:
         """Computes all the reflections of this circular sequence
+
+        Examples:
+          >>> list(RingSeq('ABC').reflections())
+          ['ABC', 'ACB']
 
         Returns:
           The sequence and its reflection
@@ -159,6 +171,10 @@ class RingSeq:
     def reversions(self) -> Iterator[Seq]:
         """Computes all the reversions of this circular sequence
 
+        Examples:
+          >>> list(RingSeq('ABC').reversions())
+          ['ABC', 'CBA']
+
         Returns:
           The sequence and its reversion
         """
@@ -167,6 +183,10 @@ class RingSeq:
     def rotations_and_reflections(self) -> Iterator[Seq]:
         """Computes all the rotations and reflections of this circular sequence
 
+        Examples:
+          >>> list(RingSeq('ABC').rotations_and_reflections())
+          ['ABC', 'BCA', 'CAB', 'ACB', 'CBA', 'BAC']
+
         Returns:
           The sequence and its rotations, and their reflections
         """
@@ -174,6 +194,10 @@ class RingSeq:
 
     def is_rotation_of(self, that: Seq) -> bool:
         """Tests whether this circular sequence is a rotation of a given sequence.
+
+        Examples:
+          >>> RingSeq('ABC').is_rotation_of('BCA')
+          True
 
         Args:
           that: sequence to be compared
@@ -186,6 +210,10 @@ class RingSeq:
     def is_reflection_of(self, that: Seq) -> bool:
         """Tests whether this circular sequence is a reflection of a given sequence.
 
+        Examples:
+          >>> RingSeq('ABC').is_reflection_of('ACB')
+          True
+
         Args:
           that: sequence to be compared
 
@@ -196,6 +224,10 @@ class RingSeq:
 
     def is_reversion_of(self, that: Seq) -> bool:
         """Tests whether this circular sequence is a reversion of a given sequence.
+
+        Examples:
+          >>> RingSeq('ABC').is_reversion_of('CBA')
+          True
 
         Args:
           that: sequence to be compared
@@ -208,6 +240,10 @@ class RingSeq:
     def is_rotation_or_reflection_of(self, that: Seq) -> bool:
         """Tests whether this circular sequence is a rotation and/or reflection of a given sequence.
 
+        Examples:
+          >>> RingSeq('ABC').is_rotation_or_reflection_of('BAC')
+          True
+
         Args:
           that: sequence to be compared
 
@@ -219,6 +255,10 @@ class RingSeq:
     def rotational_symmetry(self) -> int:
         """Computes the order of rotational symmetry possessed by this circular sequence.
 
+        Examples:
+          >>> RingSeq('-|+-|+-|+-|+').rotational_symmetry()
+          4
+
         Returns:
           The rotational symmetry order
         """
@@ -227,6 +267,10 @@ class RingSeq:
     def symmetry_indices(self) -> list[Index]:
         """Finds the indices of each element of this circular sequence close to an axis of reflectional symmetry.
 
+        Examples:
+          >>> RingSeq('-|--|--|--|-').symmetry_indices()
+          [1, 4, 7, 10]
+
         Returns:
           The indices of the elements by which the reflectional symmetry axis are near
         """
@@ -234,6 +278,10 @@ class RingSeq:
 
     def symmetry(self) -> int:
         """Computes the order of reflectional (mirror) symmetry possessed by this circular sequence.
+
+        Examples:
+          >>> RingSeq('-|--|--|--|-').symmetry()
+          4
 
         Returns:
           The reflectional (mirror) symmetry order
