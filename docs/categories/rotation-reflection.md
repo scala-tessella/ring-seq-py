@@ -26,7 +26,7 @@ Returns a sequence rotated to start at circular index.
 
 @@@ note
 
-Is equivalent to [`rotate_left`](rotation-reflection.html#rotateleft).
+Is equivalent to [`rotate_left`](rotation-reflection.md#rotate_left).
 
 @@@
 
