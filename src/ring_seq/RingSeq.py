@@ -1,6 +1,6 @@
-"""Contains the RingSeq class.
+"""Contains the `RingSeq` class.
 
-Use RingSeq to enable dot notation.
+Use `RingSeq` to enable dot notation.
 
 Typical usage example:
 
@@ -18,7 +18,7 @@ from ring_seq.methods import *
 class RingSeq:
     """Wrapper class for circular methods.
 
-    Use RingSeq to enable dot notation.
+    Use this class to enable dot notation.
 
     Attributes:
         underlying: The wrapped sequence.
@@ -29,7 +29,7 @@ class RingSeq:
         self.underlying = underlying
 
     def index_from(self, i: IndexO) -> Index:
-        """Normalizes a given circular index of a Seq.
+        """Normalizes a given circular index of a sequence.
 
         Examples:
           >>> RingSeq('ABC').index_from(-1)

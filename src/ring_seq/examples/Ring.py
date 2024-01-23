@@ -1,4 +1,4 @@
-"""Contains the example Ring class.
+"""Contains the example `Ring` class.
 
 Usage example:
 

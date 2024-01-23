@@ -1,8 +1,8 @@
-"""Contains all the library methods.
+"""Contains all the library methods plus new types.
 
-They add new operations to Python list, tuple and str
-(together represente by type Seq)
-for when such a sequence needs to be considered circular,
+They add new operations to `list`, `tuple` and `str`
+(together represente by type `Seq`)
+for when such a sequence needs to be considered **circular**,
 its elements forming a ring.
 
 Typical usage example:
@@ -23,7 +23,7 @@ Seq = TypeVar("Seq", list, str, tuple)
 
 
 def index_from(ring: Seq, i: IndexO) -> Index:
-    """Normalizes a given circular index of a Seq.
+    """Normalizes a given circular index of a sequence.
 
     Examples:
       >>> index_from('ABC', -1)
