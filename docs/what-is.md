@@ -6,24 +6,27 @@ For our purposes, a circular sequence is a sequence composed by a finite number 
 
 Being circular, the first element of the sequence can be considered as also placed just after the last element.
 
-```python
+```pycon
 from ring_seq import RingSeq
 
-RingSeq([0, 1, 2]).apply_o(3) // 0
+>>> RingSeq("ABC").apply_o(3)
+'A'
 ```
 
 And the last just before the first.
 
-```python
+```pycon
 from ring_seq import RingSeq
 
-RingSeq([0, 1, 2]).apply_o(-1) // 2
+>>> RingSeq("ABC").apply_o(-1)
+'C'
 ```
 
 So the "unrolling" of a circular sequence, both forth and backwards, can be assumed as theoretically infinite.
 
-```python
+```pycon
 from ring_seq import RingSeq
 
-RingSeq([0, 1, 2]).apply_o(30001) // 1
+>>> RingSeq("ABC").apply_o(30001)
+'B'
 ```
