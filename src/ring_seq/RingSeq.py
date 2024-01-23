@@ -278,6 +278,8 @@ class RingSeq:
         Examples:
           >>> RingSeq('-|--|--|--|-').symmetry()
           4
+          >>> RingSeq('-|+-|+-|+-|+').symmetry()
+          0
 
         Returns:
           The reflectional (mirror) symmetry order

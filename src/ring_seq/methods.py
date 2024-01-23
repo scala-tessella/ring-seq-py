@@ -1,3 +1,14 @@
+"""Contains all the library methods.
+
+They add new operations to Python list, tuple and str
+(together represente by type Seq)
+for when such a sequence needs to be considered circular,
+its elements forming a ring.
+
+Typical usage example:
+  >>> rotate_left('ABC', 1)
+  'BCA'
+"""
 from typing import Any, Callable, Optional, Iterator, TypeAlias, TypeVar
 from math import ceil, fmod
 
@@ -12,6 +23,21 @@ Seq = TypeVar("Seq", list, str, tuple)
 
 
 def index_from(ring: Seq, i: IndexO) -> Index:
+    """Normalizes a given circular index of a Seq.
+
+    Examples:
+      >>> index_from('ABC', -1)
+      2
+      >>> index_from('ABC', 3)
+      0
+
+    Args:
+      ring: a sequence
+      i: circular index
+
+    Returns:
+      A standard index
+    """
     length: int = len(ring)
     if length == 0:
         raise (ArithmeticError("An empty collection has no normalized index"))
@@ -23,19 +49,73 @@ def index_from(ring: Seq, i: IndexO) -> Index:
 
 
 def apply_o(ring: Seq, i: IndexO) -> Any:
+    """Gets the element at some circular index.
+
+    Examples:
+      >>> apply_o('ABC', -1)
+      'C'
+      >>> apply_o('ABC', 3)
+      'A'
+
+    Args:
+      ring: a sequence
+      i: circular index
+
+    Returns:
+      The element at circular index
+    """
     return ring[index_from(ring, i)]
 
 
 def rotate_right(ring: Seq, step: IndexO) -> Seq:
+    """Rotates the sequence to the right by some steps.
+
+    Examples:
+      >>> rotate_right('ABC', 1)
+      'CAB'
+
+    Args:
+      ring: a sequence
+      step: number of rotation steps to the right
+
+    Returns:
+      The rotated sequence
+    """
     j: Index = len(ring) - index_from(ring, step)
     return ring[j:] + ring[:j]
 
 
 def rotate_left(ring: Seq, step: IndexO) -> Seq:
+    """Rotates the sequence to the left by some steps.
+
+    Examples:
+      >>> rotate_left('ABC', 1)
+      'BCA'
+
+    Args:
+      ring: a sequence
+      step: number of rotation steps to the left
+
+    Returns:
+      The rotated sequence
+    """
     return rotate_right(ring, -step)
 
 
 def start_at(ring: Seq, i: IndexO) -> Seq:
+    """Rotates the sequence to start at some circular index.
+
+    Examples:
+      >>> start_at('ABC', 1)
+      'BCA'
+
+    Args:
+      ring: a sequence
+      i: circular index where the sequence starts
+
+    Returns:
+      The rotated sequence
+    """
     return rotate_left(ring, i)
 
 
@@ -52,10 +132,39 @@ def __typed_reverse(ring: Seq) -> Seq:
 
 
 def reflect_at(ring: Seq, i: IndexO = 0) -> Seq:
+    """Reflects the sequence to start at some circular index.
+
+    Examples:
+      >>> reflect_at('ABC')
+      'ACB'
+      >>> reflect_at('ABC', 1)
+      'BAC'
+
+    Args:
+      ring: a sequence
+      i: circular index where the reflected sequence starts
+
+    Returns:
+      The reflected sequence
+    """
     return __typed_reverse(start_at(ring, i + 1))
 
 
 def slice_o(ring: Seq, frm: IndexO, to: IndexO) -> Seq:
+    """Selects an interval of elements.
+
+    Examples:
+      >>> slice_o('ABC', -1, 5)
+      'CABCAB'
+
+    Args:
+      ring: a sequence
+      frm: circular index where the slice starts
+      to: circular index where the slice ends
+
+    Returns:
+      The sliced sequence
+    """
     length: int = len(ring)
     if length == 0:
         return ring
@@ -68,40 +177,86 @@ def slice_o(ring: Seq, frm: IndexO, to: IndexO) -> Seq:
 
 
 def __transformations(ring: Seq, f: Callable[[Seq], Seq]) -> Iterator[Seq]:
-    """
-
-    :rtype: object
-    """
     return iter(f(ring))
 
 
 def rotations(ring: Seq) -> Iterator[Seq]:
-    def func(r: Seq) -> list:
+    """Computes all the rotations of this circular sequence
+
+    Examples:
+      >>> list(rotations('ABC'))
+      ['ABC', 'BCA', 'CAB']
+
+    Args:
+      ring: a sequence
+
+    Returns:
+      The sequence and its rotations, 1 step at a time to the left
+    """
+
+    def __func(r: Seq) -> list:
         rs: list[Seq] = []
         step: IndexO
         for step in range(len(r)):
             rs.append(rotate_left(r, step))
         return rs
 
-    return __transformations(ring, func)
+    return __transformations(ring, __func)
 
 
 def reflections(ring: Seq) -> Iterator[Seq]:
+    """Computes all the reflections of this circular sequence
+
+    Examples:
+      >>> list(reflections('ABC'))
+      ['ABC', 'ACB']
+
+    Args:
+      ring: a sequence
+
+    Returns:
+      The sequence and its reflection
+    """
     return __transformations(ring, lambda r: (r, reflect_at(r, 0)))
 
 
 def reversions(ring: Seq) -> Iterator[Seq]:
+    """Computes all the reversions of this circular sequence
+
+    Examples:
+      >>> list(reversions('ABC'))
+      ['ABC', 'CBA']
+
+    Args:
+      ring: a sequence
+
+    Returns:
+      The sequence and its reversion
+    """
     return __transformations(ring, lambda r: (r, __typed_reverse(r)))
 
 
 def rotations_and_reflections(ring: Seq) -> Iterator[Seq]:
-    def flat_map(f: Callable[[Seq], Iterator[Seq]], xs: Iterator[Seq]) -> list[Seq]:
+    """Computes all the rotations and reflections of this circular sequence
+
+    Examples:
+      >>> list(rotations_and_reflections('ABC'))
+      ['ABC', 'BCA', 'CAB', 'ACB', 'CBA', 'BAC']
+
+    Args:
+      ring: a sequence
+
+    Returns:
+      The sequence and its rotations, and their reflections
+    """
+
+    def __flat_map(f: Callable[[Seq], Iterator[Seq]], xs: Iterator[Seq]) -> list[Seq]:
         ys: list[Seq] = []
         for x in xs:
             ys.extend(f(x))
         return ys
 
-    return __transformations(ring, lambda r: flat_map(rotations, reflections(r)))
+    return __transformations(ring, lambda r: __flat_map(rotations, reflections(r)))
 
 
 def __is_transformation_of(ring: Seq, that: Seq, f: Callable[[Seq], Iterator[Seq]]) -> bool:
@@ -109,18 +264,70 @@ def __is_transformation_of(ring: Seq, that: Seq, f: Callable[[Seq], Iterator[Seq
 
 
 def is_rotation_of(ring: Seq, that: Seq) -> bool:
+    """Tests whether this circular sequence is a rotation of a given sequence.
+
+    Examples:
+      >>> is_rotation_of('ABC', 'BCA')
+      True
+
+    Args:
+      ring: a sequence
+      that: sequence to be compared
+
+    Returns:
+      True if equal to any rotation of that
+    """
     return __is_transformation_of(ring, that, lambda r: rotations(r))
 
 
 def is_reflection_of(ring: Seq, that: Seq) -> bool:
+    """Tests whether this circular sequence is a reflection of a given sequence.
+
+    Examples:
+      >>> is_reflection_of('ABC', 'ACB')
+      True
+
+    Args:
+      ring: a sequence
+      that: sequence to be compared
+
+    Returns:
+      True if equal to any reflection of that
+    """
     return __is_transformation_of(ring, that, lambda r: reflections(r))
 
 
 def is_reversion_of(ring: Seq, that: Seq) -> bool:
+    """Tests whether this circular sequence is a reversion of a given sequence.
+
+    Examples:
+      >>> is_reversion_of('ABC', 'CBA')
+      True
+
+    Args:
+      ring: a sequence
+      that: sequence to be compared
+
+    Returns:
+      True if equal to any reversion of that
+    """
     return __is_transformation_of(ring, that, lambda r: reversions(r))
 
 
 def is_rotation_or_reflection_of(ring: Seq, that: Seq) -> bool:
+    """Tests whether this circular sequence is a rotation and/or reflection of a given sequence.
+
+    Examples:
+      >>> is_rotation_or_reflection_of('ABC', 'BAC')
+      True
+
+    Args:
+      ring: a sequence
+      that: sequence to be compared
+
+    Returns:
+      True if equal to any combination of rotation and reflection of that
+    """
     return __is_transformation_of(ring, that, lambda r: rotations_and_reflections(r))
 
 
@@ -129,6 +336,18 @@ def __are_folds_symmetrical(ring: Seq, n: int) -> bool:
 
 
 def rotational_symmetry(ring: Seq) -> int:
+    """Computes the order of rotational symmetry possessed by this circular sequence.
+
+    Examples:
+      >>> rotational_symmetry('-|+-|+-|+-|+')
+      4
+
+    Args:
+      ring: a sequence
+
+    Returns:
+      The rotational symmetry order
+    """
     size = len(ring)
     if size < 2:
         return 1
@@ -165,6 +384,18 @@ def __find_reflection_symmetry(ring: Seq) -> Optional[Index]:
 
 
 def symmetry_indices(ring: Seq) -> list[Index]:
+    """Finds the indices of each element of this circular sequence close to an axis of reflectional symmetry.
+
+    Examples:
+      >>> symmetry_indices('-|--|--|--|-')
+      [1, 4, 7, 10]
+
+    Args:
+      ring: a sequence
+
+    Returns:
+      The indices of the elements by which the reflectional symmetry axis are near
+    """
     length: int = len(ring)
     if length == 0:
         return []
@@ -179,4 +410,18 @@ def symmetry_indices(ring: Seq) -> list[Index]:
 
 
 def symmetry(ring: Seq) -> int:
+    """Computes the order of reflectional (mirror) symmetry possessed by this circular sequence.
+
+    Examples:
+      >>> symmetry('-|--|--|--|-')
+      4
+      >>> symmetry('-|+-|+-|+-|+')
+      0
+
+    Args:
+      ring: a sequence
+
+    Returns:
+      The reflectional (mirror) symmetry order
+    """
     return len(symmetry_indices(ring))
