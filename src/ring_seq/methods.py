@@ -64,7 +64,8 @@ def apply_o(ring: Seq, i: IndexO) -> Any:
       >>> 'ABC'[3] # doctest: +SKIP
       IndexError: string index out of range
 
-    Notes: as shown in the examples, behaves differently from standard method `[]`.
+    Notes:
+      As shown in the examples, behaves differently from standard method `[]`.
 
     Args:
       ring: a sequence
@@ -118,7 +119,8 @@ def start_at(ring: Seq, i: IndexO) -> Seq:
       >>> start_at('ABC', 1)
       'BCA'
 
-    Notes: is equivalent to `rotate_left`.
+    Notes:
+      Is equivalent to `rotate_left`.
 
     Args:
       ring: a sequence
@@ -151,7 +153,8 @@ def reflect_at(ring: Seq, i: IndexO = 0) -> Seq:
       >>> reflect_at('ABC', 1)
       'BAC'
 
-    Notes: `reflect_at(-1)` is equivalent to `reversed`.
+    Notes:
+      `reflect_at(-1)` is equivalent to `reversed`.
 
     Args:
       ring: a sequence
@@ -169,6 +172,12 @@ def slice_o(ring: Seq, frm: IndexO, to: IndexO) -> Seq:
     Examples:
       >>> slice_o('ABC', -1, 5)
       'CABCAB'
+      >>> 'ABC'[-1:5]
+      'C'
+
+    Notes:
+      Given the definition of circular sequence, a slice can contain more elements than the sequence itself.
+      As shown in the examples, behaves differently from standard method `[i:j]`.
 
     Args:
       ring: a sequence

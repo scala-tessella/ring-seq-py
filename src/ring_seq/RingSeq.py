@@ -61,7 +61,8 @@ class RingSeq:
           >>> 'ABC'[3] # doctest: +SKIP
           IndexError: string index out of range
 
-        Notes: as shown in the examples, behaves differently from standard method `[]`.
+        Notes:
+          As shown in the examples, behaves differently from standard method `[]`.
 
         Args:
           i: circular index
@@ -108,7 +109,8 @@ class RingSeq:
           >>> RingSeq('ABC').start_at(1)
           'BCA'
 
-        Notes: is equivalent to `rotate_left`.
+        Notes:
+          Is equivalent to `rotate_left`.
 
         Args:
           i: circular index where the sequence starts
@@ -127,7 +129,8 @@ class RingSeq:
           >>> RingSeq('ABC').reflect_at(1)
           'BAC'
 
-        Notes: `reflect_at(-1)` is equivalent to `reversed`.
+        Notes:
+          `reflect_at(-1)` is equivalent to `reversed`.
 
         Args:
           i: circular index where the reflected sequence starts
@@ -143,6 +146,12 @@ class RingSeq:
         Examples:
           >>> RingSeq('ABC').slice_o(-1, 5)
           'CABCAB'
+          >>> 'ABC'[-1:5]
+          'C'
+
+        Notes:
+          Given the definition of circular sequence, a slice can contain more elements than the sequence itself.
+          As shown in the examples, behaves differently from standard method `[i:j]`.
 
         Args:
           frm: circular index where the slice starts
