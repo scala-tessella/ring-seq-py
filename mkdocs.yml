@@ -1,0 +1,15 @@
+site_name: RingSeqPy
+site_url: https://example.com/
+nav:
+  - Home: index.md
+  - What is a circular sequence: what-is.md
+  - Usage examples: usage.md
+  - Reference: reference.md
+  - Methods:
+      - Indexing: categories/indexing.md
+      - Rotation and reflection: categories/rotation-reflection.md
+      - Slicing: categories/slicing.md
+      - Iterators: categories/iterators.md
+      - Comparisons: categories/comparisons.md
+      - Symmetry: categories/symmetry.md
+theme: readthedocs
