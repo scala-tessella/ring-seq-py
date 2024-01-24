@@ -134,19 +134,19 @@ def start_at(ring: Seq, i: IndexO) -> Seq:
     return rotate_left(ring, i)
 
 
-def __typed_assemble(ring: Seq, iterator: Iterator[Any]) -> Seq:
-    if type(ring) is str:
+def __typed_assemble(t: type, iterator: Iterator[Any]) -> Seq:
+    if t is str:
         return "".join(iterator)
-    elif type(ring) is list:
+    elif t is list:
         return list(iterator)
-    elif type(ring) is tuple:
+    elif t is tuple:
         return tuple(iterator)
     else:
         raise (TypeError("Unexpected type, currently str, list and tuple checked"))
 
 
 def __typed_reverse(ring: Seq) -> Seq:
-    return __typed_assemble(ring, reversed(ring))
+    return __typed_assemble(type(ring), reversed(ring))
 
 
 def reflect_at(ring: Seq, i: IndexO = 0) -> Seq:
@@ -216,7 +216,7 @@ def slice_o(ring: Seq, frm: IndexO, to: IndexO, step: int = 1) -> Seq:
         else:
             filtered_indices: Iterator[Index] = filter(lambda i: i % step == 0, range(gap))
             filtered_elements: Iterator[Any] = map(lambda i: all_elements[i], filtered_indices)
-            return __typed_assemble(ring, filtered_elements)
+            return __typed_assemble(type(ring), filtered_elements)
 
 
 def __transformations(ring: Seq, f: Callable[[Seq], Iterator[Seq]]) -> Iterator[Seq]:
