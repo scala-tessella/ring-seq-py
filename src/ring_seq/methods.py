@@ -418,8 +418,7 @@ def __greater_half_range(ring: Seq) -> range:
 
 
 def __check_reflection_axis(ring: Seq, gap: int) -> bool:
-    check: Callable[[int], bool] = lambda j: apply_o(ring, j + 1) == apply_o(ring, -(j + gap))
-    return all(map(check, __greater_half_range(ring)))
+    return all(map(lambda j: apply_o(ring, j + 1) == apply_o(ring, -(j + gap)), __greater_half_range(ring)))
 
 
 def __has_head_on_axis(ring: Seq) -> bool:
