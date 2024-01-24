@@ -155,7 +155,7 @@ class RingSeq:
 
         Notes:
           Given the definition of circular sequence, a slice can contain more elements than the sequence itself.
-          As shown in the examples, behaves differently from standard method `[i:j]`.
+          As shown in the examples, behaves differently from standard methods `[i:j]` and `[i:j:k]`.
 
         Args:
           frm: circular index where the slice starts
