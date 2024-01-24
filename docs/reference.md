@@ -10,10 +10,13 @@ For dealing with a circular sequence, **RingSeqPy** adds:
 2. new operations on `Seq`.
 3. alternative versions of some operations already existing for `Seq`.
 
-!!! Note
+!!! Tip
+    Methods in case _3. alternative versions_ have a suffix `_o` in their name, for example `slice_o`.    
+
+!!! Info
     By design choice the same methods are available both in the original form `method(Seq, ...)`
     and in the form `RingSeq(Seq).method(...)` via the wrapper class `RingSeq`,
-    in order to use [Dot notation](https://en.wikipedia.org/wiki/Property_(programming)#Dot_notation).
+    in order to allow use of [Dot notation](https://en.wikipedia.org/wiki/Property_(programming)#Dot_notation).
 
 Methods fall into the following categories:
 
