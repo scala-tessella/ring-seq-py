@@ -9,7 +9,7 @@ Typical usage example:
   >>> rotate_left('ABC', 1)
   'BCA'
 """
-from functools import reduce
+from sys import maxsize
 from itertools import chain
 from typing import Any, Callable, Optional, Iterator, TypeAlias, TypeVar
 from math import ceil, fmod
@@ -171,7 +171,7 @@ def reflect_at(ring: Seq, i: IndexO = 0) -> Seq:
     return __typed_reverse(start_at(ring, i + 1))
 
 
-def slice_o(ring: Seq, frm: IndexO, to: IndexO, step: int = 1) -> Seq:
+def slice_o(ring: Seq, start: IndexO, end: IndexO, step: int = 1) -> Seq:
     """Selects an interval of elements.
 
     Examples:
@@ -190,8 +190,8 @@ def slice_o(ring: Seq, frm: IndexO, to: IndexO, step: int = 1) -> Seq:
 
     Args:
       ring: a sequence
-      frm: circular index where the slice starts
-      to: circular index where the slice ends
+      start: circular index where the slice starts
+      end: circular index where the slice ends
       step: number of steps for filtering
 
     Returns:
@@ -201,22 +201,58 @@ def slice_o(ring: Seq, frm: IndexO, to: IndexO, step: int = 1) -> Seq:
       ValueError: An error occurs if slice step is zero.
     """
     if step == 0:
-        return ring[frm:to:step]
+        return ring[start:end:step]
     length: int = len(ring)
     if length == 0:
         return ring
-    gap: int = to - frm
+    gap: int = end - start
     if gap < 0 or step < 0:
         return ring[:0]
     else:
         times: int = int(ceil(gap / length) + 1)
-        all_elements: Seq = (start_at(ring, frm) * times)[:gap]
+        all_elements: Seq = (start_at(ring, start) * times)[:gap]
         if step == 1:
             return all_elements
         else:
             filtered_indices: Iterator[Index] = filter(lambda i: i % step == 0, range(gap))
             filtered_elements: Iterator[Any] = map(lambda i: all_elements[i], filtered_indices)
             return __typed_assemble(type(ring), filtered_elements)
+
+
+def index_o(ring: Seq, x: Any, start: IndexO = 0, end: IndexO = maxsize) -> Index:
+    """Gets the index of the first occurrence of a sub-sequence.
+
+    Examples:
+      >>> index_o('ABC', 'B', 2, 7)
+      1
+      >>> 'ABC'.index('B', 2, 7) # doctest: +SKIP
+      ValueError: substring not found
+      >>> index_o('ABC', 'BCAB', 2, 8)
+      1
+
+    Notes:
+      Given the definition of circular sequence, the searched slice can contain more elements than the sequence itself.
+      As shown in the examples, behaves differently from standard method `index(x[, i[, j]])`.
+
+    Args:
+      ring: a sequence
+      x: sub-sequence to be found, can be a `str` or a single element from a `list` or from a `tuple`
+      start: circular index where the search starts
+      end: circular index where the search ends
+
+    Returns:
+      A standard index
+
+    Raises:
+      Value error: An error occurs if the sub-sequence is invalid or not found.
+    """
+    length = len(ring)
+    if length == 0:
+        return ring.index(x)
+    else:
+        adjusted_to: int = min(end, start + length + len(x) - 1)
+        s: Seq = slice_o(ring, start, adjusted_to)
+        return index_from(ring, s.index(x) + start)
 
 
 def __transformations(ring: Seq, f: Callable[[Seq], Iterator[Seq]]) -> Iterator[Seq]:
