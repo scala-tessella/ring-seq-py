@@ -10,6 +10,7 @@ Typical usage example:
   'BCA'
 """
 from functools import reduce
+from itertools import chain
 from typing import Any, Callable, Optional, Iterator, TypeAlias, TypeVar
 from math import ceil, fmod
 
@@ -277,6 +278,14 @@ def reversions(ring: Seq) -> Iterator[Seq]:
     return __transformations(ring, lambda r: iter([r, __typed_reverse(r)]))
 
 
+def __flatten(iterator_of_iterator: Iterator[Iterator[Any]]) -> Iterator[Any]:
+    return chain.from_iterable(iterator_of_iterator)
+
+
+def __flat_map(f: Callable[[Any], Iterator[Any]], iterator: Iterator[Any]) -> Iterator[Any]:
+    return __flatten(map(f, iterator))
+
+
 def rotations_and_reflections(ring: Seq) -> Iterator[Seq]:
     """Computes all the rotations and reflections of this circular sequence
 
@@ -292,13 +301,6 @@ def rotations_and_reflections(ring: Seq) -> Iterator[Seq]:
     Returns:
       The sequence and its rotations, and their reflections
     """
-
-    def __flat_map(f: Callable[[Seq], Iterator[Seq]], xs: Iterator[Seq]) -> Iterator[Seq]:
-        ys: list[Seq] = []
-        for x in xs:
-            ys.extend(f(x))
-        return iter(ys)
-
     return __transformations(ring, lambda r: __flat_map(rotations, reflections(r)))
 
 
