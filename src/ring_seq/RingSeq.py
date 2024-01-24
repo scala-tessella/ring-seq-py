@@ -184,6 +184,34 @@ class RingSeq:
         """
         return rotations(self.underlying)
 
+    def index_o(self, x: Any, start: IndexO = 0, end: IndexO = maxsize) -> Index:
+        """Gets the index of the first occurrence of a sub-sequence.
+
+        Examples:
+          >>> RingSeq('ABC').index_o('B', 2, 7)
+          1
+          >>> 'ABC'.index('B', 2, 7) # doctest: +SKIP
+          ValueError: substring not found
+          >>> RingSeq('ABC').index_o('BCAB', 2, 8)
+          1
+
+        Notes:
+          Given the definition of circular sequence, the searched slice can contain more elements than the sequence itself.
+          As shown in the examples, behaves differently from standard method `index(x[, i[, j]])`.
+
+        Args:
+          x: sub-sequence to be found, can be a `str` or a single element from a `list` or from a `tuple`
+          start: circular index where the search starts
+          end: circular index where the search ends
+
+        Returns:
+          A standard index
+
+        Raises:
+          Value error: An error occurs if the sub-sequence is invalid or not found.
+        """
+        return index_o(self.underlying, x, start, end)
+
     def reflections(self) -> Iterator[Seq]:
         """Computes all the reflections of this circular sequence
 

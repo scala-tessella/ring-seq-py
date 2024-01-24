@@ -32,6 +32,7 @@ Methods fall into the following categories:
 
 ### Slicing
 * [`slice_o`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.slice_o)
+* [`index_o`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.index_o)
 
 ### Iterators
 * [`rotations`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.rotations)
