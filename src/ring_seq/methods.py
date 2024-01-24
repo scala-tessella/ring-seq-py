@@ -238,10 +238,7 @@ def rotations(ring: Seq) -> Iterator[Seq]:
       The sequence and its rotations, 1 step at a time to the left
     """
 
-    def __func(r: Seq) -> Iterator[Seq]:
-        return map(lambda i: rotate_left(r, i), range(len(r)))
-
-    return __transformations(ring, __func)
+    return __transformations(ring, lambda r: map(lambda stp: rotate_left(r, stp), range(len(r))))
 
 
 def reflections(ring: Seq) -> Iterator[Seq]:
@@ -405,14 +402,15 @@ def rotational_symmetry(ring: Seq) -> int:
       The rotational symmetry order, that is the number >= 1 of rotations
       in which a circular sequence looks exactly the same
     """
-    size = len(ring)
+    size: int = len(ring)
     if size < 2:
         return 1
     else:
         divisors_in_decreasing_size: range = range(int(size / 2), 2, -1)
-        exact_divisors: list = list(filter(lambda x: size % x == 0, divisors_in_decreasing_size))
-        all_folds_in_decreasing_size: list[int] = [size] + exact_divisors
-        return next((folds for folds in all_folds_in_decreasing_size if __are_folds_symmetrical(ring, folds)), 1)
+        exact_divisors: Iterator[int] = filter(lambda divisor: size % divisor == 0, divisors_in_decreasing_size)
+        folds_in_decreasing_size: Iterator[int] = iter([size] + list(exact_divisors))
+        symmetric_folds: Iterator[int] = filter(lambda fs: __are_folds_symmetrical(ring, fs), folds_in_decreasing_size)
+        return next(symmetric_folds, 1)
 
 
 def __greater_half_range(ring: Seq) -> range:
