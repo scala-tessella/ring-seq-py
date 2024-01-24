@@ -140,13 +140,17 @@ class RingSeq:
         """
         return reflect_at(self.underlying, i)
 
-    def slice_o(self, frm: IndexO, to: IndexO) -> Seq:
+    def slice_o(self, frm: IndexO, to: IndexO, step: int = 1) -> Seq:
         """Selects an interval of elements.
 
         Examples:
           >>> RingSeq('ABC').slice_o(-1, 5)
           'CABCAB'
           >>> 'ABC'[-1:5]
+          'C'
+          >>> RingSeq('ABC').slice_o(-1, 5, 2)
+          'CBA'
+          >>> 'ABC'[-1:5:2]
           'C'
 
         Notes:
@@ -156,11 +160,15 @@ class RingSeq:
         Args:
           frm: circular index where the slice starts
           to: circular index where the slice ends
+          step: number of steps for filtering
 
         Returns:
-          The sliced sequence
+          The sliced sequence, with only the first element every each step
+
+        Raises:
+          ValueError: An error occurs if slice step is zero.
         """
-        return slice_o(self.underlying, frm, to)
+        return slice_o(self.underlying, frm, to, step)
 
     def rotations(self) -> Iterator[Seq]:
         """Computes all the rotations of this circular sequence

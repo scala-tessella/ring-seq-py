@@ -9,6 +9,7 @@ Typical usage example:
   >>> rotate_left('ABC', 1)
   'BCA'
 """
+from functools import reduce
 from typing import Any, Callable, Optional, Iterator, TypeAlias, TypeVar
 from math import ceil, fmod
 
@@ -166,7 +167,7 @@ def reflect_at(ring: Seq, i: IndexO = 0) -> Seq:
     return __typed_reverse(start_at(ring, i + 1))
 
 
-def slice_o(ring: Seq, frm: IndexO, to: IndexO) -> Seq:
+def slice_o(ring: Seq, frm: IndexO, to: IndexO, step: int = 1) -> Seq:
     """Selects an interval of elements.
 
     Examples:
@@ -174,28 +175,44 @@ def slice_o(ring: Seq, frm: IndexO, to: IndexO) -> Seq:
       'CABCAB'
       >>> 'ABC'[-1:5]
       'C'
+      >>> slice_o('ABC', -1, 5, 2)
+      'CBA'
+      >>> 'ABC'[-1:5:2]
+      'C'
 
     Notes:
       Given the definition of circular sequence, a slice can contain more elements than the sequence itself.
-      As shown in the examples, behaves differently from standard method `[i:j]`.
+      As shown in the examples, behaves differently from standard methods `[i:j]` and `[i:j:k]`.
 
     Args:
       ring: a sequence
       frm: circular index where the slice starts
       to: circular index where the slice ends
+      step: number of steps for filtering
 
     Returns:
-      The sliced sequence
+      The sliced sequence, with only the first element every each step
+
+    Raises:
+      ValueError: An error occurs if slice step is zero.
     """
+    if step == 0:
+        return ring[frm:to:step]
     length: int = len(ring)
     if length == 0:
         return ring
-    elif frm >= to:
+    gap: int = to - frm
+    if gap < 0 or step < 0:
         return ring[:0]
     else:
-        gap: int = to - frm
         times: int = int(ceil(gap / length) + 1)
-        return (start_at(ring, frm) * times)[:gap]
+        all_elements: Seq = (start_at(ring, frm) * times)[:gap]
+        if step == 1:
+            return all_elements
+        else:
+            filtered_indices: Iterator[Index] = filter(lambda i: i % step == 0, range(gap))
+            filtered_elements: Iterator[Any] = map(lambda i: all_elements[i], filtered_indices)
+            return reduce(lambda acc, elem: acc + elem, filtered_elements, ring[:0])
 
 
 def __transformations(ring: Seq, f: Callable[[Seq], Seq]) -> Iterator[Seq]:
