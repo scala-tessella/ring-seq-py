@@ -21,6 +21,8 @@ class SlicingOps(unittest.TestCase):
         self.assertEqual(slice_o("ABCDE", 0, 5, 2), "ACE")
         self.assertEqual("ABCDE"[0:5:3], "AD")
         self.assertEqual(slice_o("ABCDE", 0, 5, 3), "AD")
+        self.assertEqual("ABCDE"[0:5:2], "ACE")
+        self.assertEqual(slice_o(("A", 1, 'B', 2), -1, 6, 2), "ACE")
 
 
 if __name__ == '__main__':
