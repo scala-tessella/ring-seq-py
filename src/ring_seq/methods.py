@@ -215,11 +215,11 @@ def slice_o(ring: Seq, frm: IndexO, to: IndexO, step: int = 1) -> Seq:
             return reduce(lambda acc, elem: acc + elem, filtered_elements, ring[:0])
 
 
-def __transformations(ring: Seq, f: Callable[[Seq], Seq]) -> Iterator[Seq]:
+def __transformations(ring: Seq, f: Callable[[Seq], Iterator[Seq]]) -> Iterator[Seq]:
     if len(ring) == 0:
         return iter(ring)
     else:
-        return iter(f(ring))
+        return f(ring)
 
 
 def rotations(ring: Seq) -> Iterator[Seq]:
@@ -238,8 +238,8 @@ def rotations(ring: Seq) -> Iterator[Seq]:
       The sequence and its rotations, 1 step at a time to the left
     """
 
-    def __func(r: Seq) -> list[Seq]:
-        return list(map(lambda i: rotate_left(r, i), range(len(r))))
+    def __func(r: Seq) -> Iterator[Seq]:
+        return map(lambda i: rotate_left(r, i), range(len(r)))
 
     return __transformations(ring, __func)
 
@@ -259,7 +259,7 @@ def reflections(ring: Seq) -> Iterator[Seq]:
     Returns:
       The sequence and its reflection
     """
-    return __transformations(ring, lambda r: (r, reflect_at(r, 0)))
+    return __transformations(ring, lambda r: iter([r, reflect_at(r, 0)]))
 
 
 def reversions(ring: Seq) -> Iterator[Seq]:
@@ -277,7 +277,7 @@ def reversions(ring: Seq) -> Iterator[Seq]:
     Returns:
       The sequence and its reversion
     """
-    return __transformations(ring, lambda r: (r, __typed_reverse(r)))
+    return __transformations(ring, lambda r: iter([r, __typed_reverse(r)]))
 
 
 def rotations_and_reflections(ring: Seq) -> Iterator[Seq]:
@@ -296,11 +296,11 @@ def rotations_and_reflections(ring: Seq) -> Iterator[Seq]:
       The sequence and its rotations, and their reflections
     """
 
-    def __flat_map(f: Callable[[Seq], Iterator[Seq]], xs: Iterator[Seq]) -> list[Seq]:
+    def __flat_map(f: Callable[[Seq], Iterator[Seq]], xs: Iterator[Seq]) -> Iterator[Seq]:
         ys: list[Seq] = []
         for x in xs:
             ys.extend(f(x))
-        return ys
+        return iter(ys)
 
     return __transformations(ring, lambda r: __flat_map(rotations, reflections(r)))
 
