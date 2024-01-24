@@ -419,7 +419,7 @@ def __greater_half_range(ring: Seq) -> range:
 
 def __check_reflection_axis(ring: Seq, gap: int) -> bool:
     check: Callable[[int], bool] = lambda j: apply_o(ring, j + 1) == apply_o(ring, -(j + gap))
-    return all(check(folds) for folds in __greater_half_range(ring))
+    return all(map(check, __greater_half_range(ring)))
 
 
 def __has_head_on_axis(ring: Seq) -> bool:
@@ -435,7 +435,8 @@ def __has_axis(ring: Seq) -> bool:
 
 
 def __find_reflection_symmetry(ring: Seq) -> Optional[Index]:
-    return next((j for j in __greater_half_range(ring) if __has_axis(start_at(ring, j))), None)
+    filtered_indices: Iterator[Index] = filter(lambda j: __has_axis(start_at(ring, j)), __greater_half_range(ring))
+    return next(filtered_indices, None)
 
 
 def symmetry_indices(ring: Seq) -> list[Index]:
