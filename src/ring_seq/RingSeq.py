@@ -140,7 +140,7 @@ class RingSeq:
         """
         return reflect_at(self.underlying, i)
 
-    def slice_o(self, frm: IndexO, to: IndexO, step: int = 1) -> Seq:
+    def slice_o(self, start: IndexO, end: IndexO, step: int = 1) -> Seq:
         """Selects an interval of elements.
 
         Examples:
@@ -158,8 +158,8 @@ class RingSeq:
           As shown in the examples, behaves differently from standard methods `[i:j]` and `[i:j:k]`.
 
         Args:
-          frm: circular index where the slice starts
-          to: circular index where the slice ends
+          start: circular index where the slice starts
+          end: circular index where the slice ends
           step: number of steps for filtering
 
         Returns:
@@ -168,7 +168,7 @@ class RingSeq:
         Raises:
           ValueError: An error occurs if slice step is zero.
         """
-        return slice_o(self.underlying, frm, to, step)
+        return slice_o(self.underlying, start, end, step)
 
     def rotations(self) -> Iterator[Seq]:
         """Computes all the rotations of this circular sequence
