@@ -238,12 +238,8 @@ def rotations(ring: Seq) -> Iterator[Seq]:
       The sequence and its rotations, 1 step at a time to the left
     """
 
-    def __func(r: Seq) -> list:
-        rs: list[Seq] = []
-        step: IndexO
-        for step in range(len(r)):
-            rs.append(rotate_left(r, step))
-        return rs
+    def __func(r: Seq) -> list[Seq]:
+        return list(map(lambda i: rotate_left(r, i), range(len(r))))
 
     return __transformations(ring, __func)
 
