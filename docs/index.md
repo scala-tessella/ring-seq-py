@@ -42,4 +42,3 @@ and building blocks provided for the others.
 
 ## Other languages
 The same library is available also for the Scala language, check [RingSeq (Scala version)](https://scala-tessella.github.io/ring-seq/).
-

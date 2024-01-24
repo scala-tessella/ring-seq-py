@@ -30,3 +30,15 @@ rotate_right("RING", 1)  # "GRIN"
 start_at([0, 1, 2, 3], 2)  # [2, 3, 0, 1]
 reflect_at((1, 3, 5, 7, 9), 3)  # (7, 5, 3, 1, 9)
 ```
+
+## Need
+Whenever data are structured in a circular sequence,
+chances are you don't want to locally reinvent the wheel (pun intended).
+
+## Solution
+**RingSeqPy** is a small, purely functional, self-contained library,
+where most of the circular use cases are already solved
+and building blocks provided for the others.
+
+## Other languages
+The same library is available also for the Scala language, check [RingSeq (Scala version)](https://scala-tessella.github.io/ring-seq/).
