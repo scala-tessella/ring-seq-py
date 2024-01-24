@@ -22,6 +22,8 @@ class IteratingOps(unittest.TestCase):
         self.assertEqual(list(reversions("")), [])
         self.assertEqual(list(reversions(())), [])
         self.assertEqual(list(reversions("ABCDE")), ["ABCDE", "EDCBA"])
+        self.assertEqual(list(reversions(["A", 1, 'B', 2])), [["A", 1, 'B', 2], [2, "B", 1, 'A']])
+        self.assertEqual(list(reversions(("A", 1, 'B', 2))), [("A", 1, 'B', 2), (2, "B", 1, 'A')])
 
     def test_rotations_and_reflections(self):
         self.assertEqual(list(rotations_and_reflections([])), [])
