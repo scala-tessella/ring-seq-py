@@ -464,7 +464,7 @@ def symmetry_indices(ring: Seq) -> list[Index]:
         if maybe_symmetry is None:
             return []
         else:
-            return list(j * fold_size + maybe_symmetry for j in range(folds))
+            return list(map(lambda j: j * fold_size + maybe_symmetry, range(folds)))
 
 
 def symmetry(ring: Seq) -> int:
