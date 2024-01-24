@@ -62,7 +62,7 @@ class RingSeq:
           IndexError: string index out of range
 
         Notes:
-          As shown in the examples, behaves differently from standard method `[]`.
+          As shown in the examples, behaves differently from standard method `[i]`.
 
         Args:
           i: circular index

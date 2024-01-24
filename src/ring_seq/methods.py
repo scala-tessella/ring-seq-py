@@ -65,7 +65,7 @@ def apply_o(ring: Seq, i: IndexO) -> Any:
       IndexError: string index out of range
 
     Notes:
-      As shown in the examples, behaves differently from standard method `[]`.
+      As shown in the examples, behaves differently from standard method `[i]`.
 
     Args:
       ring: a sequence
