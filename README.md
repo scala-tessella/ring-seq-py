@@ -1,7 +1,7 @@
 # **RingSeqPy**
 
 A library that adds new operations to Python `list`, `tuple` and `str`
-for when such a sequence needs to be considered [**circular**](https://scala-tessella.github.io/ring-seq/what-is.html),
+for when such a sequence needs to be considered [**circular**](https://scala-tessella.github.io/ring-seq-py/what-is.html),
 its elements forming a ring.
 
 Working for Python `3.10` and above.
@@ -47,4 +47,4 @@ where most of the circular use cases are already solved
 and building blocks provided for the others.
 
 ## Other languages
-The same library is available also for the Scala language, check [RingSeq (Scala version)](https://scala-tessella.github.io/ring-seq/).
+The same library is available also for the Scala language, check [RingSeq (Scala version)](https://github.com/scala-tessella/ring-seq/).
