@@ -37,11 +37,4 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest tests/IndexingTest.py
-        pytest tests/TransformingTest.py
-        pytest tests/SlicingTest.py
-        pytest tests/IteratingTest.py
-        pytest tests/ComparingTest.py
-        pytest tests/SymmetryTest.py
-        pytest tests/RingSeqTest.py
-        pytest tests/examples/RingTest.py
+        pytest tests/AllTest.py
