@@ -9,3 +9,6 @@ This page shows examples of how the library can be used.
     available in the `ring_seq.methods` module.
 
 ::: ring_seq.examples.Ring.Ring
+    options:
+      show_root_heading: true
+      show_source: false
