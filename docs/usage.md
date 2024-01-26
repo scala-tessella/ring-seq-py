@@ -11,4 +11,4 @@ This page shows examples of how the library can be used.
 ::: ring_seq.examples.Ring.Ring
     options:
       show_root_heading: true
-      show_source: false
+      show_source: true

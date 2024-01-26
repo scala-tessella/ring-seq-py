@@ -23,7 +23,10 @@ theme:
     repo: fontawesome/brands/github
 
 plugins:
-  - mkdocstrings
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
 
 markdown_extensions:
   - admonition
