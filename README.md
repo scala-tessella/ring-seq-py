@@ -1,5 +1,5 @@
 # **RingSeqPy**
-[![PyPI version](https://badge.fury.io/py/ring-seq-py.svg)](https://badge.fury.io/py/ring-seq-py)
+![PyPI - Version](https://img.shields.io/pypi/v/ring-seq-py?style=flat&logo=python&link=https%3A%2F%2Fpypi.org%2Fproject%2Fring-seq-py%2F)
 [![CI](https://github.com/scala-tessella/ring-seq-py/actions/workflows/python-package.yml/badge.svg)](https://github.com/scala-tessella/ring-seq-py/actions/workflows/python-package.yml)
 ![Python Version from PEP 621 TOML](https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fscala-tessella%2Fring-seq-py%2Fmaster%2Fpyproject.toml)
 
