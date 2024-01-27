@@ -1,4 +1,5 @@
 # **RingSeqPy**
+[![CI](https://github.com/scala-tessella/ring-seq/actions/workflows/python-package.yml/badge.svg)](https://github.com/scala-tessella/ring-seq/actions/workflows/python-package.yml)
 
 A library that adds new operations to Python `list`, `tuple` and `str`
 for when such a sequence needs to be considered [**circular**](https://scala-tessella.github.io/ring-seq-py/what-is/),
