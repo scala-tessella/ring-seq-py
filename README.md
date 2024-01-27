@@ -1,7 +1,7 @@
 # **RingSeqPy**
-![PyPI - Version](https://img.shields.io/pypi/v/ring-seq-py?style=flat&logo=python&link=https%3A%2F%2Fpypi.org%2Fproject%2Fring-seq-py%2F)
+![PyPI - Version](https://img.shields.io/pypi/v/ring-seq-py?style=plastic&logo=python&logoColor=%234B8BBE&link=https%3A%2F%2Fpypi.org%2Fproject%2Fring-seq-py%2F)
 [![CI](https://github.com/scala-tessella/ring-seq-py/actions/workflows/python-package.yml/badge.svg)](https://github.com/scala-tessella/ring-seq-py/actions/workflows/python-package.yml)
-![Python Version from PEP 621 TOML](https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fscala-tessella%2Fring-seq-py%2Fmaster%2Fpyproject.toml)
+![Python Version from PEP 621 TOML](https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fscala-tessella%2Fring-seq-py%2Fmaster%2Fpyproject.toml&style=plastic&logo=python&logoColor=%23FFD43B)
 
 A library that adds new operations to Python `list`, `tuple` and `str`
 for when such a sequence needs to be considered [**circular**](https://scala-tessella.github.io/ring-seq-py/what-is/),
