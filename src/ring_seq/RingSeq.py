@@ -72,7 +72,7 @@ class RingSeq:
         """
         return apply_o(self.underlying, i)
 
-    def rotate_right(self, step: IndexO) -> Seq:
+    def rotate_right(self, step: int) -> Seq:
         """Rotates the sequence to the right by some steps.
 
         Examples:
@@ -87,7 +87,7 @@ class RingSeq:
         """
         return rotate_right(self.underlying, step)
 
-    def rotate_left(self, step: IndexO) -> Seq:
+    def rotate_left(self, step: int) -> Seq:
         """Rotates the sequence to the left by some steps.
 
         Examples:

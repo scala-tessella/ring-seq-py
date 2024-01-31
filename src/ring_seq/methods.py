@@ -79,7 +79,7 @@ def apply_o(ring: Seq, i: IndexO) -> Any:
     return ring[index_from(ring, i)]
 
 
-def rotate_right(ring: Seq, step: IndexO) -> Seq:
+def rotate_right(ring: Seq, step: int) -> Seq:
     """Rotates the sequence to the right by some steps.
 
     Examples:
@@ -97,7 +97,7 @@ def rotate_right(ring: Seq, step: IndexO) -> Seq:
     return ring[j:] + ring[:j]
 
 
-def rotate_left(ring: Seq, step: IndexO) -> Seq:
+def rotate_left(ring: Seq, step: int) -> Seq:
     """Rotates the sequence to the left by some steps.
 
     Examples:
