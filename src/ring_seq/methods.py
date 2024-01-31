@@ -443,13 +443,13 @@ def rotational_symmetry(ring: Seq) -> int:
       The rotational symmetry order, that is the number >= 1 of rotations
       in which a circular sequence looks exactly the same
     """
-    size: int = len(ring)
-    if size < 2:
+    length: int = len(ring)
+    if length < 2:
         return 1
     else:
-        divisors_in_decreasing_size: range = range(int(size / 2), 2, -1)
-        exact_divisors: Iterator[int] = filter(lambda divisor: size % divisor == 0, divisors_in_decreasing_size)
-        folds_in_decreasing_size: Iterator[int] = iter([size] + list(exact_divisors))
+        divisors_in_decreasing_size: range = range(int(length / 2), 2, -1)
+        exact_divisors: Iterator[int] = filter(lambda divisor: length % divisor == 0, divisors_in_decreasing_size)
+        folds_in_decreasing_size: Iterator[int] = iter([length] + list(exact_divisors))
         symmetric_folds: Iterator[int] = filter(lambda fs: __are_folds_symmetrical(ring, fs), folds_in_decreasing_size)
         return next(symmetric_folds, 1)
 
