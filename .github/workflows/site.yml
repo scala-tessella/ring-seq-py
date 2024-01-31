@@ -1,7 +1,8 @@
 name: site
 on:
   push:
-    tags: [v*]
+    branches:
+      - master
 permissions:
   contents: write
 jobs:
