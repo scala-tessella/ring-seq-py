@@ -50,3 +50,4 @@ Methods fall into the following categories:
 * [`rotational_symmetry`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.rotational_symmetry)
 * [`symmetry_indices`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.symmetry_indices)
 * [`symmetry`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.symmetry)
+* [`reflectional_symmetry_axes`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.reflectional_symmetry_axes)
