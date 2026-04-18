@@ -1,6 +1,6 @@
 import unittest
 
-from ring_seq.methods import slice_o, index_o
+from ring_seq.methods import drop_while_o, index_o, slice_o, span_o, take_while_o
 
 
 class SlicingOps(unittest.TestCase):
@@ -90,6 +90,25 @@ class SlicingOps(unittest.TestCase):
 
         self.assertEqual("ABCDE".index("B", -10, -2), 1)
         self.assertEqual(index_o("ABCDE", "B", -10, -2), 1)
+
+    def test_take_while_o(self):
+        self.assertEqual(take_while_o((0, 1, 2, 3, 4), lambda x: x < 3, 1), (1, 2))
+        # wrap around the ring
+        self.assertEqual(take_while_o((0, 1, 2, 3, 4), lambda x: x != 1, 3), (3, 4, 0))
+        self.assertEqual(take_while_o("ABCDE", lambda c: c < "D"), "ABC")
+        self.assertEqual(take_while_o((), lambda x: True), ())
+
+    def test_drop_while_o(self):
+        self.assertEqual(drop_while_o((0, 1, 2, 3, 4), lambda x: x < 3, 1), (3, 4, 0))
+        self.assertEqual(drop_while_o("ABCDE", lambda c: c < "D"), "DE")
+        self.assertEqual(drop_while_o((), lambda x: True), ())
+
+    def test_span_o(self):
+        self.assertEqual(span_o((0, 1, 2, 3, 4), lambda x: x < 3, 1), ((1, 2), (3, 4, 0)))
+        # parts agree with take_while_o and drop_while_o
+        prefix, suffix = span_o((1, 2, 3, 4, 5), lambda x: x < 4, 2)
+        self.assertEqual(prefix, take_while_o((1, 2, 3, 4, 5), lambda x: x < 4, 2))
+        self.assertEqual(suffix, drop_while_o((1, 2, 3, 4, 5), lambda x: x < 4, 2))
 
     def test_index_o_not_behaving_like_index(self):
         with self.assertRaises(ValueError):

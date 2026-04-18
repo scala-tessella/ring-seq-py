@@ -11,8 +11,8 @@ Typical usage example:
 """
 from sys import maxsize
 from dataclasses import dataclass
-from itertools import chain
-from typing import Any, Callable, Iterator, TypeAlias, TypeVar
+from itertools import chain, dropwhile, takewhile
+from typing import Any, Callable, Iterator, Optional, TypeAlias, TypeVar
 from math import ceil, fmod
 
 # For improved readability, the index of a collection
@@ -277,6 +277,67 @@ def index_o(ring: Seq, x: Any, start: IndexO = 0, end: IndexO = maxsize) -> Inde
         return index_from(ring, s.index(x) + start)
 
 
+def take_while_o(ring: Seq, p: Callable[[Any], bool], from_: IndexO = 0) -> Seq:
+    """Selects the longest prefix of elements starting at some circular index that satisfy a predicate.
+
+    Examples:
+      >>> take_while_o((0, 1, 2, 3, 4), lambda x: x < 3, 1)
+      (1, 2)
+      >>> take_while_o((0, 1, 2, 3, 4), lambda x: x != 1, 3)
+      (3, 4, 0)
+
+    Args:
+      ring: a sequence
+      p: the predicate used to test elements
+      from_: circular index where the prefix starts
+
+    Returns:
+      The longest prefix from `from_` whose elements all satisfy `p`
+    """
+    if len(ring) == 0:
+        return ring
+    return __typed_assemble(type(ring), takewhile(p, start_at(ring, from_)))
+
+
+def drop_while_o(ring: Seq, p: Callable[[Any], bool], from_: IndexO = 0) -> Seq:
+    """Drops the longest prefix of elements starting at some circular index that satisfy a predicate.
+
+    Examples:
+      >>> drop_while_o((0, 1, 2, 3, 4), lambda x: x < 3, 1)
+      (3, 4, 0)
+
+    Args:
+      ring: a sequence
+      p: the predicate used to test elements
+      from_: circular index where the prefix starts
+
+    Returns:
+      The suffix remaining after dropping the longest prefix from `from_` whose elements all satisfy `p`
+    """
+    if len(ring) == 0:
+        return ring
+    return __typed_assemble(type(ring), dropwhile(p, start_at(ring, from_)))
+
+
+def span_o(ring: Seq, p: Callable[[Any], bool], from_: IndexO = 0) -> tuple[Seq, Seq]:
+    """Splits this circular sequence into a prefix/suffix pair at the first element, starting from some
+    circular index, that does not satisfy the predicate.
+
+    Examples:
+      >>> span_o((0, 1, 2, 3, 4), lambda x: x < 3, 1)
+      ((1, 2), (3, 4, 0))
+
+    Args:
+      ring: a sequence
+      p: the predicate used to test elements
+      from_: circular index where the split starts
+
+    Returns:
+      A pair `(take_while_o(ring, p, from_), drop_while_o(ring, p, from_))`
+    """
+    return take_while_o(ring, p, from_), drop_while_o(ring, p, from_)
+
+
 def __transformations(ring: Seq, f: Callable[[Seq], Iterator[Seq]]) -> Iterator[Seq]:
     if len(ring) == 0:
         return iter(ring)
@@ -345,6 +406,54 @@ def __flatten(iterator_of_iterator: Iterator[Iterator[Any]]) -> Iterator[Any]:
 
 def __flat_map(f: Callable[[Any], Iterator[Any]], iterator: Iterator[Any]) -> Iterator[Any]:
     return __flatten(map(f, iterator))
+
+
+def grouped_o(ring: Seq, size: int) -> Iterator[Seq]:
+    """Groups elements of this circular sequence in fixed-size blocks.
+
+    Examples:
+      >>> list(grouped_o('ABCDE', 2))
+      ['AB', 'CD', 'EA', 'BC', 'DE']
+      >>> list(grouped_o('', 2))
+      []
+
+    Args:
+      ring: a sequence
+      size: the number of elements per group
+
+    Returns:
+      An iterator of `len(ring)` groups of length `size`, or empty if the sequence is empty
+    """
+    n: int = len(ring)
+    if n == 0:
+        return iter([])
+    return (slice_o(ring, i * size, i * size + size) for i in range(n))
+
+
+def zip_with_index_o(ring: Seq, from_: IndexO = 0) -> Iterator[tuple[Any, Index]]:
+    """Iterates over the elements paired with their original (circular) index, starting at some
+    circular index.
+
+    Examples:
+      >>> list(zip_with_index_o(('a', 'b', 'c'), 1))
+      [('b', 1), ('c', 2), ('a', 0)]
+      >>> list(zip_with_index_o(('a', 'b', 'c')))
+      [('a', 0), ('b', 1), ('c', 2)]
+      >>> list(zip_with_index_o(()))
+      []
+
+    Args:
+      ring: a sequence
+      from_: circular index where the iteration starts
+
+    Returns:
+      An iterator of `(element, index)` pairs of length `len(ring)`, with indices in `[0, len(ring))`
+    """
+    n: int = len(ring)
+    if n == 0:
+        return iter([])
+    start: Index = index_from(ring, from_)
+    return ((x, (start + i) % n) for i, x in enumerate(start_at(ring, from_)))
 
 
 def rotations_and_reflections(ring: Seq) -> Iterator[Seq]:
@@ -443,6 +552,87 @@ def is_rotation_or_reflection_of(ring: Seq, that: Seq) -> bool:
       True if equal to any combination of rotation and reflection of that
     """
     return __is_transformation_of(ring, that, lambda r: rotations_and_reflections(r))
+
+
+def align_to(ring: Seq, that: Seq) -> Optional[Index]:
+    """Finds the rotation offset that aligns this circular sequence with a given sequence.
+
+    Examples:
+      >>> align_to((0, 1, 2), (2, 0, 1))
+      2
+      >>> align_to((0, 1, 2), (0, 1, 2))
+      0
+      >>> align_to((0, 1, 2), (1, 0, 2)) is None
+      True
+      >>> align_to((0, 1, 2), (0, 1)) is None
+      True
+
+    Args:
+      ring: a sequence
+      that: the sequence to align to
+
+    Returns:
+      The shift `k` such that `start_at(ring, k) == that`, or `None` if no rotation matches
+    """
+    if len(ring) != len(that):
+        return None
+    if len(ring) == 0:
+        return 0
+    for k in range(len(ring)):
+        if start_at(ring, k) == that:
+            return k
+    return None
+
+
+def hamming_distance(ring: Seq, that: Seq) -> int:
+    """Counts the number of positions at which corresponding elements differ (Hamming distance).
+
+    Examples:
+      >>> hamming_distance((1, 0, 1, 1), (1, 1, 0, 1))
+      2
+      >>> hamming_distance((1, 2, 3), (1, 2, 3))
+      0
+
+    Args:
+      ring: a sequence
+      that: the sequence to compare against, must have the same size
+
+    Returns:
+      The count of positional mismatches
+
+    Raises:
+      ValueError: An error occurs if the sequences do not have the same size.
+    """
+    if len(ring) != len(that):
+        raise ValueError("sequences must have the same size")
+    return sum(1 for a, b in zip(ring, that) if a != b)
+
+
+def min_rotational_hamming_distance(ring: Seq, that: Seq) -> int:
+    """Computes the minimum Hamming distance over all rotations of this circular sequence.
+
+    Examples:
+      >>> min_rotational_hamming_distance((1, 2, 3, 4), (3, 4, 1, 2))
+      0
+      >>> min_rotational_hamming_distance((0, 0, 1, 1, 0), (1, 1, 0, 0, 1))
+      1
+
+    Args:
+      ring: a sequence
+      that: the sequence to compare against, must have the same size
+
+    Returns:
+      `0` iff `that` is a rotation of `ring`, otherwise the smallest number of positional mismatches
+      over any rotation
+
+    Raises:
+      ValueError: An error occurs if the sequences do not have the same size.
+    """
+    if len(ring) != len(that):
+        raise ValueError("sequences must have the same size")
+    if len(ring) == 0:
+        return 0
+    return min(hamming_distance(rotation, that) for rotation in rotations(ring))
 
 
 def __are_folds_symmetrical(ring: Seq, n: int) -> bool:
@@ -567,3 +757,98 @@ def symmetry(ring: Seq) -> int:
       in which a circular sequence looks exactly the same
     """
     return len(symmetry_indices(ring))
+
+
+def __least_rotation_booth(ring: Seq) -> Index:
+    n: int = len(ring)
+    total: int = 2 * n
+    f: list[int] = [-1] * total
+    k: int = 0
+    j: int = 1
+    while j < total:
+        sj: Any = ring[j % n]
+        i: int = f[j - k - 1]
+        while i != -1 and sj != ring[(k + i + 1) % n]:
+            if sj < ring[(k + i + 1) % n]:
+                k = j - i - 1
+            i = f[i]
+        if i == -1 and sj != ring[(k + i + 1) % n]:
+            if sj < ring[(k + i + 1) % n]:
+                k = j
+            f[j - k] = -1
+        else:
+            f[j - k] = i + 1
+        j += 1
+    return k
+
+
+def canonical_index(ring: Seq) -> Index:
+    """Finds the starting index of the lexicographically smallest rotation (Booth's algorithm, O(n)).
+
+    Examples:
+      >>> canonical_index((2, 0, 1))
+      1
+      >>> canonical_index('CAB')
+      1
+      >>> canonical_index(())
+      0
+
+    Args:
+      ring: a sequence whose elements are totally ordered
+
+    Returns:
+      The index `k` in `[0, len(ring))` such that `start_at(ring, k)` is the lex-smallest of all
+      rotations; `0` for empty or single-element sequences
+    """
+    if len(ring) <= 1:
+        return 0
+    return __least_rotation_booth(ring)
+
+
+def canonical(ring: Seq) -> Seq:
+    """Returns the lexicographically smallest rotation of this circular sequence (necklace canonical form).
+
+    Two circular sequences are rotations of each other iff their canonical forms are equal,
+    making this useful for hashing or deduplicating equivalent rings.
+
+    Examples:
+      >>> canonical((2, 0, 1))
+      (0, 1, 2)
+      >>> canonical('CAB')
+      'ABC'
+
+    Args:
+      ring: a sequence whose elements are totally ordered
+
+    Returns:
+      The lex-smallest rotation of `ring`
+    """
+    if len(ring) == 0:
+        return ring
+    return start_at(ring, canonical_index(ring))
+
+
+def bracelet(ring: Seq) -> Seq:
+    """Returns the lexicographically smallest representative under both rotation and reflection
+    (bracelet canonical form).
+
+    Two circular sequences belong to the same bracelet equivalence class iff their bracelet forms
+    are equal, useful when mirror images are considered identical.
+
+    Examples:
+      >>> bracelet((2, 0, 1))
+      (0, 1, 2)
+      >>> bracelet('CBA')
+      'ABC'
+
+    Args:
+      ring: a sequence whose elements are totally ordered
+
+    Returns:
+      The smaller of `canonical(ring)` and `canonical(reflect_at(ring))` by lexicographic ordering
+    """
+    if len(ring) == 0:
+        return ring
+    a: Seq = canonical(ring)
+    b: Seq = canonical(reflect_at(ring))
+    return a if a <= b else b

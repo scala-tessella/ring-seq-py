@@ -33,21 +33,34 @@ Methods fall into the following categories:
 ### Slicing
 * [`slice_o`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.slice_o)
 * [`index_o`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.index_o)
+* [`take_while_o`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.take_while_o)
+* [`drop_while_o`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.drop_while_o)
+* [`span_o`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.span_o)
 
 ### Iterators
 * [`rotations`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.rotations)
 * [`reversions`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.reversions)
 * [`reflections`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.reflections)
 * [`rotations_and_reflections`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.rotations_and_reflections)
+* [`grouped_o`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.grouped_o)
+* [`zip_with_index_o`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.zip_with_index_o)
 
 ### Comparisons
 * [`is_reflection`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.is_reflection)
 * [`is_reversion`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.is_reversion)
 * [`is_rotation`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.is_rotation)
 * [`is_rotation_or_reflection`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.is_rotation_or_reflection)
+* [`align_to`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.align_to)
+* [`hamming_distance`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.hamming_distance)
+* [`min_rotational_hamming_distance`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.min_rotational_hamming_distance)
 
 ### Symmetry
 * [`rotational_symmetry`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.rotational_symmetry)
 * [`symmetry_indices`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.symmetry_indices)
 * [`symmetry`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.symmetry)
 * [`reflectional_symmetry_axes`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.reflectional_symmetry_axes)
+
+### Canonical forms (necklace / bracelet)
+* [`canonical_index`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.canonical_index) — starting index of the lexicographically smallest rotation (Booth's algorithm, O(n))
+* [`canonical`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.canonical) — the lex-smallest rotation; useful for hashing/deduplicating equivalent rings
+* [`bracelet`](ring_seq_methods.md/#ring_seq.RingSeq.RingSeq.bracelet) — the lex-smallest representative under both rotation and reflection
