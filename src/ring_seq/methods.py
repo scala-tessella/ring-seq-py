@@ -10,8 +10,9 @@ Typical usage example:
   'BCA'
 """
 from sys import maxsize
+from dataclasses import dataclass
 from itertools import chain
-from typing import Any, Callable, Optional, Iterator, TypeAlias, TypeVar
+from typing import Any, Callable, Iterator, TypeAlias, TypeVar
 from math import ceil, fmod
 
 # For improved readability, the index of a collection
@@ -22,6 +23,27 @@ IndexO: TypeAlias = int
 
 # There are Sequence types, for example range, that is difficult to consider circular
 Seq = TypeVar("Seq", list, str, tuple)
+
+
+class AxisLocation:
+    """A location on the circular sequence where a symmetry axis can pass through.
+
+    - `Vertex`: the axis passes directly through the element at that index.
+    - `Edge`: the axis passes between the elements at those two indices.
+    """
+
+
+@dataclass(frozen=True)
+class Vertex(AxisLocation):
+    """A symmetry axis location passing through a single element."""
+    i: Index
+
+
+@dataclass(frozen=True)
+class Edge(AxisLocation):
+    """A symmetry axis location passing between two adjacent elements."""
+    i: Index
+    j: Index
 
 
 def index_from(ring: Seq, i: IndexO) -> Index:
@@ -454,37 +476,14 @@ def rotational_symmetry(ring: Seq) -> int:
         return next(symmetric_folds, 1)
 
 
-def __greater_half_range(ring: Seq) -> range:
-    return range(0, int(ceil(len(ring) / 2)))
-
-
-def __check_reflection_axis(ring: Seq, gap: int) -> bool:
-    return all(map(lambda j: apply_o(ring, j + 1) == apply_o(ring, -(j + gap)), __greater_half_range(ring)))
-
-
-def __has_head_on_axis(ring: Seq) -> bool:
-    return __check_reflection_axis(ring, 1)
-
-
-def __has_axis_between_head_and_next(ring: Seq) -> bool:
-    return __check_reflection_axis(ring, 0)
-
-
-def __has_axis(ring: Seq) -> bool:
-    return __has_head_on_axis(ring) or __has_axis_between_head_and_next(ring)
-
-
-def __find_reflection_symmetry(ring: Seq) -> Optional[Index]:
-    filtered_indices: Iterator[Index] = filter(lambda j: __has_axis(start_at(ring, j)), __greater_half_range(ring))
-    return next(filtered_indices, None)
-
-
 def symmetry_indices(ring: Seq) -> list[Index]:
-    """Finds the indices of each element of this circular sequence close to an axis of reflectional symmetry.
+    """Finds the shifts at which this circular sequence equals its reversal rotated left.
+
+    Each returned shift identifies one axis of reflectional symmetry.
 
     Examples:
       >>> symmetry_indices('-|--|--|--|-')
-      [1, 4, 7, 10]
+      [0, 3, 6, 9]
       >>> symmetry_indices('-|+-|+-|+-|+')
       []
 
@@ -492,20 +491,60 @@ def symmetry_indices(ring: Seq) -> list[Index]:
       ring: a sequence
 
     Returns:
-      The indices of each element close to an axis of reflectional symmetry,
-      that is a line of symmetry that splits the sequence in two identical halves
+      The shifts `s` such that `ring == rotate_left(reversed(ring), s)`,
+      one per axis of reflectional symmetry
     """
-    length: int = len(ring)
-    if length == 0:
+    if len(ring) == 0:
         return []
-    else:
-        folds: int = rotational_symmetry(ring)
-        fold_size: int = int(length / folds)
-        maybe_symmetry: Optional[Index] = __find_reflection_symmetry(ring[:fold_size])
-        if maybe_symmetry is None:
-            return []
+    reversed_ring: Seq = __typed_reverse(ring)
+    return [shift for shift in range(len(ring)) if ring == rotate_left(reversed_ring, shift)]
+
+
+def reflectional_symmetry_axes(ring: Seq) -> list[tuple[AxisLocation, AxisLocation]]:
+    """Calculates the axes of reflectional symmetry.
+
+    Each axis is returned as a pair of `AxisLocation` values: the two points on the
+    cycle where the axis passes.
+
+    Examples:
+      >>> reflectional_symmetry_axes((1, 1, 2, 3, 2))
+      [(Vertex(i=3), Edge(i=0, j=1))]
+      >>> reflectional_symmetry_axes('ABC')
+      []
+
+    Args:
+      ring: a sequence
+
+    Returns:
+      A list where each pair represents the two points on the cycle where an axis passes
+    """
+    n: int = len(ring)
+
+    def edge_indices(i: Index) -> Edge:
+        return Edge(i, (i + 1) % n)
+
+    def opposite_edge_index(i: Index) -> Index:
+        return (i + n // 2) % n
+
+    axes: list[tuple[AxisLocation, AxisLocation]] = []
+    for shift in symmetry_indices(ring):
+        # The reflection maps index i to (n - 1 - shift - i) % n.
+        # Fixed points satisfy 2*i == n - 1 - shift (mod n). Let K = n - 1 - shift.
+        effective_k: int = (n - 1 - shift) % n
+        if n % 2 != 0:
+            # Odd n: 2*i = K (mod n) has exactly one vertex solution.
+            # Inverse of 2 mod n is (n + 1) / 2.
+            v: Index = (effective_k * ((n + 1) // 2)) % n
+            axes.append((Vertex(v), edge_indices(opposite_edge_index(v))))
+        elif effective_k % 2 == 0:
+            # Even n, even K: two opposite vertex solutions.
+            v1: Index = effective_k // 2
+            axes.append((Vertex(v1), Vertex(opposite_edge_index(v1))))
         else:
-            return list(map(lambda j: j * fold_size + maybe_symmetry, range(folds)))
+            # Even n, odd K: axis passes through two opposite edges.
+            e1: Index = (effective_k - 1) // 2
+            axes.append((edge_indices(e1), edge_indices(opposite_edge_index(e1))))
+    return axes
 
 
 def symmetry(ring: Seq) -> int:

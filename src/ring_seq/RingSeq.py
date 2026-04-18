@@ -338,19 +338,33 @@ class RingSeq:
         return rotational_symmetry(self.underlying)
 
     def symmetry_indices(self) -> list[Index]:
-        """Finds the indices of each element of this circular sequence close to an axis of reflectional symmetry.
+        """Finds the shifts at which this circular sequence equals its reversal rotated left.
 
         Examples:
           >>> RingSeq('-|--|--|--|-').symmetry_indices()
-          [1, 4, 7, 10]
+          [0, 3, 6, 9]
           >>> RingSeq('-|+-|+-|+-|+').symmetry_indices()
           []
 
         Returns:
-          The indices of each element close to an axis of reflectional symmetry,
-          that is a line of symmetry that splits the sequence in two identical halves
+          The shifts `s` such that `ring == rotate_left(reversed(ring), s)`,
+          one per axis of reflectional symmetry
         """
         return symmetry_indices(self.underlying)
+
+    def reflectional_symmetry_axes(self) -> list[tuple[AxisLocation, AxisLocation]]:
+        """Calculates the axes of reflectional symmetry.
+
+        Examples:
+          >>> RingSeq((1, 1, 2, 3, 2)).reflectional_symmetry_axes()
+          [(Vertex(i=3), Edge(i=0, j=1))]
+          >>> RingSeq('ABC').reflectional_symmetry_axes()
+          []
+
+        Returns:
+          A list where each pair represents the two points on the cycle where an axis passes
+        """
+        return reflectional_symmetry_axes(self.underlying)
 
     def symmetry(self) -> int:
         """Computes the order of reflectional (mirror) symmetry possessed by this circular sequence.

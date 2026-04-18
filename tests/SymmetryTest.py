@@ -1,6 +1,13 @@
 import unittest
 
-from ring_seq.methods import rotational_symmetry, symmetry, symmetry_indices
+from ring_seq.methods import (
+    Edge,
+    Vertex,
+    reflectional_symmetry_axes,
+    rotational_symmetry,
+    symmetry,
+    symmetry_indices,
+)
 
 
 class SymmetryOps(unittest.TestCase):
@@ -28,10 +35,10 @@ class SymmetryOps(unittest.TestCase):
         self.assertEqual(symmetry_indices([]), [])
         self.assertEqual(symmetry_indices(self.spin3), [])
         self.assertEqual(symmetry_indices(self.eptagon), [0, 1, 2, 3, 4, 5, 6])
-        self.assertEqual(symmetry_indices(self.squaroid), [1, 4, 7, 10])
-        self.assertEqual(symmetry_indices(self.axisOnElement), [0])
-        self.assertEqual(symmetry_indices(self.axisOffElement), [3])
-        self.assertEqual(symmetry_indices(self.axisOnOffElement), [0])
+        self.assertEqual(symmetry_indices(self.squaroid), [0, 3, 6, 9])
+        self.assertEqual(symmetry_indices(self.axisOnElement), [5])
+        self.assertEqual(symmetry_indices(self.axisOffElement), [0])
+        self.assertEqual(symmetry_indices(self.axisOnOffElement), [6])
 
     def test_symmetry(self):
         self.assertEqual(symmetry("ABCDE"), 0)
@@ -42,6 +49,54 @@ class SymmetryOps(unittest.TestCase):
         self.assertEqual(symmetry(self.axisOnElement), 1)
         self.assertEqual(symmetry(self.axisOffElement), 1)
         self.assertEqual(symmetry(self.axisOnOffElement), 1)
+
+    def test_reflectional_symmetry_axes_triangle(self):
+        self.assertEqual(
+            reflectional_symmetry_axes((1, 1, 1)),
+            [
+                (Vertex(1), Edge(2, 0)),
+                (Vertex(2), Edge(0, 1)),
+                (Vertex(0), Edge(1, 2)),
+            ],
+        )
+
+    def test_reflectional_symmetry_axes_doubled_triangle(self):
+        self.assertEqual(
+            reflectional_symmetry_axes((1, 2, 1, 2, 1, 2)),
+            [
+                (Vertex(2), Vertex(5)),
+                (Vertex(1), Vertex(4)),
+                (Vertex(0), Vertex(3)),
+            ],
+        )
+
+    def test_reflectional_symmetry_axes_square(self):
+        self.assertEqual(
+            reflectional_symmetry_axes((1, 1, 1, 1)),
+            [
+                (Edge(1, 2), Edge(3, 0)),
+                (Vertex(1), Vertex(3)),
+                (Edge(0, 1), Edge(2, 3)),
+                (Vertex(0), Vertex(2)),
+            ],
+        )
+
+    def test_reflectional_symmetry_axes_doubled_square(self):
+        self.assertEqual(
+            reflectional_symmetry_axes((1, 2, 1, 2, 1, 2, 1, 2)),
+            [
+                (Vertex(3), Vertex(7)),
+                (Vertex(2), Vertex(6)),
+                (Vertex(1), Vertex(5)),
+                (Vertex(0), Vertex(4)),
+            ],
+        )
+
+    def test_reflectional_symmetry_axes_specular_pentagon(self):
+        self.assertEqual(
+            reflectional_symmetry_axes((1, 1, 2, 3, 2)),
+            [(Vertex(3), Edge(0, 1))],
+        )
 
 
 if __name__ == '__main__':

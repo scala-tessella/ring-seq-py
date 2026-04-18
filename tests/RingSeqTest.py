@@ -86,9 +86,9 @@ class RingSeqOps(unittest.TestCase):
         result: int = self.squaroid.rotational_symmetry()
         self.assertEqual(result, 4)
 
-        # (2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2) has axis of symmetry at indices 1, 4, 7 and 10
+        # (2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2) has 4 reflection shifts at 0, 3, 6 and 9
         result: list[Index] = self.squaroid.symmetry_indices()
-        self.assertEqual(result, [1, 4, 7, 10])
+        self.assertEqual(result, [0, 3, 6, 9])
 
         # (2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2) has 4 reflectional symmetries
         result: int = self.squaroid.symmetry()
