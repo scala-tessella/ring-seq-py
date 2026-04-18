@@ -39,11 +39,40 @@ class Vertex(AxisLocation):
     i: Index
 
 
-@dataclass(frozen=True)
 class Edge(AxisLocation):
-    """A symmetry axis location passing between two adjacent elements."""
-    i: Index
-    j: Index
+    """A symmetry axis location passing between two consecutive elements of a circular sequence.
+
+    The invariant `j == (i + 1) % n` is enforced at construction — direct
+    construction of an edge with arbitrary `(i, j)` is not supported.
+    Pattern matching with `match e: case Edge(i, j): ...` still works.
+    """
+
+    __match_args__ = ("i", "j")
+
+    def __init__(self, i: Index, n: int):
+        """Constructs the edge between consecutive elements of a circular sequence of size `n`,
+        starting at circular index `i`. The endpoint `j = ((i mod n) + 1) mod n` is computed.
+
+        Args:
+          i: circular index of the first endpoint (any integer, normalized to `[0, n)`)
+          n: the ring size; must be positive
+
+        Raises:
+          ValueError: if `n <= 0`
+        """
+        if n <= 0:
+            raise ValueError("ring size must be positive")
+        self.i = i % n
+        self.j = (self.i + 1) % n
+
+    def __eq__(self, other: object) -> bool:
+        return isinstance(other, Edge) and self.i == other.i and self.j == other.j
+
+    def __hash__(self) -> int:
+        return hash((Edge, self.i, self.j))
+
+    def __repr__(self) -> str:
+        return f"Edge(i={self.i}, j={self.j})"
 
 
 def index_from(ring: Seq, i: IndexO) -> Index:
@@ -711,7 +740,7 @@ def reflectional_symmetry_axes(ring: Seq) -> list[tuple[AxisLocation, AxisLocati
     n: int = len(ring)
 
     def edge_indices(i: Index) -> Edge:
-        return Edge(i, (i + 1) % n)
+        return Edge(i, n)
 
     def opposite_edge_index(i: Index) -> Index:
         return (i + n // 2) % n

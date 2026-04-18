@@ -54,9 +54,9 @@ class SymmetryOps(unittest.TestCase):
         self.assertEqual(
             reflectional_symmetry_axes((1, 1, 1)),
             [
-                (Vertex(1), Edge(2, 0)),
-                (Vertex(2), Edge(0, 1)),
-                (Vertex(0), Edge(1, 2)),
+                (Vertex(1), Edge(2, 3)),
+                (Vertex(2), Edge(0, 3)),
+                (Vertex(0), Edge(1, 3)),
             ],
         )
 
@@ -74,9 +74,9 @@ class SymmetryOps(unittest.TestCase):
         self.assertEqual(
             reflectional_symmetry_axes((1, 1, 1, 1)),
             [
-                (Edge(1, 2), Edge(3, 0)),
+                (Edge(1, 4), Edge(3, 4)),
                 (Vertex(1), Vertex(3)),
-                (Edge(0, 1), Edge(2, 3)),
+                (Edge(0, 4), Edge(2, 4)),
                 (Vertex(0), Vertex(2)),
             ],
         )
@@ -95,8 +95,31 @@ class SymmetryOps(unittest.TestCase):
     def test_reflectional_symmetry_axes_specular_pentagon(self):
         self.assertEqual(
             reflectional_symmetry_axes((1, 1, 2, 3, 2)),
-            [(Vertex(3), Edge(0, 1))],
+            [(Vertex(3), Edge(0, 5))],
         )
+
+    def test_edge_computes_second_endpoint(self):
+        e = Edge(2, 4)
+        self.assertEqual(e.i, 2)
+        self.assertEqual(e.j, 3)
+        # wraps around the ring
+        self.assertEqual(Edge(3, 4).j, 0)
+
+    def test_edge_normalizes_out_of_range_i(self):
+        self.assertEqual(Edge(-1, 5), Edge(4, 5))
+        self.assertEqual(Edge(7, 5), Edge(2, 5))
+
+    def test_edge_rejects_non_positive_ring_size(self):
+        with self.assertRaises(ValueError):
+            Edge(0, 0)
+        with self.assertRaises(ValueError):
+            Edge(0, -1)
+
+    def test_edge_supports_pattern_matching(self):
+        match Edge(2, 4):
+            case Edge(i, j):
+                self.assertEqual(i, 2)
+                self.assertEqual(j, 3)
 
 
 if __name__ == '__main__':
