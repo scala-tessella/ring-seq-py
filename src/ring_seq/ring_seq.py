@@ -557,9 +557,7 @@ class RingSeq(Generic[T], Sequence[T]):
         if n < 2:
             return 1
         smallest_period = next(
-            shift
-            for shift in range(1, n + 1)
-            if n % shift == 0 and self.rotate_left(shift) == self
+            shift for shift in range(1, n + 1) if n % shift == 0 and self.rotate_left(shift) == self
         )
         return n // smallest_period
 
