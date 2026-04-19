@@ -32,6 +32,9 @@ markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
+  - pymdownx.snippets:
+      base_path: ["."]
+      check_paths: true
 
 nav:
   - Home: index.md
@@ -39,5 +42,6 @@ nav:
   - Usage examples: usage.md
   - Reference: reference.md
   - RingSeq methods: ring_seq_methods.md
+  - Changelog: changelog.md
 
 copyright: Copyright &copy; 2024 Mario Càllisto.

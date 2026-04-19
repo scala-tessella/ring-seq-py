@@ -3,8 +3,7 @@
 [![CI](https://github.com/scala-tessella/ring-seq-py/actions/workflows/python-package.yml/badge.svg)](https://github.com/scala-tessella/ring-seq-py/actions/workflows/python-package.yml)
 [![Python Version from PEP 621 TOML](https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fscala-tessella%2Fring-seq-py%2Fmaster%2Fpyproject.toml&style=plastic&logo=python&logoColor=%23FFD43B)](https://pypi.python.org/pypi/ring-seq-py)
 
-A library that adds new operations to Python `list`, `tuple` and `str`
-for when such a sequence needs to be considered [**circular**](https://scala-tessella.github.io/ring-seq-py/what-is/),
+A library that adds a Pythonic class for sequences considered [**circular**](https://scala-tessella.github.io/ring-seq-py/what-is/),
 its elements forming a ring.
 
 Working for Python `3.10` and above.
