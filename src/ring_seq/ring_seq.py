@@ -26,7 +26,7 @@ from collections.abc import Callable, Iterable, Iterator, Sequence
 from dataclasses import dataclass
 from itertools import dropwhile, takewhile
 from math import ceil
-from typing import Any, Generic, TypeAlias, TypeVar, overload
+from typing import Generic, TypeAlias, TypeVar, overload
 
 Index: TypeAlias = int
 """Standard (non-circular) index, in `[0, len)`."""
