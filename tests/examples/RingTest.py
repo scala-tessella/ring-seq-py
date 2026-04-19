@@ -4,7 +4,6 @@ from ring_seq.examples.Ring import Ring
 
 
 class RingOps(unittest.TestCase):
-
     def setUp(self):
         self.seq = [1, 2, 3, 4]
         self.ring = Ring(self.seq)
@@ -65,5 +64,5 @@ class RingOps(unittest.TestCase):
         self.assertEqual(self.ring.current(), self.seq)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

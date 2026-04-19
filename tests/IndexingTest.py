@@ -4,7 +4,6 @@ from ring_seq import RingSeq
 
 
 class IndexingOps(unittest.TestCase):
-
     def test_index_from(self):
         self.assertEqual(RingSeq("ABCDE").index_from(-1), 4)
         self.assertEqual(RingSeq("ABCDE").index_from(5), 0)

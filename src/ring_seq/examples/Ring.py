@@ -7,6 +7,7 @@ Usage example:
   >>> r.current()
   [2, 3, 1]
 """
+
 from typing import Any
 
 from ring_seq import IndexO, RingSeq

@@ -4,7 +4,6 @@ from ring_seq import RingSeq
 
 
 class ComparingOps(unittest.TestCase):
-
     def test_is_rotation_of(self):
         self.assertTrue(RingSeq("ABCDE").is_rotation_of("CDEAB"))
         self.assertTrue(RingSeq("ABCDE").is_rotation_of("ABCDE"))

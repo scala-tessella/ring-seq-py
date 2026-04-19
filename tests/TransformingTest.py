@@ -4,7 +4,6 @@ from ring_seq import RingSeq
 
 
 class TransformingOps(unittest.TestCase):
-
     def test_rotate_right(self):
         self.assertEqual(RingSeq("ABCDE").rotate_right(0).to_str(), "ABCDE")
         self.assertEqual(RingSeq("ABCDE").rotate_right(1).to_str(), "EABCD")

@@ -4,7 +4,6 @@ from ring_seq import RingSeq
 
 
 class NecklaceOps(unittest.TestCase):
-
     def test_canonical_index_empty_and_single(self):
         self.assertEqual(RingSeq(()).canonical_index(), 0)
         self.assertEqual(RingSeq("").canonical_index(), 0)

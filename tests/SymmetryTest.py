@@ -4,7 +4,6 @@ from ring_seq import Edge, RingSeq, Vertex
 
 
 class SymmetryOps(unittest.TestCase):
-
     def setUp(self):
         self.spin3 = RingSeq((1, 2, 3, 1, 2, 3, 1, 2, 3))
         self.eptagon = RingSeq((6, 6, 6, 6, 6, 6, 6))

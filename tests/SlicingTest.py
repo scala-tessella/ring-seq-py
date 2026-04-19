@@ -4,7 +4,6 @@ from ring_seq import RingSeq
 
 
 class SlicingOps(unittest.TestCase):
-
     def test_circular_slice(self):
         self.assertEqual(RingSeq("ABCDE")[-1:6].to_str(), "EABCDEA")
         self.assertEqual(RingSeq("ABCDE")[-1:6:2].to_str(), "EBDA")

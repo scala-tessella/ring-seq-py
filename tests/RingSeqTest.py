@@ -4,7 +4,6 @@ from ring_seq import RingSeq
 
 
 class RingSeqOps(unittest.TestCase):
-
     def setUp(self):
         self.ring = RingSeq("ABCDE")
         self.squaroid = RingSeq((2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2))
@@ -39,8 +38,16 @@ class RingSeqOps(unittest.TestCase):
         self.assertEqual(
             [r.to_str() for r in self.ring.rotations_and_reflections()],
             [
-                "ABCDE", "BCDEA", "CDEAB", "DEABC", "EABCD",
-                "AEDCB", "EDCBA", "DCBAE", "CBAED", "BAEDC",
+                "ABCDE",
+                "BCDEA",
+                "CDEAB",
+                "DEABC",
+                "EABCD",
+                "AEDCB",
+                "EDCBA",
+                "DCBAE",
+                "CBAED",
+                "BAEDC",
             ],
         )
 

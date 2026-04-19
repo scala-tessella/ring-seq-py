@@ -7,19 +7,20 @@ iteration, containment, equality, hashing) are implemented circularly.
 Typical usage:
 
     >>> from ring_seq import RingSeq
-    >>> RingSeq('RING').rotate_left(1).to_str()
+    >>> RingSeq("RING").rotate_left(1).to_str()
     'INGR'
     >>> RingSeq([0, 1, 2, 3])[-1]
     3
-    >>> RingSeq('ABC')[-1:5].to_str()
+    >>> RingSeq("ABC")[-1:5].to_str()
     'CABCAB'
 
 Equality is positional and is agnostic to the input iterable kind used
 at construction:
 
-    >>> RingSeq('ABC') == RingSeq(['A', 'B', 'C'])
+    >>> RingSeq("ABC") == RingSeq(["A", "B", "C"])
     True
 """
+
 from __future__ import annotations
 
 from collections.abc import Callable, Iterable, Iterator, Sequence
@@ -48,6 +49,7 @@ class AxisLocation:
 @dataclass(frozen=True)
 class Vertex(AxisLocation):
     """A symmetry axis location passing through a single element."""
+
     i: Index
 
 
@@ -140,15 +142,15 @@ class RingSeq(Generic[T], Sequence[T]):
         needed. Negative step or reversed bounds produce an empty `RingSeq`.
 
         Examples:
-          >>> RingSeq('ABC')[-1]
+          >>> RingSeq("ABC")[-1]
           'C'
-          >>> RingSeq('ABC')[30001]
+          >>> RingSeq("ABC")[30001]
           'B'
-          >>> RingSeq('ABC')[-1:5].to_str()
+          >>> RingSeq("ABC")[-1:5].to_str()
           'CABCAB'
-          >>> RingSeq('ABC')[1:3].to_str()
+          >>> RingSeq("ABC")[1:3].to_str()
           'BC'
-          >>> RingSeq('ABCDE')[0:5:2].to_str()
+          >>> RingSeq("ABCDE")[0:5:2].to_str()
           'ACE'
         """
         n = len(self._seq)
@@ -195,7 +197,7 @@ class RingSeq(Generic[T], Sequence[T]):
     def to_list(self) -> list[T]:
         """Returns the ring as a new list.
 
-        >>> RingSeq('ABC').to_list()
+        >>> RingSeq("ABC").to_list()
         ['A', 'B', 'C']
         """
         return list(self._seq)
@@ -212,9 +214,9 @@ class RingSeq(Generic[T], Sequence[T]):
         """Joins the elements into a string using `sep`.
 
         Examples:
-          >>> RingSeq('ABC').to_str()
+          >>> RingSeq("ABC").to_str()
           'ABC'
-          >>> RingSeq([1, 2, 3]).to_str('-')
+          >>> RingSeq([1, 2, 3]).to_str("-")
           '1-2-3'
         """
         return sep.join(str(x) for x in self._seq)
@@ -225,9 +227,9 @@ class RingSeq(Generic[T], Sequence[T]):
         """Normalizes a circular index to `[0, len(self))`.
 
         Examples:
-          >>> RingSeq('ABC').index_from(-1)
+          >>> RingSeq("ABC").index_from(-1)
           2
-          >>> RingSeq('ABC').index_from(3)
+          >>> RingSeq("ABC").index_from(3)
           0
 
         Raises:
@@ -243,7 +245,7 @@ class RingSeq(Generic[T], Sequence[T]):
     def rotate_right(self, step: int) -> RingSeq[T]:
         """Rotates the sequence right by `step` positions.
 
-        >>> RingSeq('ABC').rotate_right(1).to_str()
+        >>> RingSeq("ABC").rotate_right(1).to_str()
         'CAB'
         """
         n = len(self._seq)
@@ -255,7 +257,7 @@ class RingSeq(Generic[T], Sequence[T]):
     def rotate_left(self, step: int) -> RingSeq[T]:
         """Rotates the sequence left by `step` positions.
 
-        >>> RingSeq('ABC').rotate_left(1).to_str()
+        >>> RingSeq("ABC").rotate_left(1).to_str()
         'BCA'
         """
         return self.rotate_right(-step)
@@ -263,7 +265,7 @@ class RingSeq(Generic[T], Sequence[T]):
     def start_at(self, i: IndexO) -> RingSeq[T]:
         """Rotates the sequence to start at circular index `i` (equivalent to `rotate_left(i)`).
 
-        >>> RingSeq('ABC').start_at(1).to_str()
+        >>> RingSeq("ABC").start_at(1).to_str()
         'BCA'
         """
         return self.rotate_left(i)
@@ -272,9 +274,9 @@ class RingSeq(Generic[T], Sequence[T]):
         """Reflects the sequence with element at circular index `i` as the axis head.
 
         Examples:
-          >>> RingSeq('ABC').reflect_at().to_str()
+          >>> RingSeq("ABC").reflect_at().to_str()
           'ACB'
-          >>> RingSeq('ABC').reflect_at(1).to_str()
+          >>> RingSeq("ABC").reflect_at(1).to_str()
           'BAC'
         """
         rotated = self.start_at(i + 1)._seq
@@ -306,11 +308,11 @@ class RingSeq(Generic[T], Sequence[T]):
         Searches one full revolution by default. Searching past the end wraps around.
 
         Examples:
-          >>> RingSeq('ABCA').index('A')
+          >>> RingSeq("ABCA").index("A")
           0
-          >>> RingSeq('ABCA').index('A', 1)
+          >>> RingSeq("ABCA").index("A", 1)
           3
-          >>> RingSeq('ABC').index('A', 5)
+          >>> RingSeq("ABC").index("A", 5)
           0
 
         Raises:
@@ -363,7 +365,7 @@ class RingSeq(Generic[T], Sequence[T]):
     def rotations(self) -> Iterator[RingSeq[T]]:
         """All rotations of this ring, one step at a time to the left.
 
-        >>> [r.to_str() for r in RingSeq('ABC').rotations()]
+        >>> [r.to_str() for r in RingSeq("ABC").rotations()]
         ['ABC', 'BCA', 'CAB']
         """
         if len(self._seq) == 0:
@@ -373,7 +375,7 @@ class RingSeq(Generic[T], Sequence[T]):
     def reflections(self) -> Iterator[RingSeq[T]]:
         """The sequence and its reflection.
 
-        >>> [r.to_str() for r in RingSeq('ABC').reflections()]
+        >>> [r.to_str() for r in RingSeq("ABC").reflections()]
         ['ABC', 'ACB']
         """
         if len(self._seq) == 0:
@@ -383,7 +385,7 @@ class RingSeq(Generic[T], Sequence[T]):
     def reversions(self) -> Iterator[RingSeq[T]]:
         """The sequence and its reversion.
 
-        >>> [r.to_str() for r in RingSeq('ABC').reversions()]
+        >>> [r.to_str() for r in RingSeq("ABC").reversions()]
         ['ABC', 'CBA']
         """
         if len(self._seq) == 0:
@@ -393,7 +395,7 @@ class RingSeq(Generic[T], Sequence[T]):
     def rotations_and_reflections(self) -> Iterator[RingSeq[T]]:
         """All rotations of the sequence and of its reflection.
 
-        >>> [r.to_str() for r in RingSeq('ABC').rotations_and_reflections()]
+        >>> [r.to_str() for r in RingSeq("ABC").rotations_and_reflections()]
         ['ABC', 'BCA', 'CAB', 'ACB', 'CBA', 'BAC']
         """
         if len(self._seq) == 0:
@@ -408,7 +410,7 @@ class RingSeq(Generic[T], Sequence[T]):
     def grouped(self, size: int) -> Iterator[RingSeq[T]]:
         """Groups the ring in fixed-size blocks.
 
-        >>> [g.to_str() for g in RingSeq('ABCDE').grouped(2)]
+        >>> [g.to_str() for g in RingSeq("ABCDE").grouped(2)]
         ['AB', 'CD', 'EA', 'BC', 'DE']
         """
         n = len(self._seq)
@@ -419,9 +421,9 @@ class RingSeq(Generic[T], Sequence[T]):
     def zip_with_index(self, from_: IndexO = 0) -> Iterator[tuple[T, Index]]:
         """Iterates over `(element, original-index)` pairs, starting at `from_`.
 
-        >>> list(RingSeq(('a', 'b', 'c')).zip_with_index(1))
+        >>> list(RingSeq(("a", "b", "c")).zip_with_index(1))
         [('b', 1), ('c', 2), ('a', 0)]
-        >>> list(RingSeq(('a', 'b', 'c')).zip_with_index())
+        >>> list(RingSeq(("a", "b", "c")).zip_with_index())
         [('a', 0), ('b', 1), ('c', 2)]
         """
         n = len(self._seq)
@@ -445,9 +447,9 @@ class RingSeq(Generic[T], Sequence[T]):
     def is_rotation_of(self, that: Iterable[T]) -> bool:
         """Whether this ring is a rotation of `that`.
 
-        >>> RingSeq('ABC').is_rotation_of('BCA')
+        >>> RingSeq("ABC").is_rotation_of("BCA")
         True
-        >>> RingSeq('ABC').is_rotation_of('ABC')
+        >>> RingSeq("ABC").is_rotation_of("ABC")
         True
         """
         return self._is_transformation_of(that, lambda r: r.rotations())
@@ -455,7 +457,7 @@ class RingSeq(Generic[T], Sequence[T]):
     def is_reflection_of(self, that: Iterable[T]) -> bool:
         """Whether this ring is a reflection of `that`.
 
-        >>> RingSeq('ABC').is_reflection_of('ACB')
+        >>> RingSeq("ABC").is_reflection_of("ACB")
         True
         """
         return self._is_transformation_of(that, lambda r: r.reflections())
@@ -463,7 +465,7 @@ class RingSeq(Generic[T], Sequence[T]):
     def is_reversion_of(self, that: Iterable[T]) -> bool:
         """Whether this ring is a reversion of `that`.
 
-        >>> RingSeq('ABC').is_reversion_of('CBA')
+        >>> RingSeq("ABC").is_reversion_of("CBA")
         True
         """
         return self._is_transformation_of(that, lambda r: r.reversions())
@@ -471,7 +473,7 @@ class RingSeq(Generic[T], Sequence[T]):
     def is_rotation_or_reflection_of(self, that: Iterable[T]) -> bool:
         """Whether this ring is a rotation and/or reflection of `that`.
 
-        >>> RingSeq('ABC').is_rotation_or_reflection_of('BAC')
+        >>> RingSeq("ABC").is_rotation_or_reflection_of("BAC")
         True
         """
         return self._is_transformation_of(that, lambda r: r.rotations_and_reflections())
@@ -544,9 +546,9 @@ class RingSeq(Generic[T], Sequence[T]):
         """Order of rotational symmetry: number of rotations in which the ring looks the same.
 
         Examples:
-          >>> RingSeq('-|--|--|--|-').rotational_symmetry()
+          >>> RingSeq("-|--|--|--|-").rotational_symmetry()
           4
-          >>> RingSeq('-|+-|+-|+-|+').rotational_symmetry()
+          >>> RingSeq("-|+-|+-|+-|+").rotational_symmetry()
           4
         """
         n = len(self._seq)
@@ -564,9 +566,9 @@ class RingSeq(Generic[T], Sequence[T]):
         Each shift identifies one axis of reflectional symmetry.
 
         Examples:
-          >>> RingSeq('-|--|--|--|-').symmetry_indices()
+          >>> RingSeq("-|--|--|--|-").symmetry_indices()
           [0, 3, 6, 9]
-          >>> RingSeq('-|+-|+-|+-|+').symmetry_indices()
+          >>> RingSeq("-|+-|+-|+-|+").symmetry_indices()
           []
         """
         n = len(self._seq)
@@ -581,7 +583,7 @@ class RingSeq(Generic[T], Sequence[T]):
         Examples:
           >>> RingSeq((1, 1, 2, 3, 2)).reflectional_symmetry_axes()
           [(Vertex(i=3), Edge(i=0, j=1))]
-          >>> RingSeq('ABC').reflectional_symmetry_axes()
+          >>> RingSeq("ABC").reflectional_symmetry_axes()
           []
         """
         n = len(self._seq)
@@ -607,9 +609,9 @@ class RingSeq(Generic[T], Sequence[T]):
         """Order of reflectional (mirror) symmetry.
 
         Examples:
-          >>> RingSeq('-|--|--|--|-').symmetry()
+          >>> RingSeq("-|--|--|--|-").symmetry()
           4
-          >>> RingSeq('-|+-|+-|+-|+').symmetry()
+          >>> RingSeq("-|+-|+-|+-|+").symmetry()
           0
         """
         return len(self.symmetry_indices())
@@ -635,7 +637,7 @@ class RingSeq(Generic[T], Sequence[T]):
         Examples:
           >>> RingSeq((2, 0, 1)).canonical().to_tuple()
           (0, 1, 2)
-          >>> RingSeq('CAB').canonical().to_str()
+          >>> RingSeq("CAB").canonical().to_str()
           'ABC'
         """
         if len(self._seq) == 0:
@@ -648,7 +650,7 @@ class RingSeq(Generic[T], Sequence[T]):
         Examples:
           >>> RingSeq((2, 0, 1)).bracelet().to_tuple()
           (0, 1, 2)
-          >>> RingSeq('CBA').bracelet().to_str()
+          >>> RingSeq("CBA").bracelet().to_str()
           'ABC'
         """
         if len(self._seq) == 0:
