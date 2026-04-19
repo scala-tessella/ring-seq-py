@@ -2,11 +2,12 @@
 
 This page shows examples of how the library can be used.
 
-##  `Ring` class
+## `Ring` class
 
 !!! Tip
-    The example `Ring` class can be built in few lines of code, thanks to the methods in the original form `method(Seq, ...)`
-    available in the `ring_seq.methods` module.
+    The example `Ring` class demonstrates how a mutable ring view can be built on top of the
+    immutable `RingSeq` class — keeping separate rotation and reflection states, then combining
+    them to reproduce the current orientation.
 
 ::: ring_seq.examples.Ring.Ring
     options:

@@ -1,58 +1,51 @@
 import unittest
 
-from ring_seq.methods import (
-    Edge,
-    Vertex,
-    reflectional_symmetry_axes,
-    rotational_symmetry,
-    symmetry,
-    symmetry_indices,
-)
+from ring_seq import Edge, RingSeq, Vertex
 
 
 class SymmetryOps(unittest.TestCase):
 
     def setUp(self):
-        self.spin3: tuple = (1, 2, 3, 1, 2, 3, 1, 2, 3)
-        self.eptagon: tuple = (6, 6, 6, 6, 6, 6, 6)
-        self.squaroid: tuple = (2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2)
-        self.axisOnElement: tuple = (1, 2, 3, 4, 3, 2)
-        self.axisOffElement: tuple = (1, 2, 3, 4, 4, 3, 2, 1)
-        self.axisOnOffElement: tuple = (1, 2, 3, 4, 4, 3, 2)
+        self.spin3 = RingSeq((1, 2, 3, 1, 2, 3, 1, 2, 3))
+        self.eptagon = RingSeq((6, 6, 6, 6, 6, 6, 6))
+        self.squaroid = RingSeq((2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 1, 2))
+        self.axis_on_element = RingSeq((1, 2, 3, 4, 3, 2))
+        self.axis_off_element = RingSeq((1, 2, 3, 4, 4, 3, 2, 1))
+        self.axis_on_off_element = RingSeq((1, 2, 3, 4, 4, 3, 2))
 
     def test_rotational_symmetry(self):
-        self.assertEqual(rotational_symmetry("ABCDE"), 1)
-        self.assertEqual(rotational_symmetry([]), 1)
-        self.assertEqual(rotational_symmetry(self.spin3), 3)
-        self.assertEqual(rotational_symmetry(self.eptagon), 7)
-        self.assertEqual(rotational_symmetry(self.squaroid), 4)
-        self.assertEqual(rotational_symmetry(self.axisOnElement), 1)
-        self.assertEqual(rotational_symmetry(self.axisOffElement), 1)
-        self.assertEqual(rotational_symmetry(self.axisOnOffElement), 1)
+        self.assertEqual(RingSeq("ABCDE").rotational_symmetry(), 1)
+        self.assertEqual(RingSeq([]).rotational_symmetry(), 1)
+        self.assertEqual(self.spin3.rotational_symmetry(), 3)
+        self.assertEqual(self.eptagon.rotational_symmetry(), 7)
+        self.assertEqual(self.squaroid.rotational_symmetry(), 4)
+        self.assertEqual(self.axis_on_element.rotational_symmetry(), 1)
+        self.assertEqual(self.axis_off_element.rotational_symmetry(), 1)
+        self.assertEqual(self.axis_on_off_element.rotational_symmetry(), 1)
 
     def test_symmetry_indices(self):
-        self.assertEqual(symmetry_indices("ABCDE"), [])
-        self.assertEqual(symmetry_indices([]), [])
-        self.assertEqual(symmetry_indices(self.spin3), [])
-        self.assertEqual(symmetry_indices(self.eptagon), [0, 1, 2, 3, 4, 5, 6])
-        self.assertEqual(symmetry_indices(self.squaroid), [0, 3, 6, 9])
-        self.assertEqual(symmetry_indices(self.axisOnElement), [5])
-        self.assertEqual(symmetry_indices(self.axisOffElement), [0])
-        self.assertEqual(symmetry_indices(self.axisOnOffElement), [6])
+        self.assertEqual(RingSeq("ABCDE").symmetry_indices(), [])
+        self.assertEqual(RingSeq([]).symmetry_indices(), [])
+        self.assertEqual(self.spin3.symmetry_indices(), [])
+        self.assertEqual(self.eptagon.symmetry_indices(), [0, 1, 2, 3, 4, 5, 6])
+        self.assertEqual(self.squaroid.symmetry_indices(), [0, 3, 6, 9])
+        self.assertEqual(self.axis_on_element.symmetry_indices(), [5])
+        self.assertEqual(self.axis_off_element.symmetry_indices(), [0])
+        self.assertEqual(self.axis_on_off_element.symmetry_indices(), [6])
 
     def test_symmetry(self):
-        self.assertEqual(symmetry("ABCDE"), 0)
-        self.assertEqual(symmetry([]), 0)
-        self.assertEqual(symmetry(self.spin3), 0)
-        self.assertEqual(symmetry(self.eptagon), 7)
-        self.assertEqual(symmetry(self.squaroid), 4)
-        self.assertEqual(symmetry(self.axisOnElement), 1)
-        self.assertEqual(symmetry(self.axisOffElement), 1)
-        self.assertEqual(symmetry(self.axisOnOffElement), 1)
+        self.assertEqual(RingSeq("ABCDE").symmetry(), 0)
+        self.assertEqual(RingSeq([]).symmetry(), 0)
+        self.assertEqual(self.spin3.symmetry(), 0)
+        self.assertEqual(self.eptagon.symmetry(), 7)
+        self.assertEqual(self.squaroid.symmetry(), 4)
+        self.assertEqual(self.axis_on_element.symmetry(), 1)
+        self.assertEqual(self.axis_off_element.symmetry(), 1)
+        self.assertEqual(self.axis_on_off_element.symmetry(), 1)
 
     def test_reflectional_symmetry_axes_triangle(self):
         self.assertEqual(
-            reflectional_symmetry_axes((1, 1, 1)),
+            RingSeq((1, 1, 1)).reflectional_symmetry_axes(),
             [
                 (Vertex(1), Edge(2, 3)),
                 (Vertex(2), Edge(0, 3)),
@@ -62,7 +55,7 @@ class SymmetryOps(unittest.TestCase):
 
     def test_reflectional_symmetry_axes_doubled_triangle(self):
         self.assertEqual(
-            reflectional_symmetry_axes((1, 2, 1, 2, 1, 2)),
+            RingSeq((1, 2, 1, 2, 1, 2)).reflectional_symmetry_axes(),
             [
                 (Vertex(2), Vertex(5)),
                 (Vertex(1), Vertex(4)),
@@ -72,7 +65,7 @@ class SymmetryOps(unittest.TestCase):
 
     def test_reflectional_symmetry_axes_square(self):
         self.assertEqual(
-            reflectional_symmetry_axes((1, 1, 1, 1)),
+            RingSeq((1, 1, 1, 1)).reflectional_symmetry_axes(),
             [
                 (Edge(1, 4), Edge(3, 4)),
                 (Vertex(1), Vertex(3)),
@@ -83,7 +76,7 @@ class SymmetryOps(unittest.TestCase):
 
     def test_reflectional_symmetry_axes_doubled_square(self):
         self.assertEqual(
-            reflectional_symmetry_axes((1, 2, 1, 2, 1, 2, 1, 2)),
+            RingSeq((1, 2, 1, 2, 1, 2, 1, 2)).reflectional_symmetry_axes(),
             [
                 (Vertex(3), Vertex(7)),
                 (Vertex(2), Vertex(6)),
@@ -94,7 +87,7 @@ class SymmetryOps(unittest.TestCase):
 
     def test_reflectional_symmetry_axes_specular_pentagon(self):
         self.assertEqual(
-            reflectional_symmetry_axes((1, 1, 2, 3, 2)),
+            RingSeq((1, 1, 2, 3, 2)).reflectional_symmetry_axes(),
             [(Vertex(3), Edge(0, 5))],
         )
 
@@ -102,7 +95,6 @@ class SymmetryOps(unittest.TestCase):
         e = Edge(2, 4)
         self.assertEqual(e.i, 2)
         self.assertEqual(e.j, 3)
-        # wraps around the ring
         self.assertEqual(Edge(3, 4).j, 0)
 
     def test_edge_normalizes_out_of_range_i(self):
@@ -122,5 +114,5 @@ class SymmetryOps(unittest.TestCase):
                 self.assertEqual(j, 3)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

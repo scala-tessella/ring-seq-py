@@ -2,70 +2,65 @@
 
 Usage example:
 
-  >>> r = Ring('ABC')
+  >>> r = Ring([1, 2, 3])
   >>> r.rotate_l(1)
   >>> r.current()
-  'BCA'
+  [2, 3, 1]
 """
-from ring_seq.methods import *
+from typing import Any
+
+from ring_seq import IndexO, RingSeq
 
 
 class Ring:
     """An example class wrapping a sequence and keeping mutable states of rotation and reflection.
 
     Attributes:
-        underlying: The wrapped sequence.
-        head_index: The state of rotation, a circular index of where the sequence currently starts, default = 0
+        underlying: The wrapped `RingSeq`.
+        head_index: The state of rotation, a circular index of where the sequence currently starts
         is_reflected: The state of reflection
     """
-    def __init__(self, underlying: Seq, head_index: IndexO = 0, is_reflected: bool = False):
+
+    def __init__(self, underlying, head_index: IndexO = 0, is_reflected: bool = False):
         """Initializes the instance with the sequence and the states."""
-        self.underlying = underlying
+        self._kind = type(underlying) if isinstance(underlying, (list, tuple, str)) else list
+        self.underlying = RingSeq(underlying)
         self.head_index = head_index
         self.is_reflected = is_reflected
 
     def __direction_multiplier(self) -> int:
-        if self.is_reflected:
-            return 1
-        else:
-            return -1
+        return 1 if self.is_reflected else -1
 
-    def rotate_r(self, step: int = 1):
+    def rotate_r(self, step: int = 1) -> None:
         """Updates the rotation state by some steps to the right.
 
         Examples:
-          >>> r = Ring('ABC')
+          >>> r = Ring([1, 2, 3])
           >>> r.rotate_r(1)
           >>> r.current()
-          'CAB'
-
-        Args:
-          step: number of rotation steps to the right
+          [3, 1, 2]
         """
         self.head_index += step * self.__direction_multiplier()
 
-    def rotate_l(self, step: int = 1):
+    def rotate_l(self, step: int = 1) -> None:
         """Updates the rotation state by some steps to the left.
 
         Examples:
-          >>> r = Ring('ABC')
+          >>> r = Ring([1, 2, 3])
           >>> r.rotate_l(1)
           >>> r.current()
-          'BCA'
-
-        Args:
-          step: number of rotation steps to the left
+          [2, 3, 1]
         """
         self.rotate_r(-step)
 
-    def reflect(self):
+    def reflect(self) -> None:
         """Inverts the reflection state.
 
         Examples:
-          >>> r = Ring('ABC')
+          >>> r = Ring([1, 2, 3])
           >>> r.reflect()
           >>> r.current()
-          'ACB'
+          [1, 3, 2]
         """
         self.is_reflected = not self.is_reflected
 
@@ -73,29 +68,24 @@ class Ring:
         """Gets the start of the sequence at the current rotation state.
 
         Examples:
-          >>> r = Ring('ABC')
+          >>> r = Ring([1, 2, 3])
           >>> r.rotate_r(1)
           >>> r.current_head()
-          'C'
-
-        Returns:
-          The current head element of the sequence
+          3
         """
-        return apply_o(self.underlying, self.head_index)
+        return self.underlying[self.head_index]
 
-    def current(self) -> Seq:
-        """Gets the sequence at the current rotation and reflection state.
-
-        Examples:
-          >>> r = Ring('ABC')
-          >>> r.rotate_r(1)
-          >>> r.current()
-          'CAB'
-
-        Returns:
-          The current sequence
+    def current(self):
+        """Gets the sequence at the current rotation and reflection state,
+        in the same concrete type as the original input.
         """
-        if self.is_reflected:
-            return reflect_at(self.underlying, self.head_index)
-        else:
-            return start_at(self.underlying, self.head_index)
+        ring = (
+            self.underlying.reflect_at(self.head_index)
+            if self.is_reflected
+            else self.underlying.start_at(self.head_index)
+        )
+        if self._kind is str:
+            return ring.to_str()
+        if self._kind is tuple:
+            return ring.to_tuple()
+        return ring.to_list()

@@ -49,5 +49,25 @@ chances are you don't want to locally reinvent the wheel (pun intended).
 where most of the circular use cases are already solved
 and building blocks provided for the others.
 
+## Use cases
+
+- **Bioinformatics** — circular DNA/RNA sequence alignment and comparison
+- **Graphics** — polygon vertex manipulation, closed curve operations
+- **Procedural generation** — tile rings, symmetry-aware pattern generation
+- **Music theory** — pitch-class sets, chord inversions
+- **Combinatorics** — necklace/bracelet enumeration, Burnside's lemma
+- **Embedded / robotics** — circular sensor arrays, rotary encoder positions
+
 ## Other languages
-The same library is available also for the Scala language, check [RingSeq (Scala version)](https://github.com/scala-tessella/ring-seq/).
+The same library, adapted for the specific idiom, is available also for:
+- Scala, check [RingSeq (Scala version)](https://github.com/scala-tessella/ring-seq/)
+- Rust, check [RingSeq (Rust version)](https://github.com/scala-tessella/ring-seq-rs)
+
+## License
+
+Licensed under either of
+
+- [Apache License, Version 2.0](LICENSE-APACHE)
+- [MIT License](LICENSE-MIT)
+
+at your option.

@@ -1,8 +1,7 @@
 # **RingSeqPy**
 
-A library that adds new operations to Python `list`, `tuple` and `str`
-for when such a sequence needs to be considered [**circular**](what-is.md),
-its elements forming a ring.
+A library that extends Python's sequences with circular operations through a single class, `RingSeq`.
+Use it when your data is structured as a ring — when the last element is adjacent to the first.
 
 Working for Python `3.10` and above.
 
@@ -14,27 +13,30 @@ pip install ring-seq-py
 ### Get started
 
 ```pycon
-from ring_seq import RingSeq
+>>> from ring_seq import RingSeq
 
->>> RingSeq('RING').rotate_right(1)
+>>> RingSeq('RING').rotate_right(1).to_str()
 'GRIN'
->>> RingSeq([0, 1, 2, 3]).start_at(2)
+>>> RingSeq([0, 1, 2, 3]).start_at(2).to_list()
 [2, 3, 0, 1]
->>> RingSeq((1, 3, 5, 7, 9)).reflect_at(3)
+>>> RingSeq((1, 3, 5, 7, 9)).reflect_at(3).to_tuple()
 (7, 5, 3, 1, 9)
 ```
 
-or alternatively, without the `class RingSeq` wrapper:
+A `RingSeq` wraps any iterable. All transformations return a new `RingSeq`; call
+`to_list()`, `to_tuple()`, or `to_str()` to unwrap at the boundary. Native Python
+protocols work circularly out of the box:
 
 ```pycon
-from ring_seq.methods import rotate_right, start_at, reflect_at
-
->>> rotate_right('RING', 1)
-'GRIN'
->>> start_at([0, 1, 2, 3], 2)
-[2, 3, 0, 1]
->>> reflect_at((1, 3, 5, 7, 9), 3)
-(7, 5, 3, 1, 9)
+>>> r = RingSeq('ABC')
+>>> r[-1]        # circular indexing
+'C'
+>>> r[30001]
+'B'
+>>> r[-1:5].to_str()   # circular slicing
+'CABCAB'
+>>> len(r), 'B' in r
+(3, True)
 ```
 
 ## Need

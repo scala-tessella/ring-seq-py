@@ -1,32 +1,42 @@
 import unittest
 
-from ring_seq.methods import index_from, apply_o
-from typing import Any
+from ring_seq import RingSeq
 
 
 class IndexingOps(unittest.TestCase):
 
     def test_index_from(self):
-        self.assertEqual(index_from("ABCDE", -1), 4)
-        self.assertEqual(index_from("ABCDE", 5), 0)
-        self.assertEqual(index_from(["A", 1, 'B', 2], -1), 3)
-        self.assertEqual(index_from(("A", 1, 'B', 2), -1), 3)
+        self.assertEqual(RingSeq("ABCDE").index_from(-1), 4)
+        self.assertEqual(RingSeq("ABCDE").index_from(5), 0)
+        self.assertEqual(RingSeq(["A", 1, "B", 2]).index_from(-1), 3)
+        self.assertEqual(RingSeq(("A", 1, "B", 2)).index_from(-1), 3)
         with self.assertRaises(ArithmeticError):
-            index_from([], 0)
+            RingSeq([]).index_from(0)
 
-    def test_apply_o(self):
-        self.assertEqual(apply_o("ABCDE", -1), "E")
-        self.assertEqual(apply_o("ABCDE", 5), "A")
-        self.assertEqual("ABCDE"[-1], "E")
+    def test_getitem_circular(self):
+        self.assertEqual(RingSeq("ABCDE")[-1], "E")
+        self.assertEqual(RingSeq("ABCDE")[5], "A")
+        self.assertEqual(RingSeq("ABC")[30001], "B")
         with self.assertRaises(IndexError):
-            var: str = "ABCDE"[-6]
-        with self.assertRaises(IndexError):
-            var: str = "ABCDE"[5]
-        with self.assertRaises(ArithmeticError):
-            apply_o([], 0)
-        with self.assertRaises(IndexError):
-            var: Any = [][0]
+            RingSeq([])[0]
+
+    def test_len_and_iter(self):
+        self.assertEqual(len(RingSeq("ABC")), 3)
+        self.assertEqual(list(iter(RingSeq("ABC"))), ["A", "B", "C"])
+
+    def test_contains(self):
+        self.assertIn("B", RingSeq("ABC"))
+        self.assertNotIn("Z", RingSeq("ABC"))
+
+    def test_equality_cross_type(self):
+        # positional equality across input iterable kinds
+        self.assertEqual(RingSeq("ABC"), RingSeq(["A", "B", "C"]))
+        self.assertEqual(RingSeq((1, 2, 3)), RingSeq([1, 2, 3]))
+        self.assertEqual(hash(RingSeq("ABC")), hash(RingSeq(["A", "B", "C"])))
+
+    def test_repr(self):
+        self.assertEqual(repr(RingSeq("ABC")), "RingSeq(('A', 'B', 'C'))")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

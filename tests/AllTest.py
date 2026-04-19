@@ -1,22 +1,34 @@
 import unittest
 
-from tests.IndexingTest import IndexingOps
-from tests.SlicingTest import SlicingOps
-from tests.TransformingTest import TransformingOps
-from tests.IteratingTest import IteratingOps
 from tests.ComparingTest import ComparingOps
-from tests.SymmetryTest import SymmetryOps
+from tests.IndexingTest import IndexingOps
+from tests.IteratingTest import IteratingOps
 from tests.NecklaceTest import NecklaceOps
 from tests.RingSeqTest import RingSeqOps
+from tests.SlicingTest import SlicingOps
+from tests.SymmetryTest import SymmetryOps
+from tests.TransformingTest import TransformingOps
 from tests.examples.RingTest import RingOps
 
 
 class RingTestSuite(unittest.TestSuite):
     def test_all(self):
-        self.addTests(iter(
-            (IndexingOps, SlicingOps, TransformingOps, IteratingOps, ComparingOps, SymmetryOps, NecklaceOps, RingOps, RingSeqOps)
-        ))
+        self.addTests(
+            iter(
+                (
+                    IndexingOps,
+                    SlicingOps,
+                    TransformingOps,
+                    IteratingOps,
+                    ComparingOps,
+                    SymmetryOps,
+                    NecklaceOps,
+                    RingOps,
+                    RingSeqOps,
+                )
+            )
+        )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
