@@ -26,7 +26,7 @@ from collections.abc import Callable, Iterable, Iterator, Sequence
 from dataclasses import dataclass
 from itertools import dropwhile, takewhile
 from math import ceil
-from typing import Any, Generic, Optional, TypeAlias, TypeVar, overload
+from typing import Any, Generic, TypeAlias, TypeVar, overload
 
 Index: TypeAlias = int
 """Standard (non-circular) index, in `[0, len)`."""
@@ -131,7 +131,7 @@ class RingSeq(Generic[T], Sequence[T]):
     @overload
     def __getitem__(self, i: int) -> T: ...
     @overload
-    def __getitem__(self, i: slice) -> "RingSeq[T]": ...
+    def __getitem__(self, i: slice) -> RingSeq[T]: ...
     def __getitem__(self, i):
         """Circular indexing and slicing.
 
@@ -174,12 +174,12 @@ class RingSeq(Generic[T], Sequence[T]):
             return self._seq == other._seq
         return NotImplemented
 
-    def __lt__(self, other: "RingSeq[T]") -> bool:
+    def __lt__(self, other: RingSeq[T]) -> bool:
         if isinstance(other, RingSeq):
             return self._seq < other._seq
         return NotImplemented
 
-    def __le__(self, other: "RingSeq[T]") -> bool:
+    def __le__(self, other: RingSeq[T]) -> bool:
         if isinstance(other, RingSeq):
             return self._seq <= other._seq
         return NotImplemented
@@ -240,7 +240,7 @@ class RingSeq(Generic[T], Sequence[T]):
 
     # ----- Rotation & reflection -----
 
-    def rotate_right(self, step: int) -> "RingSeq[T]":
+    def rotate_right(self, step: int) -> RingSeq[T]:
         """Rotates the sequence right by `step` positions.
 
         >>> RingSeq('ABC').rotate_right(1).to_str()
@@ -252,7 +252,7 @@ class RingSeq(Generic[T], Sequence[T]):
         j = n - (step % n)
         return RingSeq(self._seq[j:] + self._seq[:j])
 
-    def rotate_left(self, step: int) -> "RingSeq[T]":
+    def rotate_left(self, step: int) -> RingSeq[T]:
         """Rotates the sequence left by `step` positions.
 
         >>> RingSeq('ABC').rotate_left(1).to_str()
@@ -260,7 +260,7 @@ class RingSeq(Generic[T], Sequence[T]):
         """
         return self.rotate_right(-step)
 
-    def start_at(self, i: IndexO) -> "RingSeq[T]":
+    def start_at(self, i: IndexO) -> RingSeq[T]:
         """Rotates the sequence to start at circular index `i` (equivalent to `rotate_left(i)`).
 
         >>> RingSeq('ABC').start_at(1).to_str()
@@ -268,7 +268,7 @@ class RingSeq(Generic[T], Sequence[T]):
         """
         return self.rotate_left(i)
 
-    def reflect_at(self, i: IndexO = 0) -> "RingSeq[T]":
+    def reflect_at(self, i: IndexO = 0) -> RingSeq[T]:
         """Reflects the sequence with element at circular index `i` as the axis head.
 
         Examples:
@@ -282,7 +282,7 @@ class RingSeq(Generic[T], Sequence[T]):
 
     # ----- Circular slice internal helper -----
 
-    def _circular_slice(self, start: IndexO, end: IndexO, step: int = 1) -> "RingSeq[T]":
+    def _circular_slice(self, start: IndexO, end: IndexO, step: int = 1) -> RingSeq[T]:
         if step == 0:
             raise ValueError("slice step cannot be zero")
         n = len(self._seq)
@@ -300,7 +300,7 @@ class RingSeq(Generic[T], Sequence[T]):
 
     # ----- Lookup -----
 
-    def index(self, value: T, start: IndexO = 0, stop: Optional[IndexO] = None) -> Index:
+    def index(self, value: T, start: IndexO = 0, stop: IndexO | None = None) -> Index:
         """Circular index of the first occurrence of `value`.
 
         Searches one full revolution by default. Searching past the end wraps around.
@@ -327,7 +327,7 @@ class RingSeq(Generic[T], Sequence[T]):
 
     # ----- Slicing primitives -----
 
-    def take_while(self, p: Callable[[T], bool], from_: IndexO = 0) -> "RingSeq[T]":
+    def take_while(self, p: Callable[[T], bool], from_: IndexO = 0) -> RingSeq[T]:
         """Longest prefix from circular index `from_` whose elements satisfy `p`.
 
         >>> RingSeq((0, 1, 2, 3, 4)).take_while(lambda x: x < 3, 1).to_tuple()
@@ -339,7 +339,7 @@ class RingSeq(Generic[T], Sequence[T]):
             return self
         return RingSeq(takewhile(p, self.start_at(from_)._seq))
 
-    def drop_while(self, p: Callable[[T], bool], from_: IndexO = 0) -> "RingSeq[T]":
+    def drop_while(self, p: Callable[[T], bool], from_: IndexO = 0) -> RingSeq[T]:
         """Suffix after dropping the longest prefix from `from_` whose elements satisfy `p`.
 
         >>> RingSeq((0, 1, 2, 3, 4)).drop_while(lambda x: x < 3, 1).to_tuple()
@@ -349,7 +349,7 @@ class RingSeq(Generic[T], Sequence[T]):
             return self
         return RingSeq(dropwhile(p, self.start_at(from_)._seq))
 
-    def span(self, p: Callable[[T], bool], from_: IndexO = 0) -> tuple["RingSeq[T]", "RingSeq[T]"]:
+    def span(self, p: Callable[[T], bool], from_: IndexO = 0) -> tuple[RingSeq[T], RingSeq[T]]:
         """Splits at the first element, starting at `from_`, that does not satisfy `p`.
 
         >>> take, drop = RingSeq((0, 1, 2, 3, 4)).span(lambda x: x < 3, 1)
@@ -360,7 +360,7 @@ class RingSeq(Generic[T], Sequence[T]):
 
     # ----- Iterators over rings -----
 
-    def rotations(self) -> Iterator["RingSeq[T]"]:
+    def rotations(self) -> Iterator[RingSeq[T]]:
         """All rotations of this ring, one step at a time to the left.
 
         >>> [r.to_str() for r in RingSeq('ABC').rotations()]
@@ -370,7 +370,7 @@ class RingSeq(Generic[T], Sequence[T]):
             return iter(())
         return (self.rotate_left(k) for k in range(len(self._seq)))
 
-    def reflections(self) -> Iterator["RingSeq[T]"]:
+    def reflections(self) -> Iterator[RingSeq[T]]:
         """The sequence and its reflection.
 
         >>> [r.to_str() for r in RingSeq('ABC').reflections()]
@@ -380,7 +380,7 @@ class RingSeq(Generic[T], Sequence[T]):
             return iter(())
         return iter((self, self.reflect_at()))
 
-    def reversions(self) -> Iterator["RingSeq[T]"]:
+    def reversions(self) -> Iterator[RingSeq[T]]:
         """The sequence and its reversion.
 
         >>> [r.to_str() for r in RingSeq('ABC').reversions()]
@@ -390,7 +390,7 @@ class RingSeq(Generic[T], Sequence[T]):
             return iter(())
         return iter((self, RingSeq(reversed(self._seq))))
 
-    def rotations_and_reflections(self) -> Iterator["RingSeq[T]"]:
+    def rotations_and_reflections(self) -> Iterator[RingSeq[T]]:
         """All rotations of the sequence and of its reflection.
 
         >>> [r.to_str() for r in RingSeq('ABC').rotations_and_reflections()]
@@ -399,13 +399,13 @@ class RingSeq(Generic[T], Sequence[T]):
         if len(self._seq) == 0:
             return iter(())
 
-        def gen() -> Iterator["RingSeq[T]"]:
+        def gen() -> Iterator[RingSeq[T]]:
             for reflection in self.reflections():
                 yield from reflection.rotations()
 
         return gen()
 
-    def grouped(self, size: int) -> Iterator["RingSeq[T]"]:
+    def grouped(self, size: int) -> Iterator[RingSeq[T]]:
         """Groups the ring in fixed-size blocks.
 
         >>> [g.to_str() for g in RingSeq('ABCDE').grouped(2)]
@@ -435,7 +435,7 @@ class RingSeq(Generic[T], Sequence[T]):
     def _is_transformation_of(
         self,
         that: Iterable[T],
-        f: Callable[["RingSeq[T]"], Iterator["RingSeq[T]"]],
+        f: Callable[[RingSeq[T]], Iterator[RingSeq[T]]],
     ) -> bool:
         other = that if isinstance(that, RingSeq) else RingSeq(that)
         if len(self._seq) != len(other):
@@ -478,7 +478,7 @@ class RingSeq(Generic[T], Sequence[T]):
 
     # ----- Alignment / distance -----
 
-    def align_to(self, that: Iterable[T]) -> Optional[Index]:
+    def align_to(self, that: Iterable[T]) -> Index | None:
         """Rotation offset `k` such that `self.start_at(k) == RingSeq(that)`, or `None`.
 
         Examples:
@@ -514,7 +514,7 @@ class RingSeq(Generic[T], Sequence[T]):
         other = tuple(that)
         if len(self._seq) != len(other):
             raise ValueError("sequences must have the same size")
-        return sum(1 for a, b in zip(self._seq, other) if a != b)
+        return sum(1 for a, b in zip(self._seq, other, strict=True) if a != b)
 
     def min_rotational_hamming_distance(self, that: Iterable[T]) -> int:
         """Minimum Hamming distance over all rotations of this ring.
@@ -534,7 +534,7 @@ class RingSeq(Generic[T], Sequence[T]):
         if len(self._seq) == 0:
             return 0
         return min(
-            sum(1 for a, b in zip(rotation._seq, other) if a != b)
+            sum(1 for a, b in zip(rotation._seq, other, strict=True) if a != b)
             for rotation in self.rotations()
         )
 
@@ -629,7 +629,7 @@ class RingSeq(Generic[T], Sequence[T]):
             return 0
         return _least_rotation_booth(self._seq)
 
-    def canonical(self) -> "RingSeq[T]":
+    def canonical(self) -> RingSeq[T]:
         """Lexicographically smallest rotation (necklace canonical form).
 
         Examples:
@@ -642,7 +642,7 @@ class RingSeq(Generic[T], Sequence[T]):
             return self
         return self.start_at(self.canonical_index())
 
-    def bracelet(self) -> "RingSeq[T]":
+    def bracelet(self) -> RingSeq[T]:
         """Lexicographically smallest representative under both rotation and reflection.
 
         Examples:

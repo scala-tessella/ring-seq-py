@@ -1,6 +1,7 @@
 import unittest
 
 from tests.ComparingTest import ComparingOps
+from tests.examples.RingTest import RingOps
 from tests.IndexingTest import IndexingOps
 from tests.IteratingTest import IteratingOps
 from tests.NecklaceTest import NecklaceOps
@@ -8,7 +9,6 @@ from tests.RingSeqTest import RingSeqOps
 from tests.SlicingTest import SlicingOps
 from tests.SymmetryTest import SymmetryOps
 from tests.TransformingTest import TransformingOps
-from tests.examples.RingTest import RingOps
 
 
 class RingTestSuite(unittest.TestSuite):
