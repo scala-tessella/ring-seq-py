@@ -550,15 +550,18 @@ class RingSeq(Generic[T], Sequence[T]):
           4
           >>> RingSeq("-|+-|+-|+-|+").rotational_symmetry()
           4
+          >>> RingSeq([0, 1, 0, 1]).rotational_symmetry()
+          2
         """
         n = len(self._seq)
         if n < 2:
             return 1
-        divisors = [n] + [d for d in range(n // 2, 2, -1) if n % d == 0]
-        for fold in divisors:
-            if self.rotate_right(n // fold) == self:
-                return fold
-        return 1
+        smallest_period = next(
+            shift
+            for shift in range(1, n + 1)
+            if n % shift == 0 and self.rotate_left(shift) == self
+        )
+        return n // smallest_period
 
     def symmetry_indices(self) -> list[Index]:
         """Reflection shifts: `shift` values such that this ring equals its reversal rotated left.

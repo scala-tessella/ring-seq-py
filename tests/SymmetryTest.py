@@ -21,6 +21,9 @@ class SymmetryOps(unittest.TestCase):
         self.assertEqual(self.axis_on_element.rotational_symmetry(), 1)
         self.assertEqual(self.axis_off_element.rotational_symmetry(), 1)
         self.assertEqual(self.axis_on_off_element.rotational_symmetry(), 1)
+        # period-2 patterns at length 4 / 8 (regression: previous algorithm skipped these)
+        self.assertEqual(RingSeq((0, 1, 0, 1)).rotational_symmetry(), 2)
+        self.assertEqual(RingSeq((1, 2, 1, 2, 1, 2, 1, 2)).rotational_symmetry(), 4)
 
     def test_symmetry_indices(self):
         self.assertEqual(RingSeq("ABCDE").symmetry_indices(), [])
