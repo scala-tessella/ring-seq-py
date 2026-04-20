@@ -197,16 +197,18 @@ class RingSeq(Generic[T], Sequence[T]):
     def to_list(self) -> list[T]:
         """Returns the ring as a new list.
 
-        >>> RingSeq("ABC").to_list()
-        ['A', 'B', 'C']
+        Examples:
+          >>> RingSeq("ABC").to_list()
+          ['A', 'B', 'C']
         """
         return list(self._seq)
 
     def to_tuple(self) -> tuple[T, ...]:
         """Returns the ring as a tuple (the internal storage).
 
-        >>> RingSeq([1, 2, 3]).to_tuple()
-        (1, 2, 3)
+        Examples:
+          >>> RingSeq([1, 2, 3]).to_tuple()
+          (1, 2, 3)
         """
         return self._seq
 
@@ -245,8 +247,9 @@ class RingSeq(Generic[T], Sequence[T]):
     def rotate_right(self, step: int) -> RingSeq[T]:
         """Rotates the sequence right by `step` positions.
 
-        >>> RingSeq("ABC").rotate_right(1).to_str()
-        'CAB'
+        Examples:
+          >>> RingSeq("ABC").rotate_right(1).to_str()
+          'CAB'
         """
         n = len(self._seq)
         if n == 0:
@@ -257,16 +260,18 @@ class RingSeq(Generic[T], Sequence[T]):
     def rotate_left(self, step: int) -> RingSeq[T]:
         """Rotates the sequence left by `step` positions.
 
-        >>> RingSeq("ABC").rotate_left(1).to_str()
-        'BCA'
+        Examples:
+          >>> RingSeq("ABC").rotate_left(1).to_str()
+          'BCA'
         """
         return self.rotate_right(-step)
 
     def start_at(self, i: IndexO) -> RingSeq[T]:
         """Rotates the sequence to start at circular index `i` (equivalent to `rotate_left(i)`).
 
-        >>> RingSeq("ABC").start_at(1).to_str()
-        'BCA'
+        Examples:
+          >>> RingSeq("ABC").start_at(1).to_str()
+          'BCA'
         """
         return self.rotate_left(i)
 
@@ -332,10 +337,11 @@ class RingSeq(Generic[T], Sequence[T]):
     def take_while(self, p: Callable[[T], bool], from_: IndexO = 0) -> RingSeq[T]:
         """Longest prefix from circular index `from_` whose elements satisfy `p`.
 
-        >>> RingSeq((0, 1, 2, 3, 4)).take_while(lambda x: x < 3, 1).to_tuple()
-        (1, 2)
-        >>> RingSeq((0, 1, 2, 3, 4)).take_while(lambda x: x != 1, 3).to_tuple()
-        (3, 4, 0)
+        Examples:
+          >>> RingSeq((0, 1, 2, 3, 4)).take_while(lambda x: x < 3, 1).to_tuple()
+          (1, 2)
+          >>> RingSeq((0, 1, 2, 3, 4)).take_while(lambda x: x != 1, 3).to_tuple()
+          (3, 4, 0)
         """
         if len(self._seq) == 0:
             return self
@@ -344,8 +350,9 @@ class RingSeq(Generic[T], Sequence[T]):
     def drop_while(self, p: Callable[[T], bool], from_: IndexO = 0) -> RingSeq[T]:
         """Suffix after dropping the longest prefix from `from_` whose elements satisfy `p`.
 
-        >>> RingSeq((0, 1, 2, 3, 4)).drop_while(lambda x: x < 3, 1).to_tuple()
-        (3, 4, 0)
+        Examples:
+          >>> RingSeq((0, 1, 2, 3, 4)).drop_while(lambda x: x < 3, 1).to_tuple()
+          (3, 4, 0)
         """
         if len(self._seq) == 0:
             return self
@@ -354,9 +361,10 @@ class RingSeq(Generic[T], Sequence[T]):
     def span(self, p: Callable[[T], bool], from_: IndexO = 0) -> tuple[RingSeq[T], RingSeq[T]]:
         """Splits at the first element, starting at `from_`, that does not satisfy `p`.
 
-        >>> take, drop = RingSeq((0, 1, 2, 3, 4)).span(lambda x: x < 3, 1)
-        >>> take.to_tuple(), drop.to_tuple()
-        ((1, 2), (3, 4, 0))
+        Examples:
+          >>> take, drop = RingSeq((0, 1, 2, 3, 4)).span(lambda x: x < 3, 1)
+          >>> take.to_tuple(), drop.to_tuple()
+          ((1, 2), (3, 4, 0))
         """
         return self.take_while(p, from_), self.drop_while(p, from_)
 
@@ -365,8 +373,9 @@ class RingSeq(Generic[T], Sequence[T]):
     def rotations(self) -> Iterator[RingSeq[T]]:
         """All rotations of this ring, one step at a time to the left.
 
-        >>> [r.to_str() for r in RingSeq("ABC").rotations()]
-        ['ABC', 'BCA', 'CAB']
+        Examples:
+          >>> [r.to_str() for r in RingSeq("ABC").rotations()]
+          ['ABC', 'BCA', 'CAB']
         """
         if len(self._seq) == 0:
             return iter(())
@@ -375,8 +384,9 @@ class RingSeq(Generic[T], Sequence[T]):
     def reflections(self) -> Iterator[RingSeq[T]]:
         """The sequence and its reflection.
 
-        >>> [r.to_str() for r in RingSeq("ABC").reflections()]
-        ['ABC', 'ACB']
+        Examples:
+          >>> [r.to_str() for r in RingSeq("ABC").reflections()]
+          ['ABC', 'ACB']
         """
         if len(self._seq) == 0:
             return iter(())
@@ -385,8 +395,9 @@ class RingSeq(Generic[T], Sequence[T]):
     def reversions(self) -> Iterator[RingSeq[T]]:
         """The sequence and its reversion.
 
-        >>> [r.to_str() for r in RingSeq("ABC").reversions()]
-        ['ABC', 'CBA']
+        Examples:
+          >>> [r.to_str() for r in RingSeq("ABC").reversions()]
+          ['ABC', 'CBA']
         """
         if len(self._seq) == 0:
             return iter(())
@@ -395,8 +406,9 @@ class RingSeq(Generic[T], Sequence[T]):
     def rotations_and_reflections(self) -> Iterator[RingSeq[T]]:
         """All rotations of the sequence and of its reflection.
 
-        >>> [r.to_str() for r in RingSeq("ABC").rotations_and_reflections()]
-        ['ABC', 'BCA', 'CAB', 'ACB', 'CBA', 'BAC']
+        Examples:
+          >>> [r.to_str() for r in RingSeq("ABC").rotations_and_reflections()]
+          ['ABC', 'BCA', 'CAB', 'ACB', 'CBA', 'BAC']
         """
         if len(self._seq) == 0:
             return iter(())
@@ -408,23 +420,26 @@ class RingSeq(Generic[T], Sequence[T]):
         return gen()
 
     def grouped(self, size: int) -> Iterator[RingSeq[T]]:
-        """Groups the ring in fixed-size blocks.
+        """Groups the ring in fixed-size blocks, wrapping the last block across the seam.
 
-        >>> [g.to_str() for g in RingSeq("ABCDE").grouped(2)]
-        ['AB', 'CD', 'EA', 'BC', 'DE']
+        Examples:
+          >>> [g.to_str() for g in RingSeq("ABCDE").grouped(2)]
+          ['AB', 'CD', 'EA']
         """
         n = len(self._seq)
         if n == 0:
             return iter(())
-        return (self._circular_slice(i * size, i * size + size) for i in range(n))
+        count = -(-n // size)
+        return (self._circular_slice(i * size, i * size + size) for i in range(count))
 
     def zip_with_index(self, from_: IndexO = 0) -> Iterator[tuple[T, Index]]:
         """Iterates over `(element, original-index)` pairs, starting at `from_`.
 
-        >>> list(RingSeq(("a", "b", "c")).zip_with_index(1))
-        [('b', 1), ('c', 2), ('a', 0)]
-        >>> list(RingSeq(("a", "b", "c")).zip_with_index())
-        [('a', 0), ('b', 1), ('c', 2)]
+        Examples:
+          >>> list(RingSeq(("a", "b", "c")).zip_with_index(1))
+          [('b', 1), ('c', 2), ('a', 0)]
+          >>> list(RingSeq(("a", "b", "c")).zip_with_index())
+          [('a', 0), ('b', 1), ('c', 2)]
         """
         n = len(self._seq)
         if n == 0:
@@ -447,34 +462,38 @@ class RingSeq(Generic[T], Sequence[T]):
     def is_rotation_of(self, that: Iterable[T]) -> bool:
         """Whether this ring is a rotation of `that`.
 
-        >>> RingSeq("ABC").is_rotation_of("BCA")
-        True
-        >>> RingSeq("ABC").is_rotation_of("ABC")
-        True
+        Examples:
+          >>> RingSeq("ABC").is_rotation_of("BCA")
+          True
+          >>> RingSeq("ABC").is_rotation_of("ABC")
+          True
         """
         return self._is_transformation_of(that, lambda r: r.rotations())
 
     def is_reflection_of(self, that: Iterable[T]) -> bool:
         """Whether this ring is a reflection of `that`.
 
-        >>> RingSeq("ABC").is_reflection_of("ACB")
-        True
+        Examples:
+          >>> RingSeq("ABC").is_reflection_of("ACB")
+          True
         """
         return self._is_transformation_of(that, lambda r: r.reflections())
 
     def is_reversion_of(self, that: Iterable[T]) -> bool:
         """Whether this ring is a reversion of `that`.
 
-        >>> RingSeq("ABC").is_reversion_of("CBA")
-        True
+        Examples:
+          >>> RingSeq("ABC").is_reversion_of("CBA")
+          True
         """
         return self._is_transformation_of(that, lambda r: r.reversions())
 
     def is_rotation_or_reflection_of(self, that: Iterable[T]) -> bool:
         """Whether this ring is a rotation and/or reflection of `that`.
 
-        >>> RingSeq("ABC").is_rotation_or_reflection_of("BAC")
-        True
+        Examples:
+          >>> RingSeq("ABC").is_rotation_or_reflection_of("BAC")
+          True
         """
         return self._is_transformation_of(that, lambda r: r.rotations_and_reflections())
 
@@ -531,14 +550,22 @@ class RingSeq(Generic[T], Sequence[T]):
           ValueError: if the sizes differ.
         """
         other = tuple(that)
-        if len(self._seq) != len(other):
+        n = len(self._seq)
+        if n != len(other):
             raise ValueError("sequences must have the same size")
-        if len(self._seq) == 0:
+        if n == 0:
             return 0
-        return min(
-            sum(1 for a, b in zip(rotation._seq, other, strict=True) if a != b)
-            for rotation in self.rotations()
-        )
+        a = self._seq
+        best = n
+        for k in range(n):
+            count = sum(1 for x, y in zip(a[k:], other) if x != y)
+            if k:
+                count += sum(1 for x, y in zip(a[:k], other[n - k:]) if x != y)
+            if count < best:
+                best = count
+                if best == 0:
+                    break
+        return best
 
     # ----- Symmetry -----
 

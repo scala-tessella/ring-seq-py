@@ -75,13 +75,13 @@ class IteratingOps(unittest.TestCase):
     def test_grouped(self):
         self.assertEqual(
             _strs(RingSeq("ABCDE").grouped(2)),
-            ["AB", "CD", "EA", "BC", "DE"],
+            ["AB", "CD", "EA"],
         )
         self.assertEqual(list(RingSeq("").grouped(2)), [])
         self.assertEqual(list(RingSeq(()).grouped(3)), [])
         self.assertEqual(
             _tuples(RingSeq((0, 1, 2, 3, 4)).grouped(3)),
-            [(0, 1, 2), (3, 4, 0), (1, 2, 3), (4, 0, 1), (2, 3, 4)],
+            [(0, 1, 2), (3, 4, 0)],
         )
 
     def test_zip_with_index(self):

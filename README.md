@@ -103,7 +103,7 @@ True
 | `reflections()` | Original + reflection (lazy) |
 | `reversions()` | Original + reversal (lazy) |
 | `rotations_and_reflections()` | All `2n` variants (lazy) |
-| `grouped(size)` | `n` fixed-size circular groups |
+| `grouped(size)` | `ceil(n / size)` fixed-size blocks, last one wraps the seam |
 | `zip_with_index(from_=0)` | Elements paired with their circular indices |
 
 ### Comparing

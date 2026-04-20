@@ -5,6 +5,23 @@ All notable changes to this project are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] — 2026-04-20
+
+### Changed
+- `grouped(size)` now partitions the ring into `ceil(n / size)` non-overlapping
+  blocks, with the last block wrapping across the seam so every block has exactly
+  `size` elements. Previously returned `n` strided blocks covering every ring
+  position.
+
+  `RingSeq("ABCDE").grouped(2)` → `['AB', 'CD', 'EA']` (was `['AB', 'CD', 'EA', 'BC', 'DE']`).
+
+### Performance
+- `min_rotational_hamming_distance` no longer allocates `n` intermediate rotation
+  objects: each offset is compared in place against two slices of the input, with
+  early termination when an exact match (distance 0) is found.
+  Measured ~3x faster on exact/rotation-match inputs; neutral on worst-case
+  random inputs.
+
 ## [2.0.0] — 2026-04-19
 
 **Hard break** — v2 is a ground-up redesign around a single, idiomatic `RingSeq` class.
