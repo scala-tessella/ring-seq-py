@@ -558,9 +558,9 @@ class RingSeq(Generic[T], Sequence[T]):
         a = self._seq
         best = n
         for k in range(n):
-            count = sum(1 for x, y in zip(a[k:], other) if x != y)
+            count = sum(1 for x, y in zip(a[k:], other, strict=False) if x != y)
             if k:
-                count += sum(1 for x, y in zip(a[:k], other[n - k:]) if x != y)
+                count += sum(1 for x, y in zip(a[:k], other[n - k :], strict=True) if x != y)
             if count < best:
                 best = count
                 if best == 0:

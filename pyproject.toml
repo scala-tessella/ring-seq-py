@@ -1,6 +1,6 @@
 [project]
 name = "ring-seq-py"
-version = "2.1.1"
+version = "2.1.2"
 authors = [
   { name="Mario Càllisto", email="mario.callisto@gmail.com" },
 ]
