@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0cb19d17-cff2-4fdd-ab98-48f16d805fe0" name="Changes" comment="Ne version 2.1.0">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/ring-seq-py.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="103" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Unit Test" />
+        <option value="Python Stub" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;mcallisto&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/scala-tessella/ring-seq-py.git&quot;,
+    &quot;accountId&quot;: &quot;6cca97ee-9ae4-40f9-8919-67d5f16850b7&quot;
+  }
+}</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2bCv2dQseWY1dxVX0qR3YBI9b4L" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python tests.Python tests in ComparingTest.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in IndexingOps.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in IndexingTest.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in IteratingTest.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in Ring2Test.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in RingSeqTest.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in RingTest.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in SlicingTest.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in SymmetryTest.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in TransformingOps.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in TransformingTest.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in tests.executor&quot;: &quot;Run&quot;,
+    &quot;Python.AllTest.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ring.executor&quot;: &quot;Run&quot;,
+    &quot;Python.setup.executor&quot;: &quot;Run&quot;,
+    &quot;Python.suite.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore_missing_gitignore&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/mario/PycharmProjects/pythonProject1&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/docs" />
+      <recent name="$PROJECT_DIR$/tests" />
+      <recent name="$PROJECT_DIR$/tests/examples" />
+      <recent name="$PROJECT_DIR$/examples" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/docs/img" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/ring_seq" />
+      <recent name="$PROJECT_DIR$/tests" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python tests.Python tests in SlicingTest.py">
+    <configuration name="AllTest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ring-seq-py" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="DEBUG_JUST_MY_CODE" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/AllTest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="methods" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="ring-seq-py" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="DEBUG_JUST_MY_CODE" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ring_seq/methods.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="setup.pyx" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ring-seq-py" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="DEBUG_JUST_MY_CODE" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/setup.pyx" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests in IndexingTest.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="ring-seq-py" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="DEBUG_JUST_MY_CODE" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/IndexingTest.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests in RingTest.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="ring-seq-py" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="DEBUG_JUST_MY_CODE" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/examples/RingTest.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests in SlicingTest.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="ring-seq-py" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="DEBUG_JUST_MY_CODE" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/SlicingTest.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.Python tests in SlicingTest.py" />
+        <item itemvalue="Python tests.Python tests in IndexingTest.py" />
+        <item itemvalue="Python.AllTest" />
+        <item itemvalue="Python.setup.pyx" />
+        <item itemvalue="Python tests.Python tests in RingTest.py" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-b63d5a1f7c97-b61e75351b1f-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-261.22158.340" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0cb19d17-cff2-4fdd-ab98-48f16d805fe0" name="Changes" comment="" />
+      <created>1705731668091</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1705731668091</updated>
+      <workItem from="1776544643867" duration="15059000" />
+      <workItem from="1776690863957" duration="4126000" />
+    </task>
+    <task id="LOCAL-00086" summary="rotational_symmetry improved">
+      <option name="closed" value="true" />
+      <created>1706099241855</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1706099241855</updated>
+    </task>
+    <task id="LOCAL-00087" summary="functionally improved">
+      <option name="closed" value="true" />
+      <created>1706099797043</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1706099797043</updated>
+    </task>
+    <task id="LOCAL-00088" summary="functionally improved">
+      <option name="closed" value="true" />
+      <created>1706099943404</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1706099943404</updated>
+    </task>
+    <task id="LOCAL-00089" summary="symmetry_indices refactored">
+      <option name="closed" value="true" />
+      <created>1706100142638</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1706100142638</updated>
+    </task>
+    <task id="LOCAL-00090" summary="rotations_and_reflections refactored">
+      <option name="closed" value="true" />
+      <created>1706101857709</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1706101857709</updated>
+    </task>
+    <task id="LOCAL-00091" summary="More tests on reversions">
+      <option name="closed" value="true" />
+      <created>1706104041146</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1706104041146</updated>
+    </task>
+    <task id="LOCAL-00092" summary="Issue on slice_o">
+      <option name="closed" value="true" />
+      <created>1706105103201</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1706105103201</updated>
+    </task>
+    <task id="LOCAL-00093" summary="More iterating test">
+      <option name="closed" value="true" />
+      <created>1706106326552</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1706106326552</updated>
+    </task>
+    <task id="LOCAL-00094" summary="Issue solved">
+      <option name="closed" value="true" />
+      <created>1706107088320</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1706107088320</updated>
+    </task>
+    <task id="LOCAL-00095" summary="Drier">
+      <option name="closed" value="true" />
+      <created>1706109053295</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1706109053295</updated>
+    </task>
+    <task id="LOCAL-00096" summary="Better args name">
+      <option name="closed" value="true" />
+      <created>1706124982488</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1706124982488</updated>
+    </task>
+    <task id="LOCAL-00097" summary="Added index_o method">
+      <option name="closed" value="true" />
+      <created>1706135228694</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1706135228694</updated>
+    </task>
+    <task id="LOCAL-00098" summary="index_o fully documented">
+      <option name="closed" value="true" />
+      <created>1706135668916</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1706135668916</updated>
+    </task>
+    <task id="LOCAL-00099" summary="Improved README.md">
+      <option name="closed" value="true" />
+      <created>1706170306360</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1706170306360</updated>
+    </task>
+    <task id="LOCAL-00100" summary="Updated version to 1.0">
+      <option name="closed" value="true" />
+      <created>1706176518120</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1706176518120</updated>
+    </task>
+    <task id="LOCAL-00101" summary="Drier CI">
+      <option name="closed" value="true" />
+      <created>1706178043516</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1706178043516</updated>
+    </task>
+    <task id="LOCAL-00102" summary="Add publishing">
+      <option name="closed" value="true" />
+      <created>1706179874305</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1706179874305</updated>
+    </task>
+    <task id="LOCAL-00103" summary="Add publishing">
+      <option name="closed" value="true" />
+      <created>1706180147402</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1706180147402</updated>
+    </task>
+    <task id="LOCAL-00104" summary="Different mkdocstrings option">
+      <option name="closed" value="true" />
+      <created>1706263253568</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1706263253568</updated>
+    </task>
+    <task id="LOCAL-00105" summary="Correct path">
+      <option name="closed" value="true" />
+      <created>1706263623597</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1706263623597</updated>
+    </task>
+    <task id="LOCAL-00106" summary="Correct path">
+      <option name="closed" value="true" />
+      <created>1706344369969</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1706344369969</updated>
+    </task>
+    <task id="LOCAL-00107" summary="With CI badge">
+      <option name="closed" value="true" />
+      <created>1706344864833</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1706344864833</updated>
+    </task>
+    <task id="LOCAL-00108" summary="Site building only when tags with version">
+      <option name="closed" value="true" />
+      <created>1706345032889</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1706345032889</updated>
+    </task>
+    <task id="LOCAL-00109" summary="Badge">
+      <option name="closed" value="true" />
+      <created>1706345268310</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1706345268311</updated>
+    </task>
+    <task id="LOCAL-00110" summary="Badges">
+      <option name="closed" value="true" />
+      <created>1706346107285</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1706346107285</updated>
+    </task>
+    <task id="LOCAL-00111" summary="Badge">
+      <option name="closed" value="true" />
+      <created>1706347931308</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1706347931308</updated>
+    </task>
+    <task id="LOCAL-00112" summary="Badges">
+      <option name="closed" value="true" />
+      <created>1706348751948</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1706348751948</updated>
+    </task>
+    <task id="LOCAL-00113" summary="Badges">
+      <option name="closed" value="true" />
+      <created>1706349844453</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1706349844453</updated>
+    </task>
+    <task id="LOCAL-00114" summary="Correct arg type">
+      <option name="closed" value="true" />
+      <created>1706685172240</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1706685172240</updated>
+    </task>
+    <task id="LOCAL-00115" summary="Better naming">
+      <option name="closed" value="true" />
+      <created>1706685375427</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1706685375427</updated>
+    </task>
+    <task id="LOCAL-00116" summary="Force publishing">
+      <option name="closed" value="true" />
+      <created>1706685514899</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1706685514899</updated>
+    </task>
+    <task id="LOCAL-00117" summary="Restored push rules">
+      <option name="closed" value="true" />
+      <created>1706685895270</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1706685895270</updated>
+    </task>
+    <task id="LOCAL-00118" summary="Symmetry corrected">
+      <option name="closed" value="true" />
+      <created>1776546022536</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1776546022536</updated>
+    </task>
+    <task id="LOCAL-00119" summary="Symmetry doc updated">
+      <option name="closed" value="true" />
+      <created>1776546336693</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1776546336693</updated>
+    </task>
+    <task id="LOCAL-00120" summary="More methods">
+      <option name="closed" value="true" />
+      <created>1776547019363</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1776547019363</updated>
+    </task>
+    <task id="LOCAL-00121" summary="Edge refactored">
+      <option name="closed" value="true" />
+      <created>1776551709753</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1776551709753</updated>
+    </task>
+    <task id="LOCAL-00122" summary="Full refactoring towards v2">
+      <option name="closed" value="true" />
+      <created>1776586584406</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1776586584406</updated>
+    </task>
+    <task id="LOCAL-00123" summary="License and changelog">
+      <option name="closed" value="true" />
+      <created>1776587732273</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1776587732273</updated>
+    </task>
+    <task id="LOCAL-00124" summary="Changelog">
+      <option name="closed" value="true" />
+      <created>1776588349193</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1776588349193</updated>
+    </task>
+    <task id="LOCAL-00125" summary="Added ruff lint and format">
+      <option name="closed" value="true" />
+      <created>1776588452901</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1776588452901</updated>
+    </task>
+    <task id="LOCAL-00126" summary="Lint correction">
+      <option name="closed" value="true" />
+      <created>1776589014005</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1776589014006</updated>
+    </task>
+    <task id="LOCAL-00127" summary="Lint correction, unused import removed">
+      <option name="closed" value="true" />
+      <created>1776589327005</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1776589327005</updated>
+    </task>
+    <task id="LOCAL-00128" summary="Format correction">
+      <option name="closed" value="true" />
+      <created>1776589918902</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1776589918902</updated>
+    </task>
+    <task id="LOCAL-00129" summary="Updated workflows">
+      <option name="closed" value="true" />
+      <created>1776590095783</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1776590095783</updated>
+    </task>
+    <task id="LOCAL-00130" summary="Better README.md and bug correction">
+      <option name="closed" value="true" />
+      <created>1776590958819</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1776590958819</updated>
+    </task>
+    <task id="LOCAL-00131" summary="Correct format">
+      <option name="closed" value="true" />
+      <created>1776591049006</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1776591049006</updated>
+    </task>
+    <task id="LOCAL-00132" summary="Updated version matrix">
+      <option name="closed" value="true" />
+      <created>1776591280427</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1776591280427</updated>
+    </task>
+    <task id="LOCAL-00133" summary="Publish pipeline and runbook">
+      <option name="closed" value="true" />
+      <created>1776592703480</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1776592703480</updated>
+    </task>
+    <task id="LOCAL-00134" summary="Ne version 2.1.0">
+      <option name="closed" value="true" />
+      <created>1776696578236</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1776696578236</updated>
+    </task>
+    <option name="localTasksCounter" value="135" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="With CI badge" />
+    <MESSAGE value="Site building only when tags with version" />
+    <MESSAGE value="Badge" />
+    <MESSAGE value="Badges" />
+    <MESSAGE value="Correct arg type" />
+    <MESSAGE value="Better naming" />
+    <MESSAGE value="Force publishing" />
+    <MESSAGE value="Restored push rules" />
+    <MESSAGE value="Symmetry corrected" />
+    <MESSAGE value="Symmetry doc updated" />
+    <MESSAGE value="More methods" />
+    <MESSAGE value="Edge refactored" />
+    <MESSAGE value="Full refactoring towards v2" />
+    <MESSAGE value="License and changelog" />
+    <MESSAGE value="Changelog" />
+    <MESSAGE value="Added ruff lint and format" />
+    <MESSAGE value="Lint correction" />
+    <MESSAGE value="Lint correction, unused import removed" />
+    <MESSAGE value="Format correction" />
+    <MESSAGE value="Updated workflows" />
+    <MESSAGE value="Better README.md and bug correction" />
+    <MESSAGE value="Correct format" />
+    <MESSAGE value="Updated version matrix" />
+    <MESSAGE value="Publish pipeline and runbook" />
+    <MESSAGE value="Ne version 2.1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ne version 2.1.0" />
+  </component>
+</project>
