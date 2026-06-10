@@ -19,6 +19,14 @@ class SlicingOps(unittest.TestCase):
         with self.assertRaises(ValueError):
             _ = RingSeq("ABCDE")[1:3:0]
 
+    def test_circular_slice_negative_step(self):
+        self.assertEqual(RingSeq("ABCDE")[::-1].to_str(), "EDCBA")
+        self.assertEqual(RingSeq("ABCDE")[4:1:-1].to_str(), "EDC")
+        self.assertEqual(RingSeq("ABCDE")[::-2].to_str(), "ECA")
+        # wraps backward without clamping
+        self.assertEqual(RingSeq("ABCDE")[0:-6:-1].to_str(), "AEDCBA")
+        self.assertEqual(RingSeq("")[::-1].to_str(), "")
+
     def test_index_of_element(self):
         self.assertEqual(RingSeq(["A", 1, "B", 2]).index("A"), 0)
         self.assertEqual(RingSeq(["A", 1, "B", 2]).index("B"), 2)

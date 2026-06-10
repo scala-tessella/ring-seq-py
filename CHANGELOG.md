@@ -5,6 +5,47 @@ All notable changes to this project are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.0] — 2026-06-10
+
+Tracks the v0.3.0/v0.3.1 refactoring of the twin Rust library
+[ring-seq-rs](https://github.com/scala-tessella/ring-seq-rs), adapted to the
+Python idiom.
+
+### Added
+- `windows(size)` — `n` fixed-size sliding windows, wrapping across the seam
+  (counterpart of Rust `windows` / Scala `slidingO`). A window longer than the
+  ring wraps around it multiple times.
+- `index_of_slice(that, from_=0)` and `contains_slice(that)` — circular lookup
+  and containment of a contiguous, possibly wrapping slice.
+- `get(i, default=None)` — non-raising counterpart of `rs[i]`; returns
+  `default` on an empty ring (counterpart of Rust `Circular::get`).
+- Negative slice steps: `rs[::-1]`, `rs[4:1:-1]`, `rs[::-2]` traverse the ring
+  backward, circularly and without clamping. Previously a negative step
+  returned an empty `RingSeq`.
+- `__reversed__` — `reversed(rs)` now iterates the internal tuple directly
+  instead of going through `n` circular index lookups.
+
+### Changed
+- `canonical_index()` now uses the two-pointer minimal-rotation algorithm
+  (as ring-seq-rs 0.3.1) instead of Booth's algorithm: same O(n) time, but
+  O(1) extra space instead of an O(n) failure-function array. Results are
+  identical.
+- `grouped(size)` and `windows(size)` raise `ValueError` for a non-positive
+  `size`. Previously `grouped(0)` leaked a `ZeroDivisionError` and a negative
+  size silently yielded nothing.
+
+### Performance
+- `min_rotational_hamming_distance` now also abandons each rotation as soon as
+  its mismatch count reaches the best distance found so far (the inner
+  short-circuit restored in ring-seq-rs 0.3.1), in addition to the existing
+  exact-match early exit.
+
+### Internal
+- Plain `pytest` now discovers the whole suite (`python_files = ["*Test.py"]`,
+  `testpaths`) and runs the docstring examples too (`--doctest-modules`);
+  CI invokes bare `pytest`. The `tests/AllTest.py` aggregator and the empty
+  `requirements.txt` are gone.
+
 ## [2.1.2] — 2026-04-20
 
 ### Changed

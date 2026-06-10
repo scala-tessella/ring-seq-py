@@ -37,10 +37,13 @@ Use `to_list()`, `to_tuple()`, or `to_str()` to unwrap at the boundary:
 Methods fall into the following categories:
 
 ### Native sequence protocol (circular)
-* [`__getitem__`](ring_seq_methods.md/#ring_seq.ring_seq.RingSeq.__getitem__) — circular indexing and slicing, e.g. `rs[-1]`, `rs[30001]`, `rs[1:10]`
-* `__len__`, `__iter__`, `__contains__` — inherited from `collections.abc.Sequence`
+* [`__getitem__`](ring_seq_methods.md/#ring_seq.ring_seq.RingSeq.__getitem__) — circular indexing and slicing, e.g. `rs[-1]`, `rs[30001]`, `rs[1:10]`, `rs[::-1]`
+* `__len__`, `__iter__`, `__reversed__`, `__contains__` — standard protocol
 * `__eq__`, `__lt__`, `__le__`, `__hash__` — positional comparison and hashing
+* [`get`](ring_seq_methods.md/#ring_seq.ring_seq.RingSeq.get) — like `rs[i]`, but returns a default on an empty ring
 * [`index`](ring_seq_methods.md/#ring_seq.ring_seq.RingSeq.index) — circular element lookup
+* [`index_of_slice`](ring_seq_methods.md/#ring_seq.ring_seq.RingSeq.index_of_slice) — circular lookup of a contiguous, possibly wrapping slice
+* [`contains_slice`](ring_seq_methods.md/#ring_seq.ring_seq.RingSeq.contains_slice) — slice containment, wrapping included
 
 ### Unwrap
 * [`to_list`](ring_seq_methods.md/#ring_seq.ring_seq.RingSeq.to_list)
@@ -66,6 +69,7 @@ Methods fall into the following categories:
 * [`reversions`](ring_seq_methods.md/#ring_seq.ring_seq.RingSeq.reversions)
 * [`reflections`](ring_seq_methods.md/#ring_seq.ring_seq.RingSeq.reflections)
 * [`rotations_and_reflections`](ring_seq_methods.md/#ring_seq.ring_seq.RingSeq.rotations_and_reflections)
+* [`windows`](ring_seq_methods.md/#ring_seq.ring_seq.RingSeq.windows)
 * [`grouped`](ring_seq_methods.md/#ring_seq.ring_seq.RingSeq.grouped)
 * [`zip_with_index`](ring_seq_methods.md/#ring_seq.ring_seq.RingSeq.zip_with_index)
 
@@ -85,6 +89,6 @@ Methods fall into the following categories:
 * [`reflectional_symmetry_axes`](ring_seq_methods.md/#ring_seq.ring_seq.RingSeq.reflectional_symmetry_axes)
 
 ### Canonical forms (necklace / bracelet)
-* [`canonical_index`](ring_seq_methods.md/#ring_seq.ring_seq.RingSeq.canonical_index) — starting index of the lexicographically smallest rotation (Booth's algorithm, O(n))
+* [`canonical_index`](ring_seq_methods.md/#ring_seq.ring_seq.RingSeq.canonical_index) — starting index of the lexicographically smallest rotation (two-pointer minimal rotation, O(n) time, O(1) space)
 * [`canonical`](ring_seq_methods.md/#ring_seq.ring_seq.RingSeq.canonical) — the lex-smallest rotation; useful for hashing/deduplicating equivalent rings
 * [`bracelet`](ring_seq_methods.md/#ring_seq.ring_seq.RingSeq.bracelet) — the lex-smallest representative under both rotation and reflection

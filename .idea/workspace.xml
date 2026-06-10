@@ -4,13 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cb19d17-cff2-4fdd-ab98-48f16d805fe0" name="Changes" comment="Ne version 2.1.0">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/ring-seq-py.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="0cb19d17-cff2-4fdd-ab98-48f16d805fe0" name="Changes" comment="New version 2.1.2 linted">
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/runbook.md" beforeDir="false" afterPath="$PROJECT_DIR$/.github/runbook.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/publish.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/publish.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/python-package.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/python-package.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/reference.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/reference.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ring_seq/ring_seq.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ring_seq/ring_seq.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/AllTest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/ComparingTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ComparingTest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/IndexingTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/IndexingTest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/IteratingTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/IteratingTest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/SlicingTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/SlicingTest.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -272,7 +282,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-b63d5a1f7c97-b61e75351b1f-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-261.22158.340" />
+        <option value="bundled-python-sdk-024ed6589d45-c2ffad84badb-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-261.23567.174" />
       </set>
     </attachedChunks>
   </component>
@@ -285,23 +295,8 @@
       <option name="presentableId" value="Default" />
       <updated>1705731668091</updated>
       <workItem from="1776544643867" duration="15059000" />
-      <workItem from="1776690863957" duration="4126000" />
-    </task>
-    <task id="LOCAL-00086" summary="rotational_symmetry improved">
-      <option name="closed" value="true" />
-      <created>1706099241855</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1706099241855</updated>
-    </task>
-    <task id="LOCAL-00087" summary="functionally improved">
-      <option name="closed" value="true" />
-      <created>1706099797043</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1706099797043</updated>
+      <workItem from="1776690863957" duration="5418000" />
+      <workItem from="1781107579724" duration="14000" />
     </task>
     <task id="LOCAL-00088" summary="functionally improved">
       <option name="closed" value="true" />
@@ -679,7 +674,23 @@
       <option name="project" value="LOCAL" />
       <updated>1776696578236</updated>
     </task>
-    <option name="localTasksCounter" value="135" />
+    <task id="LOCAL-00135" summary="New version 2.1.1">
+      <option name="closed" value="true" />
+      <created>1776696854882</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1776696854882</updated>
+    </task>
+    <task id="LOCAL-00136" summary="New version 2.1.2 linted">
+      <option name="closed" value="true" />
+      <created>1776697266648</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1776697266648</updated>
+    </task>
+    <option name="localTasksCounter" value="137" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -697,8 +708,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="With CI badge" />
-    <MESSAGE value="Site building only when tags with version" />
     <MESSAGE value="Badge" />
     <MESSAGE value="Badges" />
     <MESSAGE value="Correct arg type" />
@@ -722,6 +731,8 @@
     <MESSAGE value="Updated version matrix" />
     <MESSAGE value="Publish pipeline and runbook" />
     <MESSAGE value="Ne version 2.1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ne version 2.1.0" />
+    <MESSAGE value="New version 2.1.1" />
+    <MESSAGE value="New version 2.1.2 linted" />
+    <option name="LAST_COMMIT_MESSAGE" value="New version 2.1.2 linted" />
   </component>
 </project>

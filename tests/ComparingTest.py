@@ -33,6 +33,25 @@ class ComparingOps(unittest.TestCase):
             self.assertIsNotNone(k)
             self.assertEqual(seq.start_at(k), rotation)
 
+    def test_index_of_slice(self):
+        self.assertEqual(RingSeq("ABCDE").index_of_slice("DEA"), 3)
+        self.assertEqual(RingSeq("ABCDE").index_of_slice("ABC"), 0)
+        # search start wraps past the end, like index
+        self.assertEqual(RingSeq("ABCDE").index_of_slice("AB", 1), 0)
+        self.assertIsNone(RingSeq("ABCDE").index_of_slice("ED"))
+        # a slice longer than the ring may wrap multiple times
+        self.assertEqual(RingSeq("ABC").index_of_slice("CABCA"), 2)
+        # empty slice is found at the (normalized) search start
+        self.assertEqual(RingSeq("ABCDE").index_of_slice(""), 0)
+        self.assertEqual(RingSeq("ABCDE").index_of_slice("", -1), 4)
+        self.assertEqual(RingSeq("").index_of_slice(""), 0)
+        self.assertIsNone(RingSeq("").index_of_slice("A"))
+
+    def test_contains_slice(self):
+        self.assertTrue(RingSeq("ABCDE").contains_slice("EAB"))
+        self.assertTrue(RingSeq("ABCDE").contains_slice(["C", "D"]))
+        self.assertFalse(RingSeq("ABCDE").contains_slice("ED"))
+
     def test_hamming_distance(self):
         self.assertEqual(RingSeq((1, 0, 1, 1)).hamming_distance((1, 1, 0, 1)), 2)
         self.assertEqual(RingSeq((1, 2, 3)).hamming_distance((1, 2, 3)), 0)

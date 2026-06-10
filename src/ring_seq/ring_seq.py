@@ -25,7 +25,7 @@ from __future__ import annotations
 
 from collections.abc import Callable, Iterable, Iterator, Sequence
 from dataclasses import dataclass
-from itertools import dropwhile, takewhile
+from itertools import chain, dropwhile, takewhile
 from math import ceil
 from typing import Generic, TypeAlias, TypeVar, overload
 
@@ -87,28 +87,28 @@ class Edge(AxisLocation):
         return f"Edge(i={self.i}, j={self.j})"
 
 
-def _least_rotation_booth(s: tuple) -> Index:
-    """Booth's O(n) algorithm: starting index of the lexicographically smallest rotation."""
+def _least_rotation(s: tuple) -> Index:
+    """Two-pointer minimal-rotation algorithm: starting index of the lexicographically
+    smallest rotation, in O(n) time and O(1) extra space.
+
+    Maintains two candidate offsets `i` and `j` with a common matched prefix of
+    length `k`; each mismatch eliminates `k + 1` candidates at once.
+    """
     n = len(s)
-    total = 2 * n
-    f = [-1] * total
-    k = 0
-    j = 1
-    while j < total:
-        sj = s[j % n]
-        i = f[j - k - 1]
-        while i != -1 and sj != s[(k + i + 1) % n]:
-            if sj < s[(k + i + 1) % n]:
-                k = j - i - 1
-            i = f[i]
-        if i == -1 and sj != s[(k + i + 1) % n]:
-            if sj < s[(k + i + 1) % n]:
-                k = j
-            f[j - k] = -1
+    i, j, k = 0, 1, 0
+    while i < n and j < n and k < n:
+        a, b = s[(i + k) % n], s[(j + k) % n]
+        if a == b:
+            k += 1
+            continue
+        if a > b:
+            i += k + 1
         else:
-            f[j - k] = i + 1
-        j += 1
-    return k
+            j += k + 1
+        if i == j:
+            j += 1
+        k = 0
+    return min(i, j)
 
 
 class RingSeq(Generic[T], Sequence[T]):
@@ -139,7 +139,8 @@ class RingSeq(Generic[T], Sequence[T]):
 
         Any integer index wraps around the ring. A slice returns a `RingSeq` that
         may contain more elements than the original — cycling through the ring as
-        needed. Negative step or reversed bounds produce an empty `RingSeq`.
+        needed. A negative step traverses the ring backward (circularly, without
+        clamping); reversed bounds produce an empty `RingSeq`.
 
         Examples:
           >>> RingSeq("ABC")[-1]
@@ -152,14 +153,22 @@ class RingSeq(Generic[T], Sequence[T]):
           'BC'
           >>> RingSeq("ABCDE")[0:5:2].to_str()
           'ACE'
+          >>> RingSeq("ABC")[::-1].to_str()
+          'CBA'
+          >>> RingSeq("ABCDE")[4:1:-1].to_str()
+          'EDC'
         """
         n = len(self._seq)
         if isinstance(i, slice):
             if n == 0:
                 return RingSeq()
-            start = 0 if i.start is None else i.start
-            end = n if i.stop is None else i.stop
             step = 1 if i.step is None else i.step
+            if step < 0:
+                start = n - 1 if i.start is None else i.start
+                end = start - n if i.stop is None else i.stop
+            else:
+                start = 0 if i.start is None else i.start
+                end = n if i.stop is None else i.stop
             return self._circular_slice(start, end, step)
         if n == 0:
             raise IndexError("RingSeq index out of range")
@@ -167,6 +176,9 @@ class RingSeq(Generic[T], Sequence[T]):
 
     def __iter__(self) -> Iterator[T]:
         return iter(self._seq)
+
+    def __reversed__(self) -> Iterator[T]:
+        return reversed(self._seq)
 
     def __contains__(self, x: object) -> bool:
         return x in self._seq
@@ -295,8 +307,10 @@ class RingSeq(Generic[T], Sequence[T]):
         n = len(self._seq)
         if n == 0:
             return RingSeq()
+        if step < 0:
+            return RingSeq(self._seq[k % n] for k in range(start, end, step))
         gap = end - start
-        if gap < 0 or step < 0:
+        if gap <= 0:
             return RingSeq()
         times = int(ceil(gap / n) + 1)
         rotated = self.start_at(start)._seq
@@ -307,10 +321,31 @@ class RingSeq(Generic[T], Sequence[T]):
 
     # ----- Lookup -----
 
+    def get(self, i: IndexO, default: T | None = None) -> T | None:
+        """Element at circular index `i`, or `default` if the ring is empty.
+
+        The non-raising counterpart of `rs[i]`, which raises `IndexError` on an
+        empty ring.
+
+        Examples:
+          >>> RingSeq("ABC").get(-1)
+          'C'
+          >>> RingSeq("").get(0) is None
+          True
+          >>> RingSeq("").get(0, "x")
+          'x'
+        """
+        n = len(self._seq)
+        if n == 0:
+            return default
+        return self._seq[i % n]
+
     def index(self, value: T, start: IndexO = 0, stop: IndexO | None = None) -> Index:
         """Circular index of the first occurrence of `value`.
 
-        Searches one full revolution by default. Searching past the end wraps around.
+        Searches one full revolution by default. Searching past the end wraps
+        around. A `stop` at or below `start` (including a negative `stop`, which
+        is *not* treated as end-relative) searches nothing.
 
         Examples:
           >>> RingSeq("ABCA").index("A")
@@ -331,6 +366,41 @@ class RingSeq(Generic[T], Sequence[T]):
             if self._seq[k % n] == value:
                 return k % n
         raise ValueError(f"{value!r} is not in RingSeq")
+
+    def index_of_slice(self, that: Iterable[T], from_: IndexO = 0) -> Index | None:
+        """Circular index of the first occurrence of `that` as a contiguous slice, or `None`.
+
+        Searches one full revolution starting at `from_`. The matching slice may
+        wrap around the ring — even multiple times, if longer than it.
+
+        Examples:
+          >>> RingSeq("ABCDE").index_of_slice("DEA")
+          3
+          >>> RingSeq("ABCDE").index_of_slice("AB", 1)
+          0
+          >>> RingSeq("ABCDE").index_of_slice("ED") is None
+          True
+        """
+        other = tuple(that)
+        n = len(self._seq)
+        if n == 0:
+            return 0 if len(other) == 0 else None
+        start = self.index_from(from_)
+        for k in range(start, start + n):
+            if all(self._seq[(k + t) % n] == x for t, x in enumerate(other)):
+                return k % n
+        return None
+
+    def contains_slice(self, that: Iterable[T]) -> bool:
+        """Whether `that` occurs in the ring as a contiguous, possibly wrapping slice.
+
+        Examples:
+          >>> RingSeq("ABCDE").contains_slice("EAB")
+          True
+          >>> RingSeq("ABCDE").contains_slice("ED")
+          False
+        """
+        return self.index_of_slice(that) is not None
 
     # ----- Slicing primitives -----
 
@@ -419,13 +489,38 @@ class RingSeq(Generic[T], Sequence[T]):
 
         return gen()
 
+    def windows(self, size: int) -> Iterator[RingSeq[T]]:
+        """Sliding windows of fixed size, one per ring position, wrapping across the seam.
+
+        Yields `len(self)` windows; a window longer than the ring wraps around it
+        multiple times.
+
+        Examples:
+          >>> [w.to_str() for w in RingSeq("ABCDE").windows(2)]
+          ['AB', 'BC', 'CD', 'DE', 'EA']
+
+        Raises:
+          ValueError: if `size` is not positive.
+        """
+        if size <= 0:
+            raise ValueError("size must be positive")
+        n = len(self._seq)
+        if n == 0:
+            return iter(())
+        return (self._circular_slice(i, i + size) for i in range(n))
+
     def grouped(self, size: int) -> Iterator[RingSeq[T]]:
         """Groups the ring in fixed-size blocks, wrapping the last block across the seam.
 
         Examples:
           >>> [g.to_str() for g in RingSeq("ABCDE").grouped(2)]
           ['AB', 'CD', 'EA']
+
+        Raises:
+          ValueError: if `size` is not positive.
         """
+        if size <= 0:
+            raise ValueError("size must be positive")
         n = len(self._seq)
         if n == 0:
             return iter(())
@@ -558,9 +653,16 @@ class RingSeq(Generic[T], Sequence[T]):
         a = self._seq
         best = n
         for k in range(n):
-            count = sum(1 for x, y in zip(a[k:], other, strict=False) if x != y)
-            if k:
-                count += sum(1 for x, y in zip(a[:k], other[n - k :], strict=True) if x != y)
+            pairs = chain(
+                zip(a[k:], other, strict=False),
+                zip(a[:k], other[n - k :], strict=True),
+            )
+            count = 0
+            for x, y in pairs:
+                if x != y:
+                    count += 1
+                    if count >= best:
+                        break
             if count < best:
                 best = count
                 if best == 0:
@@ -647,7 +749,9 @@ class RingSeq(Generic[T], Sequence[T]):
     # ----- Canonical forms -----
 
     def canonical_index(self) -> Index:
-        """Starting index of the lex-smallest rotation (Booth's algorithm, O(n)).
+        """Starting index of the lex-smallest rotation (two-pointer minimal rotation).
+
+        Runs in O(n) time and O(1) extra space.
 
         Examples:
           >>> RingSeq((2, 0, 1)).canonical_index()
@@ -657,7 +761,7 @@ class RingSeq(Generic[T], Sequence[T]):
         """
         if len(self._seq) <= 1:
             return 0
-        return _least_rotation_booth(self._seq)
+        return _least_rotation(self._seq)
 
     def canonical(self) -> RingSeq[T]:
         """Lexicographically smallest rotation (necklace canonical form).

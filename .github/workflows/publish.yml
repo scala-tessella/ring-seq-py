@@ -24,7 +24,7 @@ jobs:
       - name: Install build and test dependencies
         run: python -m pip install --upgrade pip build pytest
       - name: Run tests
-        run: pytest tests/AllTest.py
+        run: pytest
       - name: Build sdist and wheel
         run: python -m build
       - uses: actions/upload-artifact@v4

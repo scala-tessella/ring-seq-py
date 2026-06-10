@@ -59,10 +59,13 @@ True
 | Method | Description |
 |---|---|
 | `rs[i]` | Element at circular index (any integer wraps) |
-| `rs[i:j]`, `rs[i:j:k]` | Circular slice (can exceed ring length) |
-| `len(rs)`, `iter(rs)`, `x in rs` | Standard protocol, no surprises |
+| `rs[i:j]`, `rs[i:j:k]` | Circular slice (can exceed ring length; negative step traverses backward) |
+| `len(rs)`, `iter(rs)`, `reversed(rs)`, `x in rs` | Standard protocol, no surprises |
 | `rs == other`, `hash(rs)`, `min(rings)` | Positional equality; lexicographic ordering |
+| `get(i, default=None)` | Like `rs[i]`, but returns `default` on an empty ring |
 | `index(value, start=0, stop=None)` | Circular first-occurrence lookup |
+| `index_of_slice(that, from_=0)` | Circular index of a contiguous (possibly wrapping) slice, or `None` |
+| `contains_slice(that)` | Whether a slice occurs in the ring, wrapping included |
 
 ### Unwrap
 
@@ -103,6 +106,7 @@ True
 | `reflections()` | Original + reflection (lazy) |
 | `reversions()` | Original + reversal (lazy) |
 | `rotations_and_reflections()` | All `2n` variants (lazy) |
+| `windows(size)` | `n` sliding windows of fixed size, wrapping the seam |
 | `grouped(size)` | `ceil(n / size)` fixed-size blocks, last one wraps the seam |
 | `zip_with_index(from_=0)` | Elements paired with their circular indices |
 
@@ -122,7 +126,7 @@ True
 
 | Method | Description |
 |---|---|
-| `canonical_index()` | Index of lex-smallest rotation (Booth's *O(n)*) |
+| `canonical_index()` | Index of lex-smallest rotation (two-pointer minimal rotation, *O(n)* time, *O(1)* space) |
 | `canonical()` | Lex-smallest rotation (necklace form) |
 | `bracelet()` | Lex-smallest under rotation *and* reflection |
 
@@ -144,11 +148,11 @@ from the Scala/Rust counterparts to be Pythonic:
 
 | This library | Elsewhere |
 |---|---|
-| `rs[i]` | `apply_o`  |
-| `rs[i:j]`, `rs[i:j:k]` | `slice_o` |
-| `index` | `index_of_slice` |
-| `grouped` | `circular_chunks` |
-| `zip_with_index` | `circular_enumerate` |
+| `rs[i]` | `apply` (Rust), `applyO` (Scala) |
+| `rs[i:j]`, `rs[i:j:k]` | `slice` (Rust), `sliceO` (Scala) |
+| `windows` | `windows` (Rust), `slidingO` (Scala) |
+| `grouped` | `chunks` (Rust) |
+| `zip_with_index` | `enumerate` (Rust) |
 
 `RingSeq.index(value, start=0, stop=None)` overrides `Sequence.index` with
 *circular* semantics: without a `stop` it searches one full revolution and

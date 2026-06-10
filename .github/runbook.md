@@ -111,7 +111,7 @@ to `master` and on every pull request.
 |---|---|---|
 | **Ruff lint** | `ruff check .` | Ubuntu, Python 3.12 |
 | **Ruff format** | `ruff format --check .` | Ubuntu, Python 3.12 |
-| **Tests** | `pytest tests/AllTest.py` | Ubuntu × Python 3.10 – 3.14 |
+| **Tests** | `pytest` (unit tests + doctests, configured in `pyproject.toml`) | Ubuntu × Python 3.10 – 3.14 |
 
 In addition:
 
@@ -134,7 +134,7 @@ In addition:
 ```bash
 ruff check .
 ruff format --check .
-pytest tests/AllTest.py
+pytest
 ```
 
 On Debian/Ubuntu, install `ruff` once via `pipx install ruff` to avoid the

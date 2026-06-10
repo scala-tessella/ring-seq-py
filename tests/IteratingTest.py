@@ -72,6 +72,26 @@ class IteratingOps(unittest.TestCase):
             ],
         )
 
+    def test_windows(self):
+        self.assertEqual(
+            _strs(RingSeq("ABCDE").windows(2)),
+            ["AB", "BC", "CD", "DE", "EA"],
+        )
+        self.assertEqual(
+            _tuples(RingSeq((0, 1, 2)).windows(1)),
+            [(0,), (1,), (2,)],
+        )
+        # a window longer than the ring wraps around it multiple times
+        self.assertEqual(
+            _strs(RingSeq("ABC").windows(5)),
+            ["ABCAB", "BCABC", "CABCA"],
+        )
+        self.assertEqual(list(RingSeq("").windows(2)), [])
+        with self.assertRaises(ValueError):
+            RingSeq("ABC").windows(0)
+        with self.assertRaises(ValueError):
+            RingSeq("ABC").windows(-1)
+
     def test_grouped(self):
         self.assertEqual(
             _strs(RingSeq("ABCDE").grouped(2)),
@@ -83,6 +103,10 @@ class IteratingOps(unittest.TestCase):
             _tuples(RingSeq((0, 1, 2, 3, 4)).grouped(3)),
             [(0, 1, 2), (3, 4, 0)],
         )
+        with self.assertRaises(ValueError):
+            RingSeq("ABC").grouped(0)
+        with self.assertRaises(ValueError):
+            RingSeq("ABC").grouped(-2)
 
     def test_zip_with_index(self):
         self.assertEqual(

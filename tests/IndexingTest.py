@@ -19,9 +19,19 @@ class IndexingOps(unittest.TestCase):
         with self.assertRaises(IndexError):
             RingSeq([])[0]
 
+    def test_get(self):
+        self.assertEqual(RingSeq("ABCDE").get(-1), "E")
+        self.assertEqual(RingSeq("ABCDE").get(5), "A")
+        self.assertIsNone(RingSeq([]).get(0))
+        self.assertEqual(RingSeq([]).get(0, "fallback"), "fallback")
+
     def test_len_and_iter(self):
         self.assertEqual(len(RingSeq("ABC")), 3)
         self.assertEqual(list(iter(RingSeq("ABC"))), ["A", "B", "C"])
+
+    def test_reversed(self):
+        self.assertEqual(list(reversed(RingSeq("ABC"))), ["C", "B", "A"])
+        self.assertEqual(list(reversed(RingSeq([]))), [])
 
     def test_contains(self):
         self.assertIn("B", RingSeq("ABC"))
