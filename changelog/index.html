@@ -1,0 +1,1041 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="RingSeqPy library documentation.">
+      
+      
+        <meta name="author" content="Mario Càllisto">
+      
+      
+        <link rel="canonical" href="https://example.com/changelog/">
+      
+      
+        <link rel="prev" href="../ring_seq_methods/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Changelog - RingSeqPy</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#changelog" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="RingSeqPy" class="md-header__button md-logo" aria-label="RingSeqPy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            RingSeqPy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Changelog
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/scala-tessella/ring-seq-py/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="RingSeqPy" class="md-nav__button md-logo" aria-label="RingSeqPy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    RingSeqPy
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/scala-tessella/ring-seq-py/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../what-is/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    What is a circular sequence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ring_seq_methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RingSeq methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#220-2026-06-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.2.0] — 2026-06-10
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[2.2.0] — 2026-06-10">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Added
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internal
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#212-2026-04-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.1.2] — 2026-04-20
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[2.1.2] — 2026-04-20">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#changed_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#200-2026-04-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.0.0] — 2026-04-19
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[2.0.0] — 2026-04-19">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Added
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changed_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Removed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-earlier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [1.0] — earlier
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#220-2026-06-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.2.0] — 2026-06-10
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[2.2.0] — 2026-06-10">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Added
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internal
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#212-2026-04-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.1.2] — 2026-04-20
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[2.1.2] — 2026-04-20">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#changed_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#200-2026-04-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.0.0] — 2026-04-19
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[2.0.0] — 2026-04-19">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Added
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changed_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Removed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-earlier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [1.0] — earlier
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="changelog">Changelog</h1>
+<p>All notable changes to this project are documented in this file.</p>
+<p>The format follows <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>,
+and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
+<h2 id="220-2026-06-10">[2.2.0] — 2026-06-10</h2>
+<p>Tracks the v0.3.0/v0.3.1 refactoring of the twin Rust library
+<a href="https://github.com/scala-tessella/ring-seq-rs">ring-seq-rs</a>, adapted to the
+Python idiom.</p>
+<h3 id="added">Added</h3>
+<ul>
+<li><code>windows(size)</code> — <code>n</code> fixed-size sliding windows, wrapping across the seam
+  (counterpart of Rust <code>windows</code> / Scala <code>slidingO</code>). A window longer than the
+  ring wraps around it multiple times.</li>
+<li><code>index_of_slice(that, from_=0)</code> and <code>contains_slice(that)</code> — circular lookup
+  and containment of a contiguous, possibly wrapping slice.</li>
+<li><code>get(i, default=None)</code> — non-raising counterpart of <code>rs[i]</code>; returns
+  <code>default</code> on an empty ring (counterpart of Rust <code>Circular::get</code>).</li>
+<li>Negative slice steps: <code>rs[::-1]</code>, <code>rs[4:1:-1]</code>, <code>rs[::-2]</code> traverse the ring
+  backward, circularly and without clamping. Previously a negative step
+  returned an empty <code>RingSeq</code>.</li>
+<li><code>__reversed__</code> — <code>reversed(rs)</code> now iterates the internal tuple directly
+  instead of going through <code>n</code> circular index lookups.</li>
+</ul>
+<h3 id="changed">Changed</h3>
+<ul>
+<li><code>canonical_index()</code> now uses the two-pointer minimal-rotation algorithm
+  (as ring-seq-rs 0.3.1) instead of Booth's algorithm: same O(n) time, but
+  O(1) extra space instead of an O(n) failure-function array. Results are
+  identical.</li>
+<li><code>grouped(size)</code> and <code>windows(size)</code> raise <code>ValueError</code> for a non-positive
+  <code>size</code>. Previously <code>grouped(0)</code> leaked a <code>ZeroDivisionError</code> and a negative
+  size silently yielded nothing.</li>
+</ul>
+<h3 id="performance">Performance</h3>
+<ul>
+<li><code>min_rotational_hamming_distance</code> now also abandons each rotation as soon as
+  its mismatch count reaches the best distance found so far (the inner
+  short-circuit restored in ring-seq-rs 0.3.1), in addition to the existing
+  exact-match early exit.</li>
+</ul>
+<h3 id="internal">Internal</h3>
+<ul>
+<li>Plain <code>pytest</code> now discovers the whole suite (<code>python_files = ["*Test.py"]</code>,
+  <code>testpaths</code>) and runs the docstring examples too (<code>--doctest-modules</code>);
+  CI invokes bare <code>pytest</code>. The <code>tests/AllTest.py</code> aggregator and the empty
+  <code>requirements.txt</code> are gone.</li>
+</ul>
+<h2 id="212-2026-04-20">[2.1.2] — 2026-04-20</h2>
+<h3 id="changed_1">Changed</h3>
+<ul>
+<li><code>grouped(size)</code> now partitions the ring into <code>ceil(n / size)</code> non-overlapping
+  blocks, with the last block wrapping across the seam so every block has exactly
+  <code>size</code> elements. Previously returned <code>n</code> strided blocks covering every ring
+  position.</li>
+</ul>
+<p><code>RingSeq("ABCDE").grouped(2)</code> → <code>['AB', 'CD', 'EA']</code> (was <code>['AB', 'CD', 'EA', 'BC', 'DE']</code>).</p>
+<h3 id="performance_1">Performance</h3>
+<ul>
+<li><code>min_rotational_hamming_distance</code> no longer allocates <code>n</code> intermediate rotation
+  objects: each offset is compared in place against two slices of the input, with
+  early termination when an exact match (distance 0) is found.
+  Measured ~3x faster on exact/rotation-match inputs; neutral on worst-case
+  random inputs.</li>
+</ul>
+<h2 id="200-2026-04-19">[2.0.0] — 2026-04-19</h2>
+<p><strong>Hard break</strong> — v2 is a ground-up redesign around a single, idiomatic <code>RingSeq</code> class.
+Code written against 1.x will not work unchanged; see <strong>Migration</strong> below.</p>
+<h3 id="added_1">Added</h3>
+<ul>
+<li><code>RingSeq[T]</code> class, generic over the element type, wrapping any <code>Iterable[T]</code> and
+  implementing the Python <code>Sequence</code> protocol (<code>len</code>, <code>iter</code>, <code>in</code>, indexing, slicing)
+  with circular semantics. Instances are immutable, hashable, and orderable.</li>
+<li>Native circular indexing and slicing via <code>__getitem__</code>: <code>rs[-1]</code>, <code>rs[30001]</code>,
+  <code>rs[1:10]</code>, <code>rs[0:5:2]</code> all work without calling <code>apply_o</code> / <code>slice_o</code>.</li>
+<li>Explicit unwrap methods: <code>to_list()</code>, <code>to_tuple()</code>, <code>to_str(sep="")</code>.</li>
+<li>Cross-type equality and hashing: <code>RingSeq('ABC') == RingSeq(['A','B','C']) ==
+  RingSeq(('A','B','C'))</code> — all equal, all share the same hash.</li>
+<li>Ordering (<code>&lt;</code>, <code>&lt;=</code>, <code>min()</code>, sorting) based on lexicographic tuple order.</li>
+<li>New ring operations ported from the Scala library:</li>
+<li><code>take_while</code>, <code>drop_while</code>, <code>span</code></li>
+<li><code>grouped</code>, <code>zip_with_index</code></li>
+<li><code>align_to</code>, <code>hamming_distance</code>, <code>min_rotational_hamming_distance</code></li>
+<li><code>canonical_index</code>, <code>canonical</code>, <code>bracelet</code> (Booth's O(n) algorithm)</li>
+<li><code>reflectional_symmetry_axes</code> with <code>AxisLocation</code> / <code>Vertex</code> / <code>Edge</code> value types</li>
+<li>Dual-licensed under Apache-2.0 OR MIT.</li>
+</ul>
+<h3 id="changed_2">Changed</h3>
+<ul>
+<li><strong>Single-class API.</strong> The <code>RingSeq</code> class is now the only public entry point;
+  the <code>ring_seq.methods</code> module and its module-level functions have been removed.</li>
+<li><strong>No <code>_o</code> suffix noise.</strong> Because <code>RingSeq</code> is already circular, <code>slice_o</code>,
+  <code>index_o</code>, <code>take_while_o</code>, <code>drop_while_o</code>, <code>span_o</code>, <code>grouped_o</code>,
+  <code>zip_with_index_o</code>, <code>segment_length_o</code>, <code>apply_o</code> are gone or renamed without
+  the suffix.</li>
+<li><strong>Type preservation is explicit, not implicit.</strong> v1 returned <code>list</code>/<code>str</code>/<code>tuple</code>
+  matching the input type via an internal <code>__typed_assemble</code>. v2 always returns
+  <code>RingSeq[T]</code>; the caller unwraps with <code>to_list()</code> / <code>to_str()</code> / <code>to_tuple()</code> at
+  the boundary.</li>
+<li><code>str</code> is no longer privileged: <code>RingSeq("ABC")</code> stores <code>('A', 'B', 'C')</code> like any
+  other iterable. Call <code>.to_str()</code> to rejoin.</li>
+<li><code>Edge</code> enforces its invariant: <code>Edge(i, n)</code> takes the ring size <code>n</code> and derives
+  <code>j = (i + 1) % n</code>. Pattern matching <code>case Edge(i, j):</code> still works.</li>
+<li><code>symmetry_indices</code> returns reflection shifts (matching the Scala library's
+  semantics), not positional "element-close-to-axis" indices.</li>
+<li><code>examples.Ring</code> rewritten on top of the new class; still preserves the input
+  concrete type (<code>list</code> / <code>tuple</code> / <code>str</code>) when exposing <code>.current()</code>.</li>
+</ul>
+<h3 id="removed">Removed</h3>
+<ul>
+<li><code>ring_seq.methods</code> module — every function is gone. Everything lives on <code>RingSeq</code>.</li>
+<li><code>ring_seq.RingSeq</code> module — merged into <code>ring_seq.ring_seq</code>; import paths are
+  <code>from ring_seq import RingSeq, Vertex, Edge</code> (unchanged for users who were using
+  the package-level re-export).</li>
+<li><code>TypeVar("Seq", list, str, tuple)</code> — superseded by <code>Generic[T]</code> / <code>Sequence[T]</code>.</li>
+<li><code>apply_o</code>, <code>slice_o</code>, <code>index_o</code> (as free functions) — replaced by native
+  <code>rs[i]</code>, <code>rs[i:j]</code>, <code>rs.index(x)</code>.</li>
+</ul>
+<h3 id="migration">Migration</h3>
+<table>
+<thead>
+<tr>
+<th>v1</th>
+<th>v2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>from ring_seq.methods import rotate_left</code></td>
+<td><code>from ring_seq import RingSeq</code></td>
+</tr>
+<tr>
+<td><code>rotate_left("RING", 1)</code> → <code>'INGR'</code></td>
+<td><code>RingSeq("RING").rotate_left(1).to_str()</code></td>
+</tr>
+<tr>
+<td><code>apply_o([0,1,2,3], -1)</code> → <code>3</code></td>
+<td><code>RingSeq([0,1,2,3])[-1]</code></td>
+</tr>
+<tr>
+<td><code>slice_o("ABC", -1, 5)</code> → <code>'CABCAB'</code></td>
+<td><code>RingSeq("ABC")[-1:5].to_str()</code></td>
+</tr>
+<tr>
+<td><code>index_o("ABC", "B", 2, 7)</code> → <code>1</code></td>
+<td><code>RingSeq("ABC").index("B", 2, 7)</code></td>
+</tr>
+<tr>
+<td><code>take_while_o(r, p, 1)</code></td>
+<td><code>RingSeq(r).take_while(p, 1)</code></td>
+</tr>
+<tr>
+<td><code>Edge(i, (i+1) % n)</code></td>
+<td><code>Edge(i, n)</code></td>
+</tr>
+<tr>
+<td><code>RingSeq('-\|--\|--\|--\|-').symmetry_indices()</code> → <code>[1, 4, 7, 10]</code></td>
+<td><code>RingSeq('-\|--\|--\|--\|-').symmetry_indices()</code> → <code>[0, 3, 6, 9]</code> (shift-based)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="10-earlier">[1.0] — earlier</h2>
+<p>Initial release: Python port of the Scala <code>ring-seq</code> library, exposing module-level
+functions over <code>list</code> / <code>tuple</code> / <code>str</code> plus a thin <code>RingSeq</code> wrapper for dot
+notation. See the git history for the feature-by-feature evolution.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 Mario Càllisto.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
